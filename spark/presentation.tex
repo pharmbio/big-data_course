@@ -91,7 +91,7 @@
 \renewcommand\UrlFont{\color{blue}}
 \renewcommand\thefootnote{\textcolor{uured}{\arabic{footnote}}}
 \setbeamercolor{alerted text}{fg=uured}
-\lstset{language=Tex, basicstyle=\ttfamily\scriptsize, frame=single }
+\lstset{basicstyle=\ttfamily\scriptsize, frame=single }
 \newcommand{\TikZ}{{\lmr Ti\textit{k}Z}}
 
 \title{An introduction to Apache Spark}   
@@ -211,7 +211,7 @@ LISP is a powerful, but in my opinion, somewhat special language. Here is an exa
         \end{center}
     \end{frame}
 
-    \begin{frame}
+    \begin{frame}[fragile]
         \frametitle{Map and Reduce}
         \framesubtitle{Map}
 
@@ -220,11 +220,25 @@ LISP is a powerful, but in my opinion, somewhat special language. Here is an exa
                 function to each element of, \textit{e.g.}, a list. It can also
                 be called \texttt{apply-to-all}.
             \end{block}
+            
+            \begin{block}{Example: \hfill \small(Python)}
+            \begin{center}
+            \begin{minipage}{0.8\linewidth}
+            \begin{lstlisting}
+square = lambda x:x*x
+a = [1,2,3,4]
+list(map(square, a))
+            \end{lstlisting}
+            $\Rightarrow$ \texttt{[1, 4, 9, 16]}
+            \end{minipage}
+            \end{center}
+            \end{block}
 
         
         
     \end{frame}
-    \begin{frame}
+    
+    \begin{frame}[fragile]
         \frametitle{Map and Reduce}
         \framesubtitle{Reduce}
 
@@ -234,6 +248,19 @@ LISP is a powerful, but in my opinion, somewhat special language. Here is an exa
                 a return value.
             \end{block}
 
+            \begin{block}{Example: \hfill \small(Python)}
+            \begin{center}
+            \begin{minipage}{0.8\linewidth}
+            \begin{lstlisting}
+from functools import reduce
+sum = lambda a,b:a+b
+a = [1,2,3,4]
+reduce(sum,a)
+            \end{lstlisting}
+            $\Rightarrow$ 10
+            \end{minipage}
+            \end{center}
+            \end{block}
     \end{frame}
 
     \subsection{MapReduce}
