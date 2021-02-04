@@ -27,6 +27,7 @@
 \usepackage{listings}
 \usepackage{verbatim}
 \usepackage{hologo}
+\usepackage{wrapfig}
 \usepackage[absolute,overlay]{textpos}
 \usepackage[euler-digits,euler-hat-accent]{eulervm}
 %\logo{\pgfputat{\pgfxy(.45,.5)}{\pgfbox[center]{\includegraphics[width=1.7cm]{Figures/uu_shadow.pngu}}}}
@@ -201,10 +202,10 @@ LISP is a powerful, but in my opinion, somewhat special language. Here is an exa
             \only<1->{\only<1>{\color{black}}So, why do I talk so much about LISP?}
         \end{center}
         \begin{center}
-            \only<2->{\only<2>{\color{black}}It's because its list-based structure had \texttt{map} and \texttt{reduce}}
+            \only<2->{\only<2>{\color{black}}It's because its list-based structure lent it self well for \texttt{map} and \texttt{reduce}}
         \end{center}
         \begin{center}
-            \only<3->{\only<3>{\color{black}}Which gave rise to the MapReduce programming model}
+            \only<3->{\only<3>{\color{black}}Which later gave rise to the MapReduce programming model}
         \end{center}
         \begin{center}
             \only<4->{\only<4>{\color{black}}but first, let's talk about \texttt{map} and \texttt{reduce}\ldots}
@@ -220,7 +221,7 @@ LISP is a powerful, but in my opinion, somewhat special language. Here is an exa
                 function to each element of, \textit{e.g.}, a list. It can also
                 be called \texttt{apply-to-all}.
             \end{block}
-            
+            \pause
             \begin{block}{Example: \hfill \small(Python)}
             \begin{center}
             \begin{minipage}{0.8\linewidth}
@@ -247,7 +248,7 @@ list(map(square, a))
                 given function combines the part of, \textit{e.g.}, a list into
                 a return value.
             \end{block}
-
+            \pause
             \begin{block}{Example: \hfill \small(Python)}
             \begin{center}
             \begin{minipage}{0.8\linewidth}
@@ -265,14 +266,58 @@ reduce(sum,a)
 
     \subsection{MapReduce}
     \begin{frame}
-        \frametitle{MapReduce}
-        \framesubtitle{}
-        
+        \frametitle{MapReduce frameworks}
+        \framesubtitle{Parallelisation}
+        \begin{block}{MapReduce frameworks are parallel}
+        Since each step in Map and Reduce is separate it lends itself well to
+        parallelisation. The idea behind MapReduce frameworks is to run in
+        massively parallel ways.
+        \end{block}
+    \end{frame}
+       
+    \begin{frame}
+        \frametitle{MapReduce frameworks}
+        \framesubtitle{Parallelisation}
+        \begin{block}{Apache Hadoop}
+        \begin{wrapfigure}[2]{r}{0.45\textwidth}
+        \vspace{-1.2\baselineskip}
+        \includegraphics[width=1\linewidth]{figures/hadoop.png}
+        \end{wrapfigure}
+        Apache Hadoop is an example of a MapReduce framework that:
+        \begin{itemize}
+            \item Was released in 2006
+            \item Works by loading things from disk, performing map and reduce operations and then writing back to disk.
+            \item Can use relatively cheap computers to run things in parallel
+            \item Has relatively hard APIs to code against while doing the map and reduce operations
+        \end{itemize}
+        \end{block}
     \end{frame}
 
 
 \section{Spark}
-    
+    \begin{frame}
+        \frametitle{Spark}
+        \framesubtitle{``a unified analytics engine for large-scale data processing''}
+        \begin{block}{Apache Spark}
+        \begin{wrapfigure}[3]{r}{0.35\textwidth}
+        \vspace{-1.2\baselineskip}
+        \includegraphics[width=1\linewidth]{figures/Spark.png}
+        \end{wrapfigure}
+        In 2014 Spark was released, in a way as a sort of response to Hadoop. Spark:
+        \begin{itemize}
+            \item Keep things in memory and is thus faster than Hadoop
+        \end{itemize}\vspace{-4pt}
+
+        \begin{itemize}
+            \item Has friendly APIs for Python, Scala and to some degree R
+            \item Has better support for machine learning than Hadoop
+            \item Requires relatively expensive computers to run because it
+            needs huge amounts of RAM if it is to benefit from keeping all data
+            in memory.
+        \end{itemize}
+        \end{block}
+    \end{frame}
+
     \subsection{Architecture}
     \subsection{RDD}
     \subsection{Dataframe}
