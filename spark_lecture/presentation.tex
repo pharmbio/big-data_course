@@ -184,12 +184,13 @@ LISP is a powerful, but in my opinion, somewhat special language. Here is an exa
         (* n (factorial (- n 1)))))
 \end{lstlisting}
 \end{minipage}
-\hfill\pause
+\hfill
+\uncover<2->{
 \begin{minipage}{0.55\textwidth}
 \centering
 \includegraphics[width=1\textwidth]{Figures/lisp_cycles.png}
 \small \texttt{https://xkcd.com/297/}
-\end{minipage}
+\end{minipage}}
 \footnotetext{You do \alert{\underline{not}} need to learn LISP in this course}
     \end{frame}
 
@@ -221,7 +222,7 @@ LISP is a powerful, but in my opinion, somewhat special language. Here is an exa
                 function to each element of, \textit{e.g.}, a list. It can also
                 be called \texttt{apply-to-all}.
             \end{block}
-            \pause
+            \begin{uncoverenv}<2->
             \begin{block}{Example: \hfill \small(Python)}
             \begin{center}
             \begin{minipage}{0.8\linewidth}
@@ -234,8 +235,7 @@ list(map(square, a))
             \end{minipage}
             \end{center}
             \end{block}
-
-        
+            \end{uncoverenv}
         
     \end{frame}
     
@@ -248,7 +248,7 @@ list(map(square, a))
                 given function combines the part of, \textit{e.g.}, a list into
                 a return value.
             \end{block}
-            \pause
+            \begin{uncoverenv}<2->
             \begin{block}{Example: \hfill \small(Python)}
             \begin{center}
             \begin{minipage}{0.8\linewidth}
@@ -262,6 +262,7 @@ reduce(sum,a)
             \end{minipage}
             \end{center}
             \end{block}
+            \end{uncoverenv}
     \end{frame}
 
     \subsection{MapReduce}
@@ -300,8 +301,8 @@ reduce(sum,a)
         \framesubtitle{``a unified analytics engine for large-scale data processing''}
         \begin{block}{Apache Spark}
         \begin{wrapfigure}[3]{r}{0.35\textwidth}
-        \vspace{-1.2\baselineskip}
-        \includegraphics[width=1\linewidth]{figures/Spark.png}
+        \vspace{-1\baselineskip}
+        \includegraphics[width=0.9\linewidth]{figures/Spark.png}\hfill
         \end{wrapfigure}
         In 2014 Spark was released, in a way as a sort of response to Hadoop. Spark:
         \begin{itemize}
@@ -318,9 +319,86 @@ reduce(sum,a)
         \end{block}
     \end{frame}
 
+    \begin{frame}
+        \frametitle{Spark}
+        \framesubtitle{``a unified analytics engine for large-scale data processing''}
+        \begin{block}{Apache Spark}
+        \begin{center}
+            \only<1>{\includegraphics[width=0.9\textwidth]{figures/spark-overview.png}}
+            \only<2>{\includegraphics[width=0.9\textwidth]{figures/spark-overview-select.png}}
+        \end{center}
+        \end{block}
+    \end{frame}
+
     \subsection{Architecture}
+        \begin{frame}
+            \frametitle{Spark}
+            \framesubtitle{Architecture}
+            \begin{block}{Spark Architecture}
+            \begin{center}
+            \begin{tikzpicture}[node distance=0]
+        \node (context)  [draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]{Spark Context};
+        \node (manager)  [draw,minimum height=.5cm,minimum width = .5cm, right of = context, node distance = 10 em]{Cluster Manager};
+        \node (worker1)  [draw,minimum height=.5cm,minimum width = .5cm, right of = manager, node distance = 10 em,  yshift=8ex]{Executor};
+        \node (worker2)  [draw,minimum height=.5cm,minimum width = .5cm, right of = manager, node distance = 10 em             ]{Executor};
+        \node (worker3)  [draw,minimum height=.5cm,minimum width = .5cm, right of = manager, node distance = 10 em, yshift=-8ex]{Executor};
+
+        \node (contextT) [above of = context, node distance=3ex] {\small\commentfont Driver code};
+        \node (worker1T) [above of = worker1, node distance=3ex] {\small\commentfont Worker};
+        \node (worker2T) [above of = worker2, node distance=3ex] {\small\commentfont Worker};
+        \node (worker3T) [above of = worker3, node distance=3ex] {\small\commentfont Worker};
+
+        \draw [->, shorten <=4pt, shorten >=4pt] (context) to (manager);
+        \draw [->, shorten <=4pt, shorten >=4pt, out=10, in=-170] (manager) to (worker1);
+        \draw [->, shorten <=4pt, shorten >=4pt, out=0, in=180]  (manager) to (worker2);
+        \draw [->, shorten <=4pt, shorten >=4pt, out=-10, in=170] (manager) to (worker3);
+
+            \end{tikzpicture}
+            \vspace{1ex}
+            \end{center}
+            \end{block}
+
+        \end{frame}
+
     \subsection{RDD}
+        \begin{frame}
+            \frametitle{Spark}
+            \framesubtitle{RDD -- ``A read-only collection of records partitioned through the nodes in the cluster''}
+            \begin{block}{RDD -- Resilient Distributed Dataset}
+                When coding in Spark you work with RDDs. They are:
+                \begin{itemize}
+                    \item Immutable 
+                    \item Distributed and partitioned in the cluster
+                    \item Scalable and fault tolerant
+                    \item Created from stored data or by transforming another RDD
+                \end{itemize}
+            \end{block}
+        \end{frame}
+        
+        \begin{frame}
+            \frametitle{Spark}
+            \framesubtitle{RDD -- ``A read-only collection of records partitioned through the nodes in the cluster''}
+            \begin{block}{Transformations}
+                A transformation 
+                \begin{itemize}
+                    \item creates a \alert{new RDD} from an old RDD
+                    \item is evaluated \alert{lazily}
+                \end{itemize}
+            \end{block}
+            \begin{block}{Actions}
+                An action 
+                \begin{itemize}
+                    \item \alert{saves data} to file system or \alert{returns data} to driver program
+                    \item \alert{blocks} while being evaluated
+                \end{itemize}
+            \end{block}
+        \end{frame}
+
     \subsection{Dataframe}
+        \begin{frame}
+            \frametitle{Spark}
+            \framesubtitle{Dataframe}
+        \end{frame}
 \section{Example}
     
 \setbeamertemplate{background}{%
