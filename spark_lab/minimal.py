@@ -11,16 +11,18 @@ from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.sql import SparkSession
 
 from pyspark.ml.linalg import Vectors
+import time
+start_time = time.time()
+
 
 spark = SparkSession.builder.appName("SimpleApp").getOrCreate()
 df = spark.read.option("header","true")\
-               .option("delimiter", '\t').csv("acd_logd_100.smiles")
-
-print(df.select("canonical_smiles", "acd_logd").rdd)
+               .option("delimiter", '\t').csv("acd_logd.smiles")\
+               .sample(0.02)
 
 data = df.select("canonical_smiles", "acd_logd").rdd.map( lambda row: (row.canonical_smiles, float(row.acd_logd)) )\
          .map( lambda x: (Chem.MolFromSmiles(x[0]), x[1]) )\
-         .map( lambda x: (AllChem.GetMorganFingerprintAsBitVect(x[0], 2, nBits=1024), x[1]) )\
+         .map( lambda x: (AllChem.GetMorganFingerprintAsBitVect(x[0], 2, nBits=4096), x[1]) )\
          .map( lambda x: (np.array(x[0]),x[1]) )\
          .map( lambda x: (Vectors.dense(x[0].tolist()),x[1]) )\
          .map( lambda x: (x[0],x[1]))\
@@ -59,3 +61,4 @@ rfModel = model.stages[1]
 print(rfModel)  # summary only
 
 spark.stop()
+print("--- %s seconds ---" % (time.time() - start_time))

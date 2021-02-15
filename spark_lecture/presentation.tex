@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169]{beamer}
+\documentclass[aspectratio=169,usenames,dvipsnames]{beamer}
 
 \usepackage{pgf}  
 \usepackage{tikz}
@@ -398,9 +398,135 @@ reduce(sum,a)
         \begin{frame}
             \frametitle{Spark}
             \framesubtitle{Dataframe}
+            \begin{block}{Dataframe}
+                When doing machine learning with Spark we will work a lot with
+                dataframes. A dataframe consists of rows and columns.
+            \end{block}
         \end{frame}
+
 \section{Example}
-    
+        \begin{frame}
+            \frametitle{Spark}
+            \framesubtitle{Example}
+            \begin{center}
+                Now, let's look at an example!
+            \end{center}
+        \end{frame}
+
+\subsection{Word counting}
+    \begin{frame}[fragile]
+        \frametitle{Example}
+        \framesubtitle{Word counting}
+        \begin{center}
+
+        \begin{minipage}{0.8\textwidth}
+\begin{lstlisting}[escapechar={|}, title=wordcount.py]
+|\only<1>{\color{black}}{\only<2>{\color{gray}}from pyspark.sql import SparkSession |
+
+|\only<1>{\color{black}}{\only<2>{\color{Orchid}}spark = SparkSession.builder.appName("SimpleApp").getOrCreate()|
+|\only<1>{\color{black}}{\only<2>{\color{Orchid}}sc = spark.sparkContext|
+
+|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}rdd0 = sc.textFile("foo.txt")|
+
+|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}rdd1 = rdd0.flatMap( lambda line : line.split(" ") )|
+|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}rdd2 = rdd1.map( lambda word : (word,1) )|
+|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}rdd3 = rdd2.reduceByKey( lambda a,b : (a + b) )|
+
+|\only<1>{\color{black}}{\only<2>{\color{BrickRed}}print(rdd3.collect())|
+\end{lstlisting}
+\end{minipage}
+\end{center}
+    \end{frame}
+
+    \begin{frame}[plain]
+    \hspace*{-1em}
+            \begin{tikzpicture}[node distance= 25 pt]
+        \only<1>{
+        \node (txt)  [fill={rgb:purple,1;white,4}, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]{foo bar foo bar buzz};
+        \node [above of = txt, node distance = 14 pt] {\small\commentfont foo.txt };
+        }
+
+        \only<6>{
+        \node (txt)  [fill={rgb:purple,1;white,4}, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]{foo bar foo bar buzz};
+        \node [above of = txt, node distance = 14 pt] {\small\commentfont foo.txt };
+        }
+        
+        \uncover<2-5>{
+        \node (txt)  [fill={rgb:purple,1;white,15}, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]{foo bar foo bar buzz};
+        \node [above of = txt, node distance = 14 pt] {\small\commentfont foo.txt };
+        }
+        
+        \only<2->{
+        \node (rdd0)  [fill={rgb:purple,1;white,4}, below of = txt, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]{"foo bar foo bar buzz"};
+        \node [above of = rdd0, node distance = 14 pt] {\small\commentfont rdd0 };
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (txt) to node[right]
+              {\color{NavyBlue}\small\texttt{rdd0 = sc.textFile("foo.txt")}} (rdd0);
+        }
+
+        \uncover<3->{
+        \node (rdd0)  [fill={rgb:purple,1;white,15}, below of = txt, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]{"foo bar foo bar buzz"};
+        \node [above of = rdd0, node distance = 14 pt] {\small\commentfont rdd0 };
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (txt) to node[right]
+              {\color{NavyBlue!40!white}\small\texttt{rdd0 = sc.textFile("foo.txt")}} (rdd0);
+        }
+        
+        \only<3->{
+        \node (rdd1)  [fill={rgb:purple,1;white,4}, below of = rdd0, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]{"foo", "bar", "foo", "bar", "buzz"};
+        \node [above of = rdd1, node distance = 14 pt] {\small\commentfont rdd1 };
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (rdd0) to node[right]
+              {\color{NavyBlue}\small\texttt{rdd1 = rdd0.flatMap( lambda line : line.split(" ") )}} (rdd1);
+        }
+
+        \uncover<4->{
+        \node (rdd1)  [fill={rgb:purple,1;white,15}, below of = rdd0, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]{"foo", "bar", "foo", "bar", "buzz"};
+        \node [above of = rdd1, node distance = 14 pt] {\small\commentfont rdd1 };
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (rdd0) to node[right]
+              {\color{NavyBlue!40!white}\small\texttt{rdd1 = rdd0.flatMap( lambda line : line.split(" ") )}} (rdd1);
+        }
+        
+        \only<4->{
+        \node (rdd2)  [fill={rgb:purple,1;white,4}, below of = rdd1, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]
+                      {("foo", 1), ("bar", 1), ("foo", 1), ("bar", 1), ("buzz", 1)};
+        \node [above of = rdd2, node distance = 14 pt] {\small\commentfont rdd2 };
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (rdd1) to node[right]
+              {\color{NavyBlue}\small\texttt{rdd2 = rdd1.map( lambda word : (word,1) )}} (rdd2);
+        }
+        
+        \uncover<5->{
+        \node (rdd2)  [fill={rgb:purple,1;white,15}, below of = rdd1, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]
+                      {("foo", 1), ("bar", 1), ("foo", 1), ("bar", 1), ("buzz", 1)};
+        \node [above of = rdd2, node distance = 14 pt] {\small\commentfont rdd2 };
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (rdd1) to node[right]
+              {\color{NavyBlue!40!white}\small\texttt{rdd2 = rdd1.map( lambda word : (word,1) )}} (rdd2);
+        }
+        
+        \only<5->{
+        \node (rdd3)  [fill={rgb:purple,1;white,4}, below of = rdd2, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]
+                      {("foo", 2), ("bar", 2), ("buzz", 1)};
+        \node [above of = rdd3, node distance = 14 pt] {\small\commentfont rdd3 };
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (rdd2) to node[right]
+              {\color{NavyBlue}\small\texttt{rdd3 = rdd2.reduceByKey( lambda a,b : (a + b) )}} (rdd3);
+        }
+        
+        \uncover<6->{
+        \node (rdd3)  [fill={rgb:purple,1;white,4}, below of = rdd2, draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]
+                      {("foo", 2), ("bar", 2), ("buzz", 1)};
+        \node [above of = rdd3, node distance = 14 pt] {\small\commentfont rdd3 };
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (rdd2) to node[right]
+              {\color{NavyBlue!40!white}\small\texttt{rdd3 = rdd2.reduceByKey( lambda a,b : (a + b) )}} (rdd3);
+         
+        \draw [->, shorten <=4pt, shorten >=4pt,out=15, in=-15, line width=1mm, opacity=0.85, color={rgb:purple,1;white,1}] (rdd3) to node[right,text width=6cm]
+              {\commentfont \Large Now we have made a word count of the original file} (txt);
+        }
+            \end{tikzpicture}
+    \end{frame}
+
+\begin{frame}[fragile]
+        \frametitle{Example}
+        \framesubtitle{Word counting}
+        
+\end{frame}
+
 \setbeamertemplate{background}{%
     \parbox[c][\paperheight]{\paperwidth}{%
         \vskip -8 ex \hskip -2 em
