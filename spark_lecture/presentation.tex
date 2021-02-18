@@ -271,8 +271,8 @@ reduce(sum,a)
         \framesubtitle{Parallelisation}
         \begin{block}{MapReduce frameworks are parallel}
         Since each step in Map and Reduce is separate it lends itself well to
-        parallelisation. The idea behind MapReduce frameworks is to run in
-        massively parallel ways.
+        parallelisation. The idea behind \alert{MapReduce} frameworks is to run in
+        \alert{massively parallel} ways.
         \end{block}
     \end{frame}
        
@@ -286,10 +286,10 @@ reduce(sum,a)
         \end{wrapfigure}
         Apache Hadoop is an example of a MapReduce framework that:
         \begin{itemize}
-            \item Was released in 2006
-            \item Works by loading things from disk, performing map and reduce operations and then writing back to disk.
-            \item Can use relatively cheap computers to run things in parallel
-            \item Has relatively hard APIs to code against while doing the map and reduce operations
+            \item Was \alert{released in 2006}
+            \item Works by loading things \alert{from disk}, performing map and reduce operations and then \alert{writing back to disk}.
+            \item Can use relatively \alert{cheap computers} to run things in \alert{parallel}
+            \item Has relatively \alert{hard APIs to code against} while doing the map and reduce operations
         \end{itemize}
         \end{block}
     \end{frame}
@@ -304,15 +304,15 @@ reduce(sum,a)
         \vspace{-1\baselineskip}
         \includegraphics[width=0.9\linewidth]{figures/Spark.png}\hfill
         \end{wrapfigure}
-        In 2014 Spark was released, in a way as a sort of response to Hadoop. Spark:
+        In \alert{2014} Spark was released, in a way as a sort of response to Hadoop. Spark:
         \begin{itemize}
-            \item Keeps things in memory and is thus faster than Hadoop
+            \item Keeps things \alert{in memory} and is thus faster than Hadoop
         \end{itemize}\vspace{-4pt}
 
         \begin{itemize}
-            \item Has friendly APIs for Python, Scala and to some degree R
-            \item Has better support for machine learning than Hadoop
-            \item Requires relatively expensive computers to run because it
+            \item Has \alert{friendly API}s for Python, Scala and to some degree R
+            \item Has \alert{better support for machine learning} than Hadoop
+            \item Requires \alert{relatively expensive computers} to run because it
             needs huge amounts of RAM if it is to benefit from keeping all data
             in memory.
         \end{itemize}
@@ -367,9 +367,9 @@ reduce(sum,a)
             \begin{block}{RDD -- Resilient Distributed Dataset}
                 When coding in Spark you work with RDDs. They are:
                 \begin{itemize}
-                    \item Immutable 
-                    \item Distributed and partitioned in the cluster
-                    \item Scalable and fault tolerant
+                    \item \alert{Immutable}
+                    \item \alert{Distributed} and \alert{partitioned} in the cluster
+                    \item \alert{Scalable} and \alert{fault tolerant}
                     \item Created from stored data or by transforming another RDD
                 \end{itemize}
             \end{block}
@@ -409,7 +409,7 @@ reduce(sum,a)
             \frametitle{Spark}
             \framesubtitle{Example}
             \begin{center}
-                Now, let's look at an example!
+                Now, let's look at some examples!
             \end{center}
         \end{frame}
 
@@ -421,18 +421,18 @@ reduce(sum,a)
 
         \begin{minipage}{0.8\textwidth}
 \begin{lstlisting}[escapechar={|}, title=wordcount.py]
-|\only<1>{\color{black}}{\only<2>{\color{gray}}from pyspark.sql import SparkSession |
+|\only<1>{\color{black}}{\only<2->{\color{gray}}from pyspark.sql import SparkSession |
 
-|\only<1>{\color{black}}{\only<2>{\color{Orchid}}spark = SparkSession.builder.appName("SimpleApp").getOrCreate()|
-|\only<1>{\color{black}}{\only<2>{\color{Orchid}}sc = spark.sparkContext|
+|\only<1>{\color{black}}{\only<2->{\color{Orchid}}spark = SparkSession.builder.appName("SimpleApp").getOrCreate()|
+|\only<1>{\color{black}}{\only<2->{\color{Orchid}}sc = spark.sparkContext|
 
-|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}rdd0 = sc.textFile("foo.txt")|
+|\only<1>{\color{black}}{\only<2->{\color{NavyBlue}}rdd0 = sc.textFile("foo.txt")|
 
-|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}rdd1 = rdd0.flatMap( lambda line : line.split(" ") )|
-|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}rdd2 = rdd1.map( lambda word : (word,1) )|
-|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}rdd3 = rdd2.reduceByKey( lambda a,b : (a + b) )|
+|\only<1>{\color{black}}{\only<2->{\color{NavyBlue}}rdd1 = rdd0.flatMap( lambda line : line.split(" ") ) \only<3>{\commentfont \color{darkpastelgreen} \# transformation}|
+|\only<1>{\color{black}}{\only<2->{\color{NavyBlue}}rdd2 = rdd1.map( lambda word : (word,1) ) \only<3>{\commentfont \color{darkpastelgreen} \# transformation}| 
+|\only<1>{\color{black}}{\only<2->{\color{NavyBlue}}rdd3 = rdd2.reduceByKey( lambda a,b : (a + b) ) \only<3>{\commentfont \color{darkpastelgreen} \# transformation}|
 
-|\only<1>{\color{black}}{\only<2>{\color{BrickRed}}print(rdd3.collect())|
+|\only<1>{\color{black}}{\only<2->{\color{BrickRed}}print(rdd3.collect()) \only<3>{\commentfont \color{darkpastelgreen} \# action}|
 \end{lstlisting}
 \end{minipage}
 \end{center}
