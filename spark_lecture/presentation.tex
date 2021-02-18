@@ -413,10 +413,10 @@ reduce(sum,a)
             \end{center}
         \end{frame}
 
-\subsection{Word counting}
+\subsection{Word counting (RDD)}
     \begin{frame}[fragile]
         \frametitle{Example}
-        \framesubtitle{Word counting}
+        \framesubtitle{Word counting (RDD)}
         \begin{center}
 
         \begin{minipage}{0.8\textwidth}
@@ -521,11 +521,179 @@ reduce(sum,a)
             \end{tikzpicture}
     \end{frame}
 
+\subsection{Dataframe}
 \begin{frame}[fragile]
         \frametitle{Example}
-        \framesubtitle{Word counting}
+        \framesubtitle{Dataframe}
+        \vspace*{-1ex}
+        \begin{center}
+        \begin{minipage}{0.8\textwidth}
+\begin{lstlisting}[escapechar={|}, title=dataframe.py]
+|\only<1>{\color{black}}{\only<2>{\color{gray}}from pyspark.sql import SparkSession |
+|\only<1>{\color{black}}{\only<2>{\color{gray}}from pyspark.sql.functions import mean |
+
+|\only<1>{\color{black}}{\only<2>{\color{Orchid}}spark = SparkSession.builder.appName("SimpleApp").getOrCreate()|
+
+|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}df = spark.read.format("csv")\textbackslash |
+         |\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}.option("header", "true")\textbackslash |
+         |\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}.option("inferSchema", "true").load("bar.txt")|
+|\only<1>{\color{black}}{\only<2>{\color{NavyBlue!50!white}}df.show()|
+
+|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}res = df.select([mean('foo')])|
+|\only<1>{\color{black}}{\only<2>{\color{NavyBlue!50!white}}res.show()|
+
+|\only<1>{\color{black}}{\only<2>{\color{NavyBlue}}res = df.groupBy("id").mean("foo","bar")|
+|\only<1>{\color{black}}{\only<2>{\color{NavyBlue!50!white}}res.show()|
+
+\end{lstlisting}
+\end{minipage}
+\end{center}
         
 \end{frame}
+\newsavebox{\mydfshowlisting}
+\newsavebox{\myresoneshowlisting}
+\newsavebox{\myrestwoshowlisting}
+\begin{lrbox}{\mydfshowlisting}
+\begin{lstlisting}[basicstyle=\ttfamily\tiny, frame=none]
++---+---+---+
+| id|foo|bar|
++---+---+---+
+|  A|  3|  0|
+|  B|  1|  1|
+|  B|  0|  2|
++---+---+---+
+\end{lstlisting}
+\end{lrbox}
+
+\begin{lrbox}{\myresoneshowlisting}
+\begin{lstlisting}[basicstyle=\ttfamily\tiny, frame=none]
++------------------+
+|          avg(foo)|
++------------------+
+|1.3333333333333333|
++------------------+
+\end{lstlisting}
+\end{lrbox}
+
+\begin{lrbox}{\myrestwoshowlisting}
+\begin{lstlisting}[basicstyle=\ttfamily\tiny, frame=none]
++---+--------+--------+
+| id|avg(foo)|avg(bar)|
++---+--------+--------+
+|  B|     0.5|     1.5|
+|  A|     3.0|     0.0|
++---+--------+--------+
+\end{lstlisting}
+\end{lrbox}
+
+    \begin{frame}[plain]
+    \hspace*{-1em}
+            \resizebox{!}{1.15\textheight}{
+            \begin{tikzpicture}[node distance= 25 pt]
+            \small
+        \only<1->{
+        \node (txt)  [fill={rgb:purple,1;white,4}, draw,minimum height=.5cm, text width = 1.5cm, node distance = 55 pt]
+{id,foo,bar
+A,3,0
+B,1,1
+B,0,2};
+        \node [above of = txt, node distance = 31 pt] {\footnotesize\commentfont bar.txt };
+        }
+        \uncover<2->{
+        \node (txt)  [fill={rgb:purple,1;white,15}, draw,minimum height=.5cm, text width = 1.5cm, node distance = 55 pt]
+{id,foo,bar
+A,3,0
+B,1,1
+B,0,2};
+        \node [above of = txt, node distance = 31 pt] {\footnotesize\commentfont bar.txt };
+        }
+
+        \only<2->{
+        \node (load) [right of = txt, node distance = 7 cm, text width = 10cm]
+              {\begin{minipage}{10cm}
+\color{NavyBlue}\small\texttt
+{ \begin{tabular}{r@{\hskip0pt}l}
+df = spark&.read.format("csv")\textbackslash \\
+          &.option("header", "true")\textbackslash \\
+          &.option("inferSchema", "true").load("bar.txt") \\
+   \end{tabular}}
+              \end{minipage}
+          };
+        }
+        \uncover<3->{
+        \node (load) [right of = txt, node distance = 7 cm, text width = 10cm]
+              {\begin{minipage}{10cm}
+\color{NavyBlue!40!white}\small\texttt
+{ \begin{tabular}{r@{\hskip0pt}l}
+df = spark&.read.format("csv")\textbackslash \\
+          &.option("header", "true")\textbackslash \\
+          &.option("inferSchema", "true").load("bar.txt") \\
+   \end{tabular}}
+              \end{minipage}
+          };
+        }
+        \only<3->{
+        \node (select) [below of = load, node distance = 3.5cm] 
+              {\color{NavyBlue}\small\texttt{ res1 = df.select([mean('foo')]) }};
+        }
+        \uncover<4->{
+        \node (select) [below of = load, node distance = 3.5cm] 
+              {\color{NavyBlue!40!white}\small\texttt{ res1 = df.select([mean('foo')]) }};
+        }
+  
+
+        \only<2->{
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (load) to node (dfshow) [fill=white]
+              {\color{NavyBlue!40!white}\small\texttt{df.show()}} (select);
+
+        \node (dfshowT)  [right of = dfshow, fill={rgb:purple,1;white,4}, draw,minimum height=.5cm, text width = 1.8cm, node distance = 65 pt]
+        {\usebox\mydfshowlisting};
+        \node [above of = dfshowT, node distance = 33 pt] {\footnotesize\commentfont df };
+        }
+
+        \uncover<3->{
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (load) to node (dfshow) [fill=white]
+              {\color{NavyBlue!20!white}\small\texttt{df.show()}} (select);
+
+        \node (dfshowT)  [right of = dfshow, fill={rgb:purple,1;white,15}, draw,minimum height=.5cm, text width = 1.8cm, node distance = 65 pt]
+        {\usebox\mydfshowlisting};
+        \node [above of = dfshowT, node distance = 33 pt] {\footnotesize\commentfont df };
+        }
+
+        \uncover<4->{
+        \node (groupby) [below of = select, node distance = 3cm] 
+              {\color{NavyBlue}\small\texttt{ res2 = df.groupBy("id").mean("foo","bar") }};
+        }
+        \only<3->{
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (select) to node (res1show) [fill=white]
+              {\color{NavyBlue!40!white}\small\texttt{res1.show()}} (groupby);
+        }
+        \uncover<4->{
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (select) to node (res1show) [fill=white]
+              {\color{NavyBlue!20!white}\small\texttt{res1.show()}} (groupby);
+        }
+        \only<3->{
+        \node (res1showT)  [right of = res1show, fill={rgb:purple,1;white,4}, draw,minimum height=.5cm, text width = 2.5cm, node distance = 75 pt]
+        {\usebox\myresoneshowlisting};
+        \node [above of = res1showT, node distance = 26 pt] {\footnotesize\commentfont res1 };
+        }
+        \uncover<4->{
+        \node (res1showT)  [right of = res1show, fill={rgb:purple,1;white,15}, draw,minimum height=.5cm, text width = 2.5cm, node distance = 75 pt]
+        {\usebox\myresoneshowlisting};
+        \node [above of = res1showT, node distance = 26 pt] {\footnotesize\commentfont res1 };
+        }
+
+        \uncover<4->{
+        \node (empty) [below of = groupby, node distance = 2.6cm]{};
+        \draw [->, shorten <=4pt, shorten >=4pt,out=-35, in=35] (groupby) to node (res2show) [fill=white]
+              {\color{NavyBlue!40!white}\small\texttt{res2.show()}} (empty);
+
+        \node (res2showT)  [right of = res2show, fill={rgb:purple,1;white,4}, draw,minimum height=.5cm, text width = 2.8cm, node distance = 80 pt]
+        {\usebox\myrestwoshowlisting};
+        \node [above of = res2showT, node distance = 29 pt] {\footnotesize\commentfont res2 };
+        }
+            \end{tikzpicture}}
+    \end{frame}
 
 \setbeamertemplate{background}{%
     \parbox[c][\paperheight]{\paperwidth}{%
