@@ -265,6 +265,82 @@ reduce(sum,a)
             \end{uncoverenv}
     \end{frame}
 
+    \begin{frame}
+        \frametitle{Map and Reduce}
+        \framesubtitle{Reduce}
+
+    \begin{tikzpicture}[node distance=0]
+        \node (a)  [draw,circle, minimum size=8pt]{};
+        \node (b)  [right of = a, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (c)  [right of = b, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (d)  [right of = c, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (e)  [right of = d, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (f)  [right of = e, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (g)  [right of = f, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (h)  [right of = g, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (i)  [right of = h, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (j)  [right of = i, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        
+        \node (aa)  [below of = a, node distance = 32 pt, draw,circle, minimum size=8pt]{};
+        \node (ab)  [right of = aa, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ac)  [right of = ab, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ad)  [right of = ac, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ae)  [right of = ad, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (af)  [right of = ae, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ag)  [right of = af, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ah)  [right of = ag, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ai)  [right of = ah, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (aj)  [right of = ai, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+
+        \draw [->, shorten <=3pt, shorten >=3pt] (a) to (aa);
+        \draw [->, shorten <=3pt, shorten >=3pt] (b) to (ab);
+        \draw [->, shorten <=3pt, shorten >=3pt] (c) to (ac);
+        \draw [->, shorten <=3pt, shorten >=3pt] (d) to (ad);
+        \draw [->, shorten <=3pt, shorten >=3pt] (e) to (ae);
+        \draw [->, shorten <=3pt, shorten >=3pt] (f) to (af);
+        \draw [->, shorten <=3pt, shorten >=3pt] (g) to (ag);
+        \draw [->, shorten <=3pt, shorten >=3pt] (h) to (ah);
+        \draw [->, shorten <=3pt, shorten >=3pt] (i) to (ai);
+        \draw [->, shorten <=3pt, shorten >=3pt] (j) to (aj);
+
+        \node (ba)  [below of = aa, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
+        \node (bb)  [below of = ac, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
+        \node (bc)  [below of = ae, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
+        \node (bd)  [below of = ag, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
+        \node (be)  [below of = ai, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
+        
+        \node (ca)  [below of = ba, node distance = 24 pt, xshift=16pt, draw, circle, minimum size=8pt]{};
+        \node (cb)  [below of = bc, node distance = 24 pt, xshift=16pt, draw, circle, minimum size=8pt]{};
+        
+        \node (da)  [below of = ca, node distance = 36 pt, xshift=48pt, draw, circle, minimum size=8pt]{};
+        \node (db)  [below of = bd, node distance = 36 pt, xshift=16pt, draw, circle, minimum size=8pt]{};
+        
+        \draw [->, shorten <=3pt, shorten >=3pt] (aa) to (ba);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ab) to (ba);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ac) to (bb);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ad) to (bb);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ae) to (bc);
+        \draw [->, shorten <=3pt, shorten >=3pt] (af) to (bc);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ag) to (bd);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ah) to (bd);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ai) to (be);
+        \draw [->, shorten <=3pt, shorten >=3pt] (aj) to (be);
+        
+        \draw [->, shorten <=3pt, shorten >=3pt] (ba) to (ca);
+        \draw [->, shorten <=3pt, shorten >=3pt] (bb) to (ca);
+        \draw [->, shorten <=3pt, shorten >=3pt] (bc) to (cb);
+        \draw [->, shorten <=3pt, shorten >=3pt] (bd) to (cb);
+        
+        \draw [->, shorten <=3pt, shorten >=3pt] (cb) to (db);
+        \draw [->, shorten <=3pt, shorten >=3pt] (be) to (db);
+        
+        \draw [->, shorten <=3pt, shorten >=3pt] (ca) to (da);
+        \draw [->, shorten <=3pt, shorten >=3pt] (db) to (da);
+    \end{tikzpicture}
+        
+
+    \end{frame}
+
     \subsection{MapReduce}
     \begin{frame}
         \frametitle{MapReduce frameworks}
