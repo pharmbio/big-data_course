@@ -267,9 +267,11 @@ reduce(sum,a)
 
     \begin{frame}
         \frametitle{Map and Reduce}
-        \framesubtitle{Reduce}
-
+        \framesubtitle{Map and Reduce}
+        \begin{block}{Map and Reduce}
+    \centering
     \begin{tikzpicture}[node distance=0]
+      \only<1>{
         \node (a)  [draw,circle, minimum size=8pt]{};
         \node (b)  [right of = a, node distance = 16 pt, draw,circle, minimum size=8pt]{};
         \node (c)  [right of = b, node distance = 16 pt, draw,circle, minimum size=8pt]{};
@@ -303,6 +305,53 @@ reduce(sum,a)
         \draw [->, shorten <=3pt, shorten >=3pt] (i) to (ai);
         \draw [->, shorten <=3pt, shorten >=3pt] (j) to (aj);
 
+        \node (startbrace1) [node distance = 10 pt, above right of = j] {};
+        \node (stopbrace1) [node distance = 10 pt, below right of = aj, yshift=4pt] {};
+        \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt}]
+              (startbrace1) -- (stopbrace1) node [black,midway,xshift=1.05cm] {Map};
+      }
+      \uncover<3->{
+        \node (a)  [draw,circle, minimum size=8pt]{};
+        \node (b)  [right of = a, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (c)  [right of = b, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (d)  [right of = c, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (e)  [right of = d, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (f)  [right of = e, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (g)  [right of = f, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (h)  [right of = g, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (i)  [right of = h, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (j)  [right of = i, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+      }
+       
+      \only<2>{
+        \node (aa)  [below of = a, node distance = 32 pt, draw,circle, minimum size=8pt]{};
+        \node (ab)  [right of = aa, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ac)  [right of = ab, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ad)  [right of = ac, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ae)  [right of = ad, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (af)  [right of = ae, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ag)  [right of = af, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ah)  [right of = ag, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ai)  [right of = ah, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (aj)  [right of = ai, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+      }
+      \uncover<3->{
+        \draw [->, shorten <=3pt, shorten >=3pt] (a) to (aa);
+        \draw [->, shorten <=3pt, shorten >=3pt] (b) to (ab);
+        \draw [->, shorten <=3pt, shorten >=3pt] (c) to (ac);
+        \draw [->, shorten <=3pt, shorten >=3pt] (d) to (ad);
+        \draw [->, shorten <=3pt, shorten >=3pt] (e) to (ae);
+        \draw [->, shorten <=3pt, shorten >=3pt] (f) to (af);
+        \draw [->, shorten <=3pt, shorten >=3pt] (g) to (ag);
+        \draw [->, shorten <=3pt, shorten >=3pt] (h) to (ah);
+        \draw [->, shorten <=3pt, shorten >=3pt] (i) to (ai);
+        \draw [->, shorten <=3pt, shorten >=3pt] (j) to (aj);
+      }
+
+      \only<2>{
+        \node (startbrace1) [node distance = 10 pt, above right of = j] {};
+        \node (stopbrace1) [node distance = 10 pt, below right of = aj, yshift=4pt] {};
+        
         \node (ba)  [below of = aa, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
         \node (bb)  [below of = ac, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
         \node (bc)  [below of = ae, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
@@ -336,9 +385,84 @@ reduce(sum,a)
         
         \draw [->, shorten <=3pt, shorten >=3pt] (ca) to (da);
         \draw [->, shorten <=3pt, shorten >=3pt] (db) to (da);
+        
+        
+        \node (startbrace2) [node distance = 10 pt, below right of = aj, yshift=10pt] {};
+        \node (stopbrace2) [node distance = 3.4 cm, below of = startbrace2] {};
+
+        \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt}]
+              (startbrace2) -- (stopbrace2) node [black,midway,xshift=1.17cm] {Reduce};
+      }
+      \only<3>{
+        \node (aa)  [below of = a, node distance = 32 pt, draw,circle, minimum size=8pt]{};
+        \node (ab)  [right of = aa, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ac)  [right of = ab, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ad)  [right of = ac, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ae)  [right of = ad, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (af)  [right of = ae, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ag)  [right of = af, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ah)  [right of = ag, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (ai)  [right of = ah, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+        \node (aj)  [right of = ai, node distance = 16 pt, draw,circle, minimum size=8pt]{};
+      }
+      \only<3>{
+        \node (ba)  [below of = aa, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
+        \node (bb)  [below of = ac, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
+        \node (bc)  [below of = ae, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
+        \node (bd)  [below of = ag, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
+        \node (be)  [below of = ai, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
+        
+        \node (ca)  [below of = ba, node distance = 24 pt, xshift=16pt, draw, circle, minimum size=8pt]{};
+        \node (cb)  [below of = bc, node distance = 24 pt, xshift=16pt, draw, circle, minimum size=8pt]{};
+        
+        \node (da)  [below of = ca, node distance = 36 pt, xshift=48pt, draw, circle, minimum size=8pt]{};
+        \node (db)  [below of = bd, node distance = 36 pt, xshift=16pt, draw, circle, minimum size=8pt]{};
+        
+        \draw [->, shorten <=3pt, shorten >=3pt] (aa) to (ba);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ab) to (ba);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ac) to (bb);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ad) to (bb);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ae) to (bc);
+        \draw [->, shorten <=3pt, shorten >=3pt] (af) to (bc);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ag) to (bd);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ah) to (bd);
+        \draw [->, shorten <=3pt, shorten >=3pt] (ai) to (be);
+        \draw [->, shorten <=3pt, shorten >=3pt] (aj) to (be);
+        
+        \draw [->, shorten <=3pt, shorten >=3pt] (ba) to (ca);
+        \draw [->, shorten <=3pt, shorten >=3pt] (bb) to (ca);
+        \draw [->, shorten <=3pt, shorten >=3pt] (bc) to (cb);
+        \draw [->, shorten <=3pt, shorten >=3pt] (bd) to (cb);
+        
+        \draw [->, shorten <=3pt, shorten >=3pt] (cb) to (db);
+        \draw [->, shorten <=3pt, shorten >=3pt] (be) to (db);
+        
+        \draw [->, shorten <=3pt, shorten >=3pt] (ca) to (da);
+        \draw [->, shorten <=3pt, shorten >=3pt] (db) to (da);
+      } 
+      \only<1>{ 
+        \node (startbrace2) [node distance = 10 pt, below right of = aj, yshift=10pt] {};
+        \node (stopbrace2) [node distance = 3.4 cm, below of = startbrace2] {};
+      }
+      \uncover<3>{
+        \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt}]
+              (startbrace1) -- (stopbrace2) node [black,midway,xshift=2.7cm] {Map followed by reduce};
+
+      }
     \end{tikzpicture}
         
+    \end{block}
+    \end{frame}
 
+    \begin{frame}
+        \frametitle{Map and Reduce}
+        \framesubtitle{Map and Reduce}
+        \begin{block}{Learning to work with map and reduce}
+            \begin{itemize}
+                \item Map and reduce can be used with \alert{many languages} so it is a \alert{general skill} worth learning
+                \item Just make sure that you \alert{know what you have in your list!}
+            \end{itemize}
+        \end{block}
     \end{frame}
 
     \subsection{MapReduce}
@@ -450,6 +574,20 @@ reduce(sum,a)
                 \end{itemize}
             \end{block}
         \end{frame}
+
+        \begin{frame}
+            \frametitle{Spark}
+            \framesubtitle{RDD -- ``A read-only collection of records partitioned through the nodes in the cluster''}
+            \begin{block}{Working with RDDs}
+                \begin{itemize}
+                    \item Spark can drop RDD's out of memory and they can then be \alert{recomputed at any time} as needed
+                    \item We will be working with Python in this course, but
+                    since Spark is written in Scala error messages will be \alert{Java
+                    errors} and naming conventions are \alert{Java naming}. \alert{Don't worry about that!}
+                \end{itemize}
+            \end{block}
+        \end{frame}
+
         
         \begin{frame}
             \frametitle{Spark}
@@ -477,6 +615,8 @@ reduce(sum,a)
             \begin{block}{Dataframe}
                 When doing machine learning with Spark we will work a lot with
                 dataframes. A dataframe consists of rows and columns.
+
+                A bit like working with tables in Microsoft Excel \smiley{} 
             \end{block}
         \end{frame}
 
@@ -769,6 +909,52 @@ df = spark&.read.format("csv")\textbackslash \\
         \node [above of = res2showT, node distance = 29 pt] {\footnotesize\commentfont res2 };
         }
             \end{tikzpicture}}
+    \end{frame}
+
+    \subsection{Some commands}
+    \begin{frame}
+        \frametitle{Example}
+        \framesubtitle{Some commands}
+        I will now give examples of some commands, these lists are in no way complete!
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Example}
+        \framesubtitle{Some commands}
+        \oldBlock{RDD's}
+            \begin{center}
+            \begin{tabular}{ll}
+            \toprule
+            Command & Explanation \\
+            \midrule
+            \texttt{.take(n)} & Bring $n$ things from list to local Python environment \\
+            \texttt{.collect()} & Bring all back to local, \alert{Don't do on big RDD's!} \\
+            \texttt{.parallelize} & Put things on cluster from local \\
+            \texttt{.count()} & Number of items in the list \\
+            \texttt{.flatmap} & flatten structure ([[1,2],[3,4]] $\Rightarrow$ [1,2,3,4]) after applying a map \\
+            \texttt{.reduceByKey} & merge values by key during reduce \\
+            \bottomrule
+            \end{tabular}
+            \end{center}
+        \oldEndBlock{}
+    \end{frame}
+    
+    \begin{frame}
+        \frametitle{Example}
+        \framesubtitle{Some commands}
+        \oldBlock{Dataframes}
+            \begin{center}
+            \begin{tabular}{ll}
+            \toprule
+            Command & Explanation \\
+            \midrule
+            \texttt{.show()} & Print a representation of the dataframe \\
+            \texttt{.printSchema()} & Print datatypes and other info about a dataframe \\
+            \texttt{.coalesce} & Reduce number of partitions a dataset is spread over \\
+            \bottomrule
+            \end{tabular}
+            \end{center}
+        \oldEndBlock{}
     \end{frame}
 
 \setbeamertemplate{background}{%
