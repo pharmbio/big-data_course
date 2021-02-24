@@ -1,0 +1,281 @@
+\documentclass[aspectratio=169,usenames,dvipsnames]{beamer}
+
+\usepackage{pgf}  
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepgflibrary{shapes.arrows} 
+\usetikzlibrary{intersections}
+\usetikzlibrary{calc}
+\usetikzlibrary{fit}
+\usetikzlibrary{automata,positioning}
+\usepackage{pgfplots,stackengine}
+\usepackage{fontspec}
+\usepackage{fancyvrb}
+\usepackage{wasysym}
+\usepackage{unicode-math}
+\usepackage{import}
+\usepackage{rotating}
+\usepackage{gensymb}
+\usepackage{chemfig}
+\usepackage{rotating}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{wrapfig}
+\usepackage{mathtools}
+\usepackage{graphbox}
+\usepackage{epigraph}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{hologo}
+\usepackage{wrapfig}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[euler-digits,euler-hat-accent]{eulervm}
+%\logo{\pgfputat{\pgfxy(.45,.5)}{\pgfbox[center]{\includegraphics[width=1.7cm]{Figures/uu_shadow.pngu}}}}
+
+\usetheme{Copenhagen}
+\usecolortheme{beaver}
+
+\definecolor{uured}{RGB}{153,0,0}
+\setbeamercolor{block title}{use=structure,fg=white,bg=uured}
+\setbeamercolor*{item}{fg=red}
+
+\newcommand{\unilogo}{
+  \setlength{\TPHorizModule}{1pt}
+  \setlength{\TPVertModule}{1pt}
+  \begin{textblock}{1}(26,-10)
+   \includegraphics[height=70pt, align=c]{Figures/uu_shadow.png}
+  \end{textblock}
+  } 
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+  
+\makeatletter
+    \newcases{mycases}{\quad}{%
+        \hfil$\m@th\displaystyle{##}$}{$\m@th\displaystyle{##}$\hfil}{\lbrace}{.}
+\makeatother
+
+\addtobeamertemplate{frametitle}{}{%
+    \unilogo
+}
+\LetLtxMacro{\oldBlock}{\block}
+\LetLtxMacro{\oldEndBlock}{\endblock}
+\renewcommand{\block}{\begin{center}\begin{minipage}{0.8\textwidth}\oldBlock}
+\renewcommand{\endblock}{\oldEndBlock\end{minipage}\end{center}}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+
+\setlength{\fboxsep}{0pt}
+
+\begin{document}
+\graphicspath{{Figures/}}
+\setsansfont[ItalicFont = Optima Italic,
+             BoldFont = Optima Bold,
+             Ligatures=TeX ]
+            {Optima Regular}
+\setmainfont[ItalicFont = Optima Italic,
+             BoldFont = Optima Bold,
+             Ligatures=TeX]
+            {Optima Regular}
+\newfontfamily\commentfont[]{Chalkboard}
+\newfontfamily\DejaSans{DejaVuSans.ttf}
+\newfontfamily\herculanum[]{Herculanum}
+\newfontfamily\timesfont[ItalicFont = Times New Roman Italic]{Times New Roman}
+\newcommand{\lmr}{\fontfamily{lmr}\selectfont}
+\newfontfamily\zA[Ligatures={Common, Rare}, Variant=1] {Zapfino}
+\newfontfamily\zB[Ligatures={Common, Rare}, Variant=2] {Zapfino}
+\newfontfamily\zC[Ligatures={Common, Rare}, Variant=3] {Zapfino}
+\newfontfamily\zD[Ligatures={Common, Rare}, Variant=4] {Zapfino}
+\newfontfamily\zE[Ligatures={Common, Rare}, Variant=5] {Zapfino}
+\newfontfamily\zF[Ligatures={Common, Rare}, Variant=6] {Zapfino}
+\newfontfamily\zG[Ligatures={Common, Rare}, Variant=7] {Zapfino}
+\renewcommand\UrlFont{\color{blue}}
+\renewcommand\thefootnote{\textcolor{uured}{\arabic{footnote}}}
+\setbeamercolor{alerted text}{fg=uured}
+\lstset{basicstyle=\ttfamily\scriptsize, frame=single }
+\newcommand{\TikZ}{{\lmr Ti\textit{k}Z}}
+
+\title{Big data storage and transfer}   
+\author{Jonathan Alvarsson} 
+%\titlegraphic{\vfill\includegraphics[width=18em]{Figures/ORN_large.png}}
+\date{\today} 
+
+\setbeamertemplate{background}{%
+    \parbox[c][\paperheight]{\paperwidth}{%
+        \vfill
+        \hfill
+        \includegraphics[height=0.65\textheight]{Figures/sigill.png}
+    }   
+}
+\begin{frame}[plain]
+\unilogo \vspace{1cm} \titlepage
+\begin{tikzpicture}[remember picture,overlay]
+\tikz[remember picture, overlay] \fill[uured] (current page.north west) rectangle ++(\paperwidth,-0.5cm);
+\end{tikzpicture}%
+\end{frame}
+
+\setbeamertemplate{background}{}
+\renewcommand{\unilogo}{
+  \setlength{\TPHorizModule}{1pt}
+  \setlength{\TPVertModule}{1pt}
+  \begin{textblock}{1}(0,0)
+   \includegraphics[height=27pt, align=c]{Figures/uu.png}
+  \end{textblock}
+  } 
+    \begin{frame}
+    \frametitle{Outline}
+    \begin{minipage}{0.25\textwidth}
+    \mbox{}
+    \end{minipage}
+    \begin{minipage}{0.6\textwidth}
+    \tableofcontents[hideallsubsections]
+    \end{minipage}
+    \end{frame}
+
+\section{Transferring data}
+    \subsection{SFTP, wget, scp and rsync}
+    \begin{frame}
+        \frametitle{Transferring data}
+        \framesubtitle{SFTP, wget, scp and rsync}
+        \begin{block}{File Transfer Protocoll -- FTP}
+        The FTP standard:
+        \begin{itemize}
+            \item was \alert{published in 1971}
+            \item was not designed be secure and has \alert{many security issues}
+            \item is \alert{no longer supported by Chrome and Firefox} 
+        \end{itemize}
+        \end{block}
+    \end{frame}
+    \begin{frame}
+        \frametitle{Transferring data}
+        \framesubtitle{SFTP, wget, scp and rsync}
+        \begin{block}{SSH File Transfer Protocol -- SFTP}
+        The SFTP (sometimes called Secure File Transfer Protocol) standard:
+        \begin{itemize}
+            \item is not FTP over SSH but a separate protocol
+            \item is about the file transferring, SSH takes care of the security 
+        \end{itemize}
+        \end{block}
+    \end{frame}
+    \begin{frame}
+        \frametitle{Transferring data}
+        \framesubtitle{sftp, wget, scp and rsync}
+        \begin{block}{wget}
+            wget 
+            \begin{itemize}
+                \item appeared in 1996
+                \item derives it name from World Wide Web and get
+                \item is a program to retrieve data from web servers
+                \item supports HTTP, HTTPS and FTP
+            \end{itemize}
+        \end{block}
+    \end{frame}
+    \begin{frame}
+        \frametitle{Transferring data}
+        \framesubtitle{sftp, wget, scp and rsync}
+        \begin{block}{checksums}
+            Although wget is designed to be robust it is often a good idea to
+            check it with md5sum after transfer. The md5 hash functions like 
+            a digital fingerprint that you can calculate for a file. After
+            downloading a big file from a web server you \alert{compute the hash and
+            compare with what it is supposed to be} in order to see that your
+            file was transferred correctly.
+        \end{block}
+    \end{frame}
+    \begin{frame}
+        \frametitle{Transferring data}
+        \framesubtitle{sftp, wget, scp and rsync}
+        \begin{block}{Secure copy protocol -- scp}
+        scp:
+        \begin{itemize}
+            \item commonly refers to both the protocol and the software,
+            \item has a \alert{syntax very similar to the common cp command}
+            \item is considered \alert{outdated, inflexible} and not readily fixed by
+            the developers. sftp or rsync is recommended instead.
+        \end{itemize}
+        \end{block}
+    \end{frame}
+    \begin{frame}
+        \frametitle{Transferring data}
+        \framesubtitle{sftp, wget, scp and rsync}
+        \begin{block}{rsync}
+        rsync
+        \begin{itemize}
+            \item appeared in 1996
+            \item is a program for \alert{transferring} and \alert{synchronising} files
+            \item can when synchronising files \alert{send only the changes} of a file 
+            \item \alert{uses md5 checksums} to make sure transferred files are identical to original
+        \end{itemize}
+        \end{block}
+    \end{frame}
+    \subsection{Hard drives}
+    \begin{frame}
+        \frametitle{Transferring data}
+        \framesubtitle{Hard drives}
+        \begin{block}{Hard drives}
+            
+        \end{block}
+    \end{frame}
+    \subsection{Commercial solutions}
+    \begin{frame}
+        \frametitle{Transferring data}
+        \framesubtitle{Commercial solution}
+        \begin{block}{Commercial solutions}
+            IBM Aspera
+        \end{block}
+    \end{frame}
+
+\section{Compression}
+    \subsection{zip}
+    \begin{frame}
+        \frametitle{Compression}
+        \framesubtitle{zip}
+        \begin{block}{zip}
+        \end{block}
+    \end{frame}
+    \subsection{gz and tar.gz}
+    \begin{frame}
+        \frametitle{Compression}
+        \framesubtitle{gz and tar.gz}
+        \begin{block}{gz and tar.gz}
+        \end{block}
+    \end{frame}
+
+\section{Storage when computing}
+    \subsection{Local storage / Fast storage}
+    \begin{frame}
+        \frametitle{Storage when computing}
+        \framesubtitle{Local storage / Fast storage}
+        \begin{block}{Local storage}
+        \end{block}
+    \end{frame}
+    \subsection{Object storage S3}
+    \begin{frame}
+        \frametitle{Storage when computing}
+        \framesubtitle{Object storage}
+        \begin{block}{bject storage}
+        \end{block}
+    \end{frame}
+    \subsection{Hadoop FS?}
+    \begin{frame}
+        \frametitle{Storage when computing}
+        \framesubtitle{Hadoop FS?}
+        \begin{block}{Should we talk about this?}
+        \end{block}
+    \end{frame}
+
+\setbeamertemplate{background}{%
+    \parbox[c][\paperheight]{\paperwidth}{%
+        \vskip -8 ex \hskip -2 em
+        \includegraphics[height=1.5\paperheight]{Figures/blasippa.jpg}
+    }   
+    \parbox[c][\paperheight]{\paperwidth}{%
+        \vskip 25 ex \hskip -40 em
+        \color{white}\fbox{\includegraphics[height=0.37\paperheight]{Figures/me.jpg}}
+    }   
+}
+\begin{frame}[plain]
+    \vfill\hfill{\Huge\qquad\color{white} \zB Thank \zC you}\hfill\hfill\hfill\vfill
+\end{frame}
+\setbeamertemplate{background}{}
+\end{document}
