@@ -1,0 +1,58 @@
+\documentclass[watermark]{pbpreprint}
+\usepackage{listings}
+\usepackage{bold-extra}
+
+\newsubfloat{table}
+
+\begin{document}
+\title{Storing and transferring files}
+\newcommand{\subtitle}{Big data i biovetenskap}
+\renewcommand{\maketitlehookb}{\centering\textsc{\subtitle}}
+\author{Jonathan Alvarsson}
+\maketitle
+\begin{KeepFromToc}
+   \tableofcontents
+\end{KeepFromToc}
+
+\lstset{basicstyle=\ttfamily\small, frame = single}
+
+\section{Introduction}
+In this lab we will try out different approaches to transferring and storing
+files. Our files will not quite qualify as being big data instead we will focus
+on getting a chance to test different tools. Much of what we will do will be to
+copy files from one location to another. Although you are free to use whatever
+locations you want I will suggest that you work inside your assigned Kubernetes
+pods (also known as Jupyter notebooks) on the cluster by accessing a terminal
+there and then copy things to your Uppmax account. This is the best way because
+your pods are not configured to accept any connections from the outside whereas
+the Uppmax systems are.
+
+\section{Downloading from the Zink database using \texttt{wget}}
+Zink is ``a freely available database of commercially-available compounds for
+virtual screening'', we will be using the 2012 version and download some
+datasets from it. On \url{http://zinc12.docking.org/subsets/lead-like} there
+are a lot of datasets listed if you click on the \texttt{Downloads} tab. The
+molecules can be downloaded in different formats. Let's start by grabbing all
+of them in the SMILES format using \texttt{wget}:
+\begin{lstlisting}[language=bash]
+$ wget http://zinc12.docking.org/db/bysubset/1/1_p0.smi.gz
+\end{lstlisting}
+We have now downloaded a gzipped text file. We can have a look at it using
+\texttt{zless}:
+\begin{lstlisting}[language=bash]
+$ zless 1_p0.smi.g
+\end{lstlisting}
+As you can see the file contains two columns. The first column is the SMILES
+string and the second column is an identifier. The simplified molecular-input
+line-entry system (SMILES) is a way to write down a molecular structure as a
+string. We can also unpack it using \texttt{gunzip}:
+\begin{lstlisting}[language=bash]
+$ gunzip 1_p0.smi.gz
+\end{lstlisting}
+
+\section{Transfer file using \texttt{scp}}
+
+\section{Transfer file using SFTP}
+
+\section{Synchronize folder with \texttt{rsync}}
+\end{document}

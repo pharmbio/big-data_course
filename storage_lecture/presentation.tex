@@ -137,8 +137,7 @@
     \begin{frame}
         \frametitle{Transferring data}
         \framesubtitle{SFTP, wget, scp and rsync}
-        \begin{block}{File Transfer Protocoll -- FTP}
-        The FTP standard:
+        \begin{block}{File Transfer Protocol -- FTP}
         \begin{itemize}
             \item was \alert{published in 1971}
             \item was not designed be secure and has \alert{many security issues}
@@ -161,7 +160,6 @@
         \frametitle{Transferring data}
         \framesubtitle{sftp, wget, scp and rsync}
         \begin{block}{wget}
-            wget 
             \begin{itemize}
                 \item appeared in 1996
                 \item derives it name from World Wide Web and get
@@ -186,7 +184,6 @@
         \frametitle{Transferring data}
         \framesubtitle{sftp, wget, scp and rsync}
         \begin{block}{Secure copy protocol -- scp}
-        scp:
         \begin{itemize}
             \item commonly refers to both the protocol and the software,
             \item has a \alert{syntax very similar to the common cp command}
@@ -199,7 +196,6 @@
         \frametitle{Transferring data}
         \framesubtitle{sftp, wget, scp and rsync}
         \begin{block}{rsync}
-        rsync
         \begin{itemize}
             \item appeared in 1996
             \item is a program for \alert{transferring} and \alert{synchronising} files
@@ -213,31 +209,93 @@
         \frametitle{Transferring data}
         \framesubtitle{Hard drives}
         \begin{block}{Hard drives}
-            
+        \begin{wrapfigure}[4]{r}{0.4\textwidth}
+        \vspace{-1\baselineskip}
+        \includegraphics[width=0.6\linewidth]{Figures/harddrive.png}
+        \end{wrapfigure}
+           Still, although it might not feel so modern, sometimes \alert{if the data
+           amount is large} and the \alert{network connections is bad} it might just be
+           easiest to transfer the data physically by \alert{shipping a hard drive}.
         \end{block}
     \end{frame}
     \subsection{Commercial solutions}
     \begin{frame}
         \frametitle{Transferring data}
         \framesubtitle{Commercial solution}
-        \begin{block}{Commercial solutions}
-            IBM Aspera
+        \begin{center}
+            Sometimes there might be a commercial solution available
+        \end{center}
+        \uncover<2->{
+        \begin{block}{IBM Aspera}
+        \begin{wrapfigure}[4]{r}{0.4\textwidth}
+        \vspace{-1.4\baselineskip}
+        \includegraphics[width=0.6\linewidth]{Figures/aspera-logo.png}
+        \end{wrapfigure}
+            IBM Aspera is a commercial solution for transferring large amount of data.
         \end{block}
+        }
     \end{frame}
 
 \section{Compression}
     \subsection{zip}
+
     \begin{frame}
         \frametitle{Compression}
         \framesubtitle{zip}
         \begin{block}{zip}
+        \begin{wrapfigure}[4]{r}{0.2\textwidth}
+        \centering
+        \vspace{-6pt}
+        \includegraphics[width=0.55\linewidth]{Figures/zip.png}
+        \end{wrapfigure}
+            \mbox{}
+            \begin{itemize}
+                \item Appeared around \alert{1989}
+                \item An archive format that \alert{can contain both files and directories} that \alert{can be compressed}
+            \end{itemize}
+            \mbox{}\vspace{-20pt}
+            \begin{itemize}
+                \item Built in zip support in both Windows, Mac OS X and most free operating systems
+                \item the name means ``move at high speed''
+                \item an index allows for \alert{random access} of files from a zip archive
+            \end{itemize}
+
         \end{block}
     \end{frame}
+
     \subsection{gz and tar.gz}
     \begin{frame}
         \frametitle{Compression}
         \framesubtitle{gz and tar.gz}
-        \begin{block}{gz and tar.gz}
+        \begin{block}{gzip (gz)}
+        \begin{wrapfigure}[4]{r}{0.3\textwidth}
+        \centering
+        \vspace{-6pt}
+        \includegraphics[width=0.8\linewidth]{Figures/gzip.png}
+        \end{wrapfigure}
+            \mbox{}
+
+        \begin{itemize}
+            \item gzip is a way to compress files
+            \item decompression can be done in a streaming fashion
+        \end{itemize}
+        \end{block}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Compression}
+        \framesubtitle{gz and tar.gz}
+        \begin{block}{z commands}
+            There is a family of special commands to work with gzipped files:
+            
+            \begin{center}
+            \begin{tabular}{rl}
+                \texttt{zcat} & View a gzipped file \\
+                \texttt{zless} & Browse a gzipped file \\
+                \texttt{zgrep} & Search inside a gzipped file \\
+                \texttt{zdiff} & Compare gzipped files \\
+            \end{tabular}
+            \end{center}
         \end{block}
     \end{frame}
 
