@@ -49,6 +49,28 @@ string. We can also unpack it using \texttt{gunzip}:
 \begin{lstlisting}[language=bash]
 $ gunzip 1_p0.smi.gz
 \end{lstlisting}
+Now by default this will remove the original file and leave only the unpacked
+file. With \texttt{gzip} we can compress it again:
+\begin{lstlisting}[language=bash]
+$ gzip 1_p0.smi
+\end{lstlisting}
+Now if we want to unpack it and still keep the packaged version we can do this like:
+\begin{lstlisting}[language=bash]
+$ gunzip -k 1_p0.smi.gz
+\end{lstlisting}
+the \texttt{-k} flag (as in ``keep'') works for \texttt{gzip} as well. 
+
+\vspace{1\baselineskip}
+Now, let's take this opportunity to see how big the files was compressed and
+unpacked, run: 
+\begin{lstlisting}[language=bash]
+$ ls -lh
+\end{lstlisting}
+\texttt{ls} is the command to list files, \texttt{-l} means that you want the
+long version of the output that show size and \texttt{-h} means that you want
+the file sizes in human readable numbers. Without the \texttt{-h} you will get
+the file size in bytes. When giving many flags to a command like this you can
+just squish them together and write \texttt{-lh} instead of \texttt{-l -h}.
 
 \section{Transfer file using \texttt{scp}}
 
