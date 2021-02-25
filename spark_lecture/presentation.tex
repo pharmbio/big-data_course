@@ -536,25 +536,7 @@ reduce(sum,a)
             \framesubtitle{Architecture}
             \begin{block}{Spark Architecture}
             \begin{center}
-            \begin{tikzpicture}[node distance=0]
-        \node (context)  [draw,minimum height=.5cm,minimum width = .5cm, node distance = 55 pt]{Spark Context};
-        \node (manager)  [draw,minimum height=.5cm,minimum width = .5cm, right of = context, node distance = 10 em]{Cluster Manager};
-        \node (worker1)  [draw,minimum height=.5cm,minimum width = .5cm, right of = manager, node distance = 10 em,  yshift=8ex]{Executor};
-        \node (worker2)  [draw,minimum height=.5cm,minimum width = .5cm, right of = manager, node distance = 10 em             ]{Executor};
-        \node (worker3)  [draw,minimum height=.5cm,minimum width = .5cm, right of = manager, node distance = 10 em, yshift=-8ex]{Executor};
-
-        \node (contextT) [above of = context, node distance=3ex] {\small\commentfont Driver code};
-        \node (worker1T) [above of = worker1, node distance=3ex] {\small\commentfont Worker};
-        \node (worker2T) [above of = worker2, node distance=3ex] {\small\commentfont Worker};
-        \node (worker3T) [above of = worker3, node distance=3ex] {\small\commentfont Worker};
-
-        \draw [->, shorten <=4pt, shorten >=4pt] (context) to (manager);
-        \draw [->, shorten <=4pt, shorten >=4pt, out=10, in=-170] (manager) to (worker1);
-        \draw [->, shorten <=4pt, shorten >=4pt, out=0, in=180]  (manager) to (worker2);
-        \draw [->, shorten <=4pt, shorten >=4pt, out=-10, in=170] (manager) to (worker3);
-
-            \end{tikzpicture}
-            \vspace{1ex}
+                \includegraphics[width=0.9\textwidth]{spark-architecture.png}
             \end{center}
             \end{block}
 
