@@ -2,12 +2,45 @@
 \usepackage{listings}
 \usepackage{bold-extra}
 \usepackage{wasysym}
+\usepackage{tikz}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{calc}
+
 
 \newsubfloat{table}
 
+\newcommand*\keystroke[1]{%
+  \begin{tikzpicture}[baseline=(key.base), very thin, line cap=round, black, rounded corners=0pt]%
+    \node [draw, fill=white, fill opacity=1, rectangle, rounded corners=2pt, inner sep=1pt, minimum width=1.2em, font=\scriptsize\sffamily] (key) {#1\strut};
+
+    \begin{scope}[on background layer]
+      \draw [rounded corners=1pt, fill=white] ($ (key.north west) + (-2pt, 2pt) $) rectangle ($ (key.south east) + (2pt, -2pt) $);
+
+      \fill [gray!60] ($ (key.south west) + (2pt, 0.1pt) $) -- ($ (key.south west) + (-1pt, -2pt) $)
+                  -- ($ (key.south east) + (1pt, -2pt) $)  -- ($ (key.south east) + (-2pt, 0.1pt) $) -- cycle;
+
+      \fill [gray!60] ($ (key.south east) + (-0.1pt, 2pt) $) -- ($ (key.south east) + (2pt, -1pt) $)
+                  -- ($ (key.north east) + (2pt, 1pt) $)    -- ($ (key.north east) + (-0.1pt, -2pt) $) -- cycle;
+    \end{scope}
+
+    \draw ($ (key.north west) + (0.1pt, -2pt) $) -- ($ (key.north west) + (-2pt, 1pt) $);
+    \draw ($ (key.north west) + (2pt, -0.1pt) $) -- ($ (key.north west) + (-1pt, 2pt) $);
+
+    \draw ($ (key.north east) + (-0.1pt, -2pt) $) -- ($ (key.north east) + (2pt, 1pt) $);
+    \draw ($ (key.north east) + (-2pt, -0.1pt) $) -- ($ (key.north east) + (1pt, 2pt) $);
+
+    \draw ($ (key.south west) + (0.1pt, 2pt) $) -- ($ (key.south west) + (-2pt, -1pt) $);
+    \draw ($ (key.south west) + (2pt, 0.1pt) $) -- ($ (key.south west) + (-1pt, -2pt) $);
+
+    \draw ($ (key.south east) + (-0.1pt, 2pt) $) -- ($ (key.south east) + (2pt, -1pt) $);
+    \draw ($ (key.south east) + (-2pt, 0.1pt) $) -- ($ (key.south east) + (1pt, -2pt) $);
+  \end{tikzpicture}%
+}
+
+
 \begin{document}
 \title{Storing and transferring files}
-\newcommand{\subtitle}{Big data i biovetenskap}
+\newcommand{\subtitle}{Big Data in Life Science}
 \renewcommand{\maketitlehookb}{\centering\textsc{\subtitle}}
 \author{Jonathan Alvarsson}
 \maketitle
@@ -15,7 +48,8 @@
    \tableofcontents
 \end{KeepFromToc}
 
-\lstset{basicstyle=\ttfamily\small, frame = single}
+\definecolor{light-gray}{gray}{0.96}
+\lstset{basicstyle=\ttfamily\small, frame = single, backgroundcolor = \color{light-gray}}
 
 \section{Introduction}
 In this lab we will try out different approaches to transferring and storing
@@ -52,8 +86,8 @@ $ zless 1_p0.smi.g
 As you can see the file contains two columns. The first column is the SMILES
 string and the second column is an identifier. The simplified molecular-input
 line-entry system (SMILES) is a way to write down a molecular structure as a
-string. We can also unpack it using \texttt{gunzip}:
-\sidepar{\vspace{12.5pt}\textbf{\texttt{gunzip}}}
+string. We can also unpack it using \texttt{gunzip}:%
+\sidepar{\vspace{12.5pt}\textbf{\texttt{gunzip}}}%
 \begin{lstlisting}[language=bash]
 $ gunzip 1_p0.smi.gz
 \end{lstlisting}
@@ -102,6 +136,52 @@ case means put it in the home directory of the user, in this case the home
 directory of the user \texttt{jonathan}.
 
 \section{Transfer file using SFTP}
+\texttt{sftp} is in fact slower than \texttt{scp} when it comes to copying
+files. It is a bit of an unfair comparison though because \texttt{sftp} allows
+for browsing files, removing remote files, and resuming interrupted transfers.
+
+Now, let's create a directory in our home remote home folder and copy our
+file into it using \texttt{sftp}. 
+\sidepar{\vspace{14pt}\textbf{\texttt{sftp}}}
+\begin{lstlisting}[language=bash,escapechar={|}]
+$ sftp jonathan@rackham.uppmax.uu.se
+\end{lstlisting}
+First we establish a connection to the remote computer. We can now list files
+on the remote computer much like we would using standard bash:
+\marginpar{\textit{Notice that when we are working in the established
+\texttt{sftp} connection the prompt has changed to reflect this.}}
+\begin{lstlisting}[language=bash,escapechar={|}]
+sftp> ls
+\end{lstlisting}
+Now we create a folder \texttt{test\_folder}:
+\begin{lstlisting}[language=bash,escapechar={|}]
+sftp> mkdir test_folder
+\end{lstlisting}
+change remote working directory to it:
+\begin{lstlisting}[language=bash,escapechar={|}]
+sftp> mkdir test_folder
+\end{lstlisting}
+and upload (put) our file there:
+\begin{lstlisting}[language=bash,escapechar={|}]
+sftp> put 1_p0.0.sdf
+\end{lstlisting}
+If you want forget the name of the file you want to upload you can list your local files with:
+\begin{lstlisting}[language=bash,escapechar={|}]
+sftp> lls
+\end{lstlisting}
+and if you forget what your current remote working directory is you can show it
+by:
+\begin{lstlisting}[language=bash,escapechar={|}]
+sftp> pwd
+\end{lstlisting}
+
+\vspace{1\baselineskip}
+There are more commands available in \texttt{sftp} but we will stop here. When
+you are done you can do either \keystroke{Ctrl} + \keystroke{D} or write:
+\vspace{3pt}
+\begin{lstlisting}[language=bash,escapechar={|}]
+sftp> bye
+\end{lstlisting}
 
 \section{Synchronize folder with \texttt{rsync}}
 \end{document}
