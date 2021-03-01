@@ -1,6 +1,7 @@
 \documentclass[watermark]{pbpreprint}
 \usepackage{listings}
 \usepackage{bold-extra}
+\usepackage{wasysym}
 
 \newsubfloat{table}
 
@@ -28,17 +29,23 @@ your pods are not configured to accept any connections from the outside whereas
 the Uppmax systems are.
 
 \section{Downloading from the Zink database using \texttt{wget}}
+\marginpar{\textit{Follow along and run the commands on your own. These
+instructions will assume that you run things and won't show any output from the
+commands so in order to understand what is going on you need to run all the
+commands and look at the output.~\smiley{}}}
 Zink is ``a freely available database of commercially-available compounds for
 virtual screening'', we will be using the 2012 version and download some
 datasets from it. On \url{http://zinc12.docking.org/subsets/lead-like} there
 are a lot of datasets listed if you click on the \texttt{Downloads} tab. The
 molecules can be downloaded in different formats. Let's start by grabbing all
 of them in the SMILES format using \texttt{wget}:
+\sidepar{\vspace{12.5pt}\textbf{\texttt{wget}}}
 \begin{lstlisting}[language=bash]
 $ wget http://zinc12.docking.org/db/bysubset/1/1_p0.smi.gz
 \end{lstlisting}
 We have now downloaded a gzipped text file. We can have a look at it using
 \texttt{zless}:
+\sidepar{\vspace{12.5pt}\textbf{\texttt{zless}}}
 \begin{lstlisting}[language=bash]
 $ zless 1_p0.smi.g
 \end{lstlisting}
@@ -46,11 +53,13 @@ As you can see the file contains two columns. The first column is the SMILES
 string and the second column is an identifier. The simplified molecular-input
 line-entry system (SMILES) is a way to write down a molecular structure as a
 string. We can also unpack it using \texttt{gunzip}:
+\sidepar{\vspace{12.5pt}\textbf{\texttt{gunzip}}}
 \begin{lstlisting}[language=bash]
 $ gunzip 1_p0.smi.gz
 \end{lstlisting}
 Now by default this will remove the original file and leave only the unpacked
 file. With \texttt{gzip} we can compress it again:
+\sidepar{\vspace{12.5pt}\textbf{\texttt{gzip}}}
 \begin{lstlisting}[language=bash]
 $ gzip 1_p0.smi
 \end{lstlisting}
@@ -73,6 +82,24 @@ the file size in bytes. When giving many flags to a command like this you can
 just squish them together and write \texttt{-lh} instead of \texttt{-l -h}.
 
 \section{Transfer file using \texttt{scp}}
+\marginpar{\textit{Although \texttt{scp} is considered ``outdated, inflexible and not
+readily fixed'', it can be good to have seen it in action in case you stumble
+upon it being used somewhere.}} We will use \texttt{scp} to copy from the terminal
+in Jupyter Lab to our account on Uppmax. I will be using my username
+\texttt{jonathan} and \texttt{rackham} in the examples. You need to replace
+this as appropiate. Let's transfer the file \texttt{1\_p0.0.sdf.gz} that we
+downloaded from the Zink webserver:
+\sidepar{\vspace{14pt}\textbf{\texttt{scp}}}
+\begin{lstlisting}[language=bash,escapechar={|}]
+$ scp 1_p0.0.sdf.gz jonathan@rackham.uppmax.uu.se:|$\sim$|
+\end{lstlisting}
+\texttt{scp} is the name of the command, next follows the file that we want to
+copy, after that we need to specify whereto we want to copy the file. The way
+we do this is to write our username followed by the @ symbol and then address
+fro the computer we want to copy the file to. We then write a : symbol and then
+where on this computer the file should be placed. The symbol $\sim$ in this
+case means put it in the home directory of the user, in this case the home
+directory of the user \texttt{jonathan}.
 
 \section{Transfer file using SFTP}
 
