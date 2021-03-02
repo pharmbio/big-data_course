@@ -9,6 +9,11 @@
 
 \newsubfloat{table}
 
+\DeclareFontEncoding{LS1}{}{}
+\DeclareFontSubstitution{LS1}{stix}{m}{n}
+\DeclareSymbolFont{arrows1}{LS1}{stixsf}{m}{n}
+\DeclareMathSymbol{\nicearrow}{\mathrel}{arrows1}{"B1}
+
 \newcommand*\keystroke[1]{%
   \begin{tikzpicture}[baseline=(key.base), very thin, line cap=round, black, rounded corners=0pt]%
     \node [draw, fill=white, fill opacity=1, rectangle, rounded corners=2pt, inner sep=1pt, minimum width=1.2em, font=\scriptsize\sffamily] (key) {#1\strut};
@@ -66,7 +71,7 @@ the Uppmax systems are.
 \marginpar{\textit{Follow along and run the commands on your own. These
 instructions will assume that you run things and won't show any output from the
 commands so in order to understand what is going on you need to run all the
-commands and look at the output.~\smiley{}}}
+commands and look at the output\ldots}~\smiley{}}
 Zink is ``a freely available database of commercially-available compounds for
 virtual screening'', we will be using the 2012 version and download some
 datasets from it. On \url{http://zinc12.docking.org/subsets/lead-like} there
@@ -223,4 +228,42 @@ instantaneous:
 $ rsync -z -P 1_p0.smi jonathan@rackham.uppmax.uu.se:|$\sim$|/1_p0.smi
 \end{lstlisting}
 
+\section{More about \texttt{zip}}
+We will now look a bit further at the working with zip files. First let's
+download a zip file that we can try things on:
+\sidepar{\vspace{14pt}\textbf{\texttt{wget}}}%
+\marginpar{\vspace{-2\baselineskip}\textit{I am using the
+\mbox{\textcolor{red}{$\nicearrow$}} symbol where I am forced to break lines of
+code because on paper the horizontal space is limited.}}
+\begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize,breaklines=true,
+           postbreak=\mbox{\textcolor{red}{$\nicearrow$}\space}]
+$ wget https://pubs.acs.org/doi/suppl/10.1021/ci500361u/suppl_file/ci500361u_si_002.zip
+\end{lstlisting}
+So, the downloaded file is about 13\,MB and we can use the \texttt{unzip} command to list the content of it:
+\sidepar{\vspace{14pt}\textbf{\texttt{unzip}}}%
+\begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
+$ unzip -l ci500361u_si_002.zip
+\end{lstlisting}
+The flag \texttt{-l} in this case means list the content of the zip archive. As you can
+see there are quite a few files in this zip archive. Let's say that we are
+interested in just the predictions, they are in \texttt{.csv} files in the
+\texttt{Predictions} directory:
+\sidepar{\vspace{14pt}\textbf{\texttt{unzip}}}%
+\begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
+$ unzip ci500361u_si_002.zip Predictions/*
+\end{lstlisting}
+
+\section{The \texttt{tar.gz} approach -- package multiple files into one \texttt{.gz} file}
+
+\section{Summary}
+So, to sum up. We have used four different programs to transfer a file between
+two computers. \texttt{wget} for downloading from the web,  \texttt{scp} for
+copying files between computers, \texttt{sftp} for not just copying files but
+for working with files and \texttt{rsync} for not just copying files but also
+synchronising entire file hierarchies. In general you will use \texttt{wget}
+for downloading files from the web, \texttt{rsync} for copying files between
+computers, for few small files \texttt{scp} works fine and is perhaps a bit
+easier to use but it mainly depends on what you are used to. When you need to
+do more than just copying files you can use \texttt{sftp} but for just copying
+\texttt{rsync} is probably faster.
 \end{document}
