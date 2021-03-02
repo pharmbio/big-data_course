@@ -247,11 +247,20 @@ $ unzip -l ci500361u_si_002.zip
 The flag \texttt{-l} in this case means list the content of the zip archive. As you can
 see there are quite a few files in this zip archive. Let's say that we are
 interested in just the predictions, they are in \texttt{.csv} files in the
-\texttt{Predictions} directory:
+\texttt{Predictions} directory so to unpack only them we can do:
 \sidepar{\vspace{14pt}\textbf{\texttt{unzip}}}%
 \begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
 $ unzip ci500361u_si_002.zip Predictions/*
 \end{lstlisting}
+Next let's also create a zip file using this command line tool. We can pack
+those prediction \texttt{.csv} files into a new \texttt{.zip} file like:
+\sidepar{\vspace{14pt}\textbf{\texttt{zip}}}%
+\begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
+$ zip -v predictions.zip Predictions/* 
+\end{lstlisting}
+the \texttt{-v} flag means verbose, it gives some extra output which probably
+is not that interesting in general but I thought it could be interesting
+for you to look at this time. 
 
 \section{The \texttt{tar.gz} approach -- package multiple files into one \texttt{.gz} file}
 
