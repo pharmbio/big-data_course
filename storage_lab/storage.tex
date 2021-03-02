@@ -138,7 +138,8 @@ directory of the user \texttt{jonathan}.
 \section{Transfer file using SFTP}
 \texttt{sftp} is in fact slower than \texttt{scp} when it comes to copying
 files. It is a bit of an unfair comparison though because \texttt{sftp} allows
-for browsing files, removing remote files, and resuming interrupted transfers.
+for browsing files, removing remote files, and resuming interrupted transfers
+in addition to copying them.
 
 Now, let's create a directory in our home remote home folder and copy our
 file into it using \texttt{sftp}. 
@@ -183,5 +184,43 @@ you are done you can do either \keystroke{Ctrl} + \keystroke{D} or write:
 sftp> bye
 \end{lstlisting}
 
-\section{Synchronize folder with \texttt{rsync}}
+\section{Synchronize file with \texttt{rsync}}
+\texttt{rsync} was born out of the frustration of waiting for complete files to
+be transferred over slow connections when in fact only parts of the files had
+been changed and thus only the changed parts really ought to need to be
+transferred. \texttt{rsync} does this by comparing the files on both systems
+and then only transferring the changes. It can also be used on entire file
+hierarchies. 
+
+Let's start out by copying our unpacked file \texttt{1\_p0.smi} to Uppmax using
+\texttt{rsync}:
+\sidepar{\vspace{14pt}\textbf{\texttt{rsync}}}
+\begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
+$ rsync -z -P 1_p0.smi jonathan@rackham.uppmax.uu.se:|$\sim$|/1_p0.smi
+\end{lstlisting}
+By now you probably recognize the general form of these commands. We want to
+copy \texttt{1\_p0.smi} to \texttt{jonathan@rackham.uppmax.uu.se:$\sim$/1\_p0.smi}
+using \texttt{rsync}. \marginpar{\textit{Waiting for something that gives no
+signs of progress at all can be very frustrating. So it is often worth
+activating progress monitors in software.}} I added two flags \texttt{-z} which
+tells \texttt{rsync} to use compression during transfer, if you want to you can
+try without it, it makes quite a big difference to transfer speed, and
+\texttt{-P} which tells \texttt{rsync} to write some information about how much
+of the file has been transferred and how much time is left to the terminal,
+\texttt{-P} also tells \texttt{rsync} not to remove partially transferred files
+if connection is broken. This means that \texttt{rsync} can continue where it
+failed thus making subsequent transfer of the rest of that file much faster. 
+
+Now let's try to change something in our file and then run \texttt{rsync}
+again. The file \texttt{1\_p0.smi} contains SMILES and id on each row so the
+easiest way to edit the file without ``breaking'' it is to remove a row or two.
+Open the file in your favourite text editor and remove a couple of rows.
+
+If we now rerun the \texttt{rsync} command the transfer should be almost
+instantaneous:
+\sidepar{\vspace{14pt}\textbf{\texttt{rsync}}}
+\begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
+$ rsync -z -P 1_p0.smi jonathan@rackham.uppmax.uu.se:|$\sim$|/1_p0.smi
+\end{lstlisting}
+
 \end{document}
