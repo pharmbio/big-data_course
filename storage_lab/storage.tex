@@ -263,6 +263,57 @@ is not that interesting in general but I thought it could be interesting
 for you to look at this time. 
 
 \section{The \texttt{tar.gz} approach -- package multiple files into one \texttt{.gz} file}
+As already mentioned \texttt{gzip} is a program for compressing a file, but
+what if we want to compress more than one file? There is however another
+program available for collecting many files into one, it is called
+\texttt{tar}. Once we have created a \texttt{tar} archive we can compress it
+using \texttt{gzip}, this is an example of a common design principle in the
+Unix world where each program focuses on solving one problem well and can be
+used as building peaces to accomplish something bigger. However, in fact the
+\texttt{tar} command has a flag (\texttt{-z}) for compressing a \texttt{.tar}
+file using \texttt{gzip} while creating it. So, let's use our predictions
+\texttt{.csv} files again:
+\sidepar{\vspace{14pt}\textbf{\texttt{tar}}}%
+\begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
+$ tar -cvzf predictions.tar.gz Predictions/ 
+\end{lstlisting}
+now, this is where things get complicated, \texttt{-cvzf}, that's quite a few
+letters. Let's take them one at a time: \texttt{c} means create a new archive,
+\texttt{v} means verbosely show the progress \texttt{z} means compress it using
+\texttt{gzip} and \texttt{f} means directly after this follows the name that I
+want the new archive file to have
+
+Now, let's list the files in this archive:
+\sidepar{\vspace{14pt}\textbf{\texttt{tar}}}%
+\begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
+$ tar -tvf predictions.tar.gz 
+\end{lstlisting}
+\texttt{v} and \texttt{f} we are familiar with and
+\texttt{-t}\marginpar{\vspace{-4\baselineskip}\textit{Notice that the short hand
+version of list is \texttt{-t}, I guess \texttt{-l} was already taken\ldots\
+Most of the commands also have long version, for example \texttt{-t} can be
+written as \texttt{--list} but I was not sure how much that would help you so I
+didn't include all the long versions}} means list the file content. To unpack
+the archive we write:
+\sidepar{\vspace{14pt}\textbf{\texttt{tar}}}%
+\begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
+$ tar -xvf predictions.tar.gz 
+\end{lstlisting}
+again, \texttt{v} and \texttt{f} are familiar and to extract the archive we use
+\texttt{-x}. Do you find the syntax of the \texttt{tar} command to be a bit
+complicated? Well, if so you are not alone (see for example
+Figure~\ref{xkcdtar}).
+
+\begin{figure}[bht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/xkcd_tar.png}\\
+    \url{https://xkcd.com/1168/}
+    \caption{The hoover text for this one is: \textit{``I don't know what's worse--the
+    fact that after 15 years of using tar I still can't keep the flags
+    straight, or that after 15 years of technological advancement I'm still
+    mucking with tar flags that were 15 years old when I started.''}, and that
+    sums it up pretty well. Sometimes old tools are old.\label{xkcdtar}}
+\end{figure}
 
 \section{Summary}
 So, to sum up. We have used four different programs to transfer a file between
@@ -275,4 +326,5 @@ computers, for few small files \texttt{scp} works fine and is perhaps a bit
 easier to use but it mainly depends on what you are used to. When you need to
 do more than just copying files you can use \texttt{sftp} but for just copying
 \texttt{rsync} is probably faster.
+
 \end{document}
