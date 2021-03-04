@@ -6,7 +6,6 @@
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{calc}
 
-
 \newsubfloat{table}
 
 \DeclareFontEncoding{LS1}{}{}
@@ -59,13 +58,13 @@
 \section{Introduction}
 In this lab we will try out different approaches to transferring and storing
 files. Our files will not quite qualify as being big data instead we will focus
-on getting a chance to test different tools. Much of what we will do will be to
-copy files from one location to another. Although you are free to use whatever
-locations you want I will suggest that you work inside your assigned Kubernetes
-pods (also known as Jupyter notebooks) on the cluster by accessing a terminal
-there and then copy things to your Uppmax account. This is the best way because
-your pods are not configured to accept any connections from the outside whereas
-the Uppmax systems are.
+on testing different tools. Much of what we will do will be to copy files from
+one location to another. Although you are free to use whatever locations you
+want I would suggest that you work inside your assigned Kubernetes pods (also
+known as Jupyter notebooks) on the cluster by accessing a terminal there and
+then copy things to your Uppmax account. This is the best way because your pods
+are not configured to accept any connections from the outside whereas the
+Uppmax systems are.
 
 \section{Downloading from the Zink database using \texttt{wget}}
 \marginpar{\textit{Follow along and run the commands on your own. These
@@ -84,7 +83,7 @@ $ wget http://zinc12.docking.org/db/bysubset/1/1_p0.smi.gz
 \end{lstlisting}
 We have now downloaded a gzipped text file. We can have a look at it using
 \texttt{zless}:
-\sidepar{\vspace{12.5pt}\textbf{\texttt{zless}}}
+\sidepar{\vspace{12.5pt}\textbf{\texttt{zless}}}%
 \begin{lstlisting}[language=bash]
 $ zless 1_p0.smi.g
 \end{lstlisting}
@@ -96,13 +95,13 @@ string. We can also unpack it using \texttt{gunzip}:%
 \begin{lstlisting}[language=bash]
 $ gunzip 1_p0.smi.gz
 \end{lstlisting}
-Now by default this will remove the original file and leave only the unpacked
+By default this will remove the original file and leave only the unpacked
 file. With \texttt{gzip} we can compress it again:
-\sidepar{\vspace{12.5pt}\textbf{\texttt{gzip}}}
+\sidepar{\vspace{12.5pt}\textbf{\texttt{gzip}}}%
 \begin{lstlisting}[language=bash]
 $ gzip 1_p0.smi
 \end{lstlisting}
-Now if we want to unpack it and still keep the packaged version we can do this like:
+Now, if we want to unpack it and still keep the packaged version we can do this like:
 \begin{lstlisting}[language=bash]
 $ gunzip -k 1_p0.smi.gz
 \end{lstlisting}
@@ -110,7 +109,7 @@ the \texttt{-k} flag (as in ``keep'') works for \texttt{gzip} as well.
 
 \vspace{1\baselineskip}
 Now, let's take this opportunity to see how big the files was compressed and
-unpacked, run: 
+unpacked by running: 
 \begin{lstlisting}[language=bash]
 $ ls -lh
 \end{lstlisting}
@@ -118,7 +117,7 @@ $ ls -lh
 long version of the output that show size and \texttt{-h} means that you want
 the file sizes in human readable numbers. Without the \texttt{-h} you will get
 the file size in bytes. When giving many flags to a command like this you can
-just squish them together and write \texttt{-lh} instead of \texttt{-l -h}.
+squish them together and write \texttt{-lh} instead of \texttt{-l -h}.
 
 \section{Transfer file using \texttt{scp}}
 \marginpar{\textit{Although \texttt{scp} is considered ``outdated, inflexible and not
@@ -128,27 +127,27 @@ in Jupyter Lab to our account on Uppmax. I will be using my username
 \texttt{jonathan} and \texttt{rackham} in the examples. You need to replace
 this as appropiate. Let's transfer the file \texttt{1\_p0.0.sdf.gz} that we
 downloaded from the Zink webserver:
-\sidepar{\vspace{14pt}\textbf{\texttt{scp}}}
+\sidepar{\vspace{14pt}\textbf{\texttt{scp}}}%
 \begin{lstlisting}[language=bash,escapechar={|}]
 $ scp 1_p0.0.sdf.gz jonathan@rackham.uppmax.uu.se:|$\sim$|
 \end{lstlisting}
 \texttt{scp} is the name of the command, next follows the file that we want to
 copy, after that we need to specify whereto we want to copy the file. The way
-we do this is to write our username followed by the @ symbol and then address
-fro the computer we want to copy the file to. We then write a : symbol and then
-where on this computer the file should be placed. The symbol $\sim$ in this
-case means put it in the home directory of the user, in this case the home
-directory of the user \texttt{jonathan}.
+we do this is to write our username followed by the @ symbol and then the
+address for the remote computer we want to copy the file to. We then write a :
+symbol and then where on this computer the file should be placed. The symbol
+$\sim$ in this case means put it in the home directory of the user, in this
+case the home directory of the user \texttt{jonathan}.
 
 \section{Transfer file using SFTP}
 \texttt{sftp} is in fact slower than \texttt{scp} when it comes to copying
 files. It is a bit of an unfair comparison though because \texttt{sftp} allows
-for browsing files, removing remote files, and resuming interrupted transfers
-in addition to copying them.
+for browsing files, removing remote files, resuming interrupted transfers, and
+many other things in addition to copying them.
 
 Now, let's create a directory in our home remote home folder and copy our
 file into it using \texttt{sftp}. 
-\sidepar{\vspace{14pt}\textbf{\texttt{sftp}}}
+\sidepar{\vspace{14pt}\textbf{\texttt{sftp}}}%
 \begin{lstlisting}[language=bash,escapechar={|}]
 $ sftp jonathan@rackham.uppmax.uu.se
 \end{lstlisting}
@@ -165,13 +164,14 @@ sftp> mkdir test_folder
 \end{lstlisting}
 change remote working directory to it:
 \begin{lstlisting}[language=bash,escapechar={|}]
-sftp> mkdir test_folder
+sftp> cd test_folder
 \end{lstlisting}
 and upload (put) our file there:
 \begin{lstlisting}[language=bash,escapechar={|}]
 sftp> put 1_p0.0.sdf
 \end{lstlisting}
-If you want forget the name of the file you want to upload you can list your local files with:
+If you happened to have forgotten the name of the file you want to upload you
+can list your local files with:
 \begin{lstlisting}[language=bash,escapechar={|}]
 sftp> lls
 \end{lstlisting}
@@ -182,8 +182,8 @@ sftp> pwd
 \end{lstlisting}
 
 \vspace{1\baselineskip}
-There are more commands available in \texttt{sftp} but we will stop here. When
-you are done you can do either \keystroke{Ctrl} + \keystroke{D} or write:
+There are many more commands available in \texttt{sftp} but we will stop here.
+When you are done you can do either \keystroke{Ctrl} + \keystroke{D} or write:
 \vspace{3pt}
 \begin{lstlisting}[language=bash,escapechar={|}]
 sftp> bye
@@ -199,7 +199,7 @@ hierarchies.
 
 Let's start out by copying our unpacked file \texttt{1\_p0.smi} to Uppmax using
 \texttt{rsync}:
-\sidepar{\vspace{14pt}\textbf{\texttt{rsync}}}
+\sidepar{\vspace{14pt}\textbf{\texttt{rsync}}}%
 \begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
 $ rsync -z -P 1_p0.smi jonathan@rackham.uppmax.uu.se:|$\sim$|/1_p0.smi
 \end{lstlisting}
@@ -223,7 +223,7 @@ Open the file in your favourite text editor and remove a couple of rows.
 
 If we now rerun the \texttt{rsync} command the transfer should be almost
 instantaneous:
-\sidepar{\vspace{14pt}\textbf{\texttt{rsync}}}
+\sidepar{\vspace{14pt}\textbf{\texttt{rsync}}}%
 \begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
 $ rsync -z -P 1_p0.smi jonathan@rackham.uppmax.uu.se:|$\sim$|/1_p0.smi
 \end{lstlisting}
@@ -264,31 +264,31 @@ for you to look at this time.
 
 \section{The \texttt{tar.gz} approach -- package multiple files into one \texttt{.gz} file}
 As already mentioned \texttt{gzip} is a program for compressing a file, but
-what if we want to compress more than one file? There is however another
+what if we want to compress more than one file? There is another
 program available for collecting many files into one, it is called
 \texttt{tar}. Once we have created a \texttt{tar} archive we can compress it
 using \texttt{gzip}, this is an example of a common design principle in the
-Unix world where each program focuses on solving one problem well and can be
-used as building peaces to accomplish something bigger. However, in fact the
-\texttt{tar} command has a flag (\texttt{-z}) for compressing a \texttt{.tar}
-file using \texttt{gzip} while creating it. So, let's use our predictions
-\texttt{.csv} files again:
+Unix world where each program focuses on solving one problem well and then many
+of these programs can easily be used as building pieces to accomplish something
+bigger. However, in fact the \texttt{tar} command has a flag (\texttt{-z}) for
+compressing a \texttt{.tar} file using \texttt{gzip} while creating it. So,
+let's use our predictions \texttt{.csv} files again:
 \sidepar{\vspace{14pt}\textbf{\texttt{tar}}}%
 \begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
 $ tar -cvzf predictions.tar.gz Predictions/ 
 \end{lstlisting}
 now, this is where things get complicated, \texttt{-cvzf}, that's quite a few
 letters. Let's take them one at a time: \texttt{c} means create a new archive,
-\texttt{v} means verbosely show the progress \texttt{z} means compress it using
+\texttt{v} means verbosely show the progress, \texttt{z} means compress it using
 \texttt{gzip} and \texttt{f} means directly after this follows the name that I
-want the new archive file to have
+want the new archive file to have.
 
 Now, let's list the files in this archive:
 \sidepar{\vspace{14pt}\textbf{\texttt{tar}}}%
 \begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
 $ tar -tvf predictions.tar.gz 
 \end{lstlisting}
-\texttt{v} and \texttt{f} we are familiar with and
+\texttt{-v} and \texttt{-f} we are familiar with and
 \texttt{-t}\marginpar{\vspace{-4\baselineskip}\textit{Notice that the short hand
 version of list is \texttt{-t}, I guess \texttt{-l} was already taken\ldots\
 Most of the commands also have long version, for example \texttt{-t} can be
