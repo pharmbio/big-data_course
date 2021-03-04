@@ -305,20 +305,12 @@
         \frametitle{Storage when computing}
         \framesubtitle{Local storage / Fast storage}
         \begin{block}{Local storage}
-        \end{block}
-    \end{frame}
-    \subsection{Object storage S3}
-    \begin{frame}
-        \frametitle{Storage when computing}
-        \framesubtitle{Object storage}
-        \begin{block}{bject storage}
-        \end{block}
-    \end{frame}
-    \subsection{Hadoop FS?}
-    \begin{frame}
-        \frametitle{Storage when computing}
-        \framesubtitle{Hadoop FS?}
-        \begin{block}{Should we talk about this?}
+        When working with big data it is important to think about where you
+        data is situated. On big cumputer nodes you can have many different
+        kind of storage. Maybe you have large slow storage located far away
+        from the compute cores and smaller fast local scratch disks on the
+        compute nodes. Depending on the algorithm it \alert{might be well worth
+        copying the data to local scratch disks} first.
         \end{block}
     \end{frame}
 
