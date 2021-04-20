@@ -52,7 +52,7 @@ You can use following parameters:
 
 
 Example command if you want to run on the server 
-    sudo docker run --name notebook --network host jupyter/scipy-notebook bash -c "jupyter notebook --ip 0.0.0.0 --port=8888 --no-browser --NotebookApp.default_url='/lab' 
+    sudo docker run --name notebook --network host jupyter/scipy-notebook bash -c "jupyter notebook --ip 0.0.0.0 --port=8888 --no-browser --NotebookApp.default_url='/lab'" 
 
 Example command if you want to run on your local computer:
     docker run --name notebook -p 8888:8888 jupyter/scipy-notebook
