@@ -73,7 +73,7 @@ The OpenStack software helps you create/import keys, and will make sure that you
 3. 	Generate an instance by clicking on "Launch Instance" under compute -> instance.
 4. 	in the launch configuration menu you'll be presented with a number of option; under details name your instance something unique. leave the rest as default.
 5. 	Under source you should select the OS-image you wish to run; for this excercise we will use Ubuntu18.04-LTS. Keep "create new colume" on "YES" and "delete volume on instance delete" on "NO"
-6. 	Under flavor you select "ssc.xsmall". this allocates the size of your VM.
+6. 	Under flavor you select a flavor with up to 2 cpu and 2 GB memory. this allocates the size of your VM.
 7. 	Under Security Groups you add your own custom group.
 8. 	Under "Key-pairs" you select the key you generated in task-0.
     NOTE: if you used the terminal version you need to upload your key from your .SSH folder.
