@@ -1,5 +1,6 @@
 Jupyter Notebooks are a popular way of accessing the compute power of a remote server but can be a bit difficult to install and maintain. In this example we will run Jupyter server in a docker container so all we need to install on the server is docker, and then run the Jupyter Server container in docker.
 
+## Docker
 Install Docker (if you see different versions of docker to install, choose the CE version Community Edition, which is the totally free one):
 
 Official install page (you can of course also install on your own computer if you want to try docker there as well)
