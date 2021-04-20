@@ -12,6 +12,7 @@ In this lab you will perform the following five tasks:
 * Task 1: Creating a Key-pair
 * Task 2: Allocating  Virtual Machine
 * Task 3: Deploy a simple REST-endopoint enable service: "Cowsay as a Service" 
+* task 4: Optional. Restore a session from a snapshop.
 
 Please follow the instructions, execute the tasks and answer the related questions. 
 
