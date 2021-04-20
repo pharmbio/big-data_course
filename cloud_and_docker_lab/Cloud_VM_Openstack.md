@@ -97,8 +97,8 @@ Here is the detailed instructions for installing Docker on the server and runnin
 
 1.  go to compute -> instances. Click "create a snapshot" in the dropdown menu for your instance. Name it something unique
 2.  Delete your instance
-3.  now redo task-2. Can you still find your file using `ls` in the terminal? what about your docker image? Now delete this instance.
-4.  redo task-2 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What the Jupyter docker image? 
+3.  now redo task-2. Can you still find your file using `ls` in the terminal? what about docker? can you still run `sudo docker run hello-world`? Now delete this instance.
+4.  redo task-2 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What about docker? 
 
 This guide was adapted from the technical manual found on 
 https://github.com/SNICScienceCloud/technical-training/tree/master/introduction-to-ssc#readme
