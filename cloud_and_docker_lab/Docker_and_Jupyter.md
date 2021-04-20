@@ -42,7 +42,19 @@ sudo docker run --name notebook --network host jupyter/scipy-notebook bash -c "j
 docker run --name notebook -p 8888:8888 jupyter/scipy-notebook
 ```
 Now check the output of your command and if you are running on server change url ip from 127.0.0.1 to the Public Floating IP of your server, e.g. http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6 to http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6
-       
+
+
+### Stop your docker container
+
+First list running containers:
+`sudo docker ps`
+
+Stop a running container:
+`sudo docker stop <container id or name>
+
+Remove a running container:
+`sudo docker rm <container id or name>
+
 
 
 
