@@ -69,7 +69,7 @@ The OpenStack software helps you create/import keys, and will make sure that you
 
 1. 	Create a new security group under networks --> security groups. Name it something unique.
 2. 	Click on "manage rules".
- 	- Click on "Add rule", and open port 22 for ingress.
+ 	- Click on "Add rule", and open port 22 for ingress. (This is for ssh-access)
  	- Click on "Add rule", and open port 8888 for ingress. (This is for the Jupyter notebook that you might want to run on server in later example)
 
 3. 	Generate an instance by clicking on "Launch Instance" under compute -> instance.
