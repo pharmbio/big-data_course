@@ -1,6 +1,6 @@
 # Procedure for allocation of Virtual Machines at SNIC Science Cloud - Redux 
 
-In this lab you will learn the basics of how to work with the OpenStack based Infrastructure-as-a-Service (IaaS).  
+In this lab you will learn the basics of how to work with the OpenStack based Infrastructure-as-a-Service (IaaS). The lab can be done using Linux, Windows, or MacOS. The guide assumes you're using Ubuntu20.04-LTS if you're on Linux or Windows-10 if you're on Windows. It should be completely doable on other linux distributions as well, and on any windows-version that is SSH-capable (i. e. has OpenSSH installed).  
 
 ## Tasks
 
@@ -33,6 +33,25 @@ SSH-key-pairs are the only way to access the generated instances at SSC. Usernam
 3. 	Name you keypair something unique, and select "SSH key" in the drop-down menu in the second field.
 4. 	Download the key and move it to the .SSH folder in your ~/ (home/) directory. If there is no such folder, make it.
 5. 	Disable all Sudo and "other users" permissions on the key. if this is not done, the cloud instance will not accept it.
+
+#### Terminal Method
+before trying this, verify that you have the OpenSSH tools installed. It should come as standard on any Debian or Red-hat distribution.
+
+1.  type `ssh-keygen` in the terminal
+2.  the terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `home/.ssh/` NOTE: if you already have a key with a given name it will overwrite it. This will cause you to loose access whatever th ekey decrypted.
+3.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
+4.  You now have a keypair. upload the .PUB key to the instance in task-1 when it asks you for keys
+
+### for Windows
+
+Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and features -> optional features. It should come as standard on windows-10 if you have the latest build.
+
+1.  Run cmd.exe as administrator
+2.  type `ssh-keygen` in the terminal
+3.  the terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `C:/Users/<username>/.ssh/` NOTE: if you already have a key with a given name it will overwrite it. This will cause you to loose access whatever th ekey decrypted.
+4.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
+5.  You now have a keypair. upload the .PUB key to the instance in task-1 when it asks you for keys
+
 
 A simple explaination of how it works: http://blakesmith.me/2010/02/08/understanding-public-key-private-key-concepts.html. 
 
@@ -98,6 +117,13 @@ Run:
 # curl -i http://<floating_ip>:5000/cowsay/api/v1.0/saysomething
 ```
 If you are using Windows, use a Linux instance or install a cURL client for Windows.
+
+## Task 4 (Optional)
+
+1.  go to compute -> instances. Click "create a snapshot" in the dropdown menu for your instance. Name it something unique
+2.  Delete your instance
+3.  now redo task-2. Can you still find your file using `ls` in the terminal? what about your `.py` file? Now delete this instance.
+4.  redo task-2 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What about your cowsay web-application?
 
 #### Disclaimer
 
