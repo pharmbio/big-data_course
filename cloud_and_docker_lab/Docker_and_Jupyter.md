@@ -15,6 +15,10 @@ If you would like to use Docker as a non-root user, you should now consider addi
 ```
 sudo usermod -aG docker <your-user>
 ```
+Now when you have docker installed you can try running a program 
+
+
+
 ## Jupyter
 When you have docker installed you can run Jupyter server as a container without need for installation.
 
