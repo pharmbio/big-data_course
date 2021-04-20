@@ -79,7 +79,7 @@ The OpenStack software helps you create/import keys, and will make sure that you
 8. 	Under "Key-pairs" you select the key you generated in task-0.
     NOTE: if you used the terminal version you need to upload your key from your .SSH folder.
 9. 	go to Network -> floating IPs. Assign a floating IP to your VM.
-10. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh -i ~/.ssh/yourkey.pem ubuntu@<float-IP>`
+10. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh -i yourkey ubuntu@<float-IP>`. `yourkey` can be either you id_rsa or keyname.pem.
 11. install cowsay (`sudo apt install cowsay`)
 12. test the installation by using cowsay. I.e. `cowsay -f tux "Hello World!"`
 13. create a file
@@ -97,9 +97,8 @@ Here is the detailed instructions for installing Docker on the server and runnin
 
 1.  go to compute -> instances. Click "create a snapshot" in the dropdown menu for your instance. Name it something unique
 2.  Delete your instance
-3.  now redo task-2. Can you still find your file using `ls` in the terminal? what about your `.py` file? Now delete this instance.
-4.  redo task-2 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What about your cowsay web-application?
-5.  
+3.  now redo task-2. Can you still find your file using `ls` in the terminal? what about your docker image? Now delete this instance.
+4.  redo task-2 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What the Jupyter docker image? 
 
 This guide was adapted from the technical manual found on 
 https://github.com/SNICScienceCloud/technical-training/tree/master/introduction-to-ssc#readme
