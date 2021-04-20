@@ -47,14 +47,14 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 
 1.  Run cmd.exe as administrator
 2.  type `ssh-keygen` in the terminal
-3.  the terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `C:/Users/<username>/.ssh/` NOTE: if you already have a key with a given name it will overwrite it. This will cause you to loose access whatever th ekey decrypted.
+3.  the terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `C:/Users/<username>/.ssh/` NOTE: if you already have a key with a given name DO NOT OVERWRITE IT!. This will cause you to loose access whatever your previous key was used for.
 4.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
 5.  You now have a keypair. upload the .PUB key to the instance in task-1 when it asks you for keys
 
 ### for MacOS
 
 1.  type `ssh-keygen` in the terminal
-2.  the terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `Users/<user>/.ssh/` NOTE: if you already have a key with a given name it will overwrite it. This will cause you to loose access whatever th ekey decrypted.
+2.  the terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `Users/<user>/.ssh/` NOTE: if you already have a key with a given DO NOT OVERWRITE IT! This will cause you to loose access whatever whatever your previous key was used for.
 3.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
 4.  You now have a keypair. upload the .PUB key to the instance in task-1 when it asks you for keys
 
