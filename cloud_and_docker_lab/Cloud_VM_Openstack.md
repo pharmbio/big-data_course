@@ -81,7 +81,7 @@ The OpenStack software helps you create/import keys, and will make sure that you
     NOTE: if you used the terminal version you need to upload your key from your .SSH folder.
 9. 	go to Network -> floating IPs. Assign a floating IP to your VM.
 10. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh -i ~/.ssh/yourkey.pem ubuntu@<float-IP>`
-11. install cowsay (sudo apt install cowsay)
+11. install cowsay (`sudo apt install cowsay`)
 12. test the installation by using cowsay. I.e. `cowsay -f tux "Hello World!"`
 13. create a file
 
