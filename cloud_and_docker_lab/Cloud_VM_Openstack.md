@@ -13,7 +13,6 @@ In this lab you will perform the following tasks:
 * Task 3: Install docker on the server and running Jupyter as a container 
 * task 4: Optional. Restore a session from a snapshop.
 
-Please follow the instructions, execute the tasks and answer the related questions. 
 
 ### Important links:  
 
