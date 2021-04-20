@@ -87,46 +87,12 @@ The OpenStack software helps you create/import keys, and will make sure that you
 
 With a basic understanding of instance provisioning, please review the SSC user security guidelines: https://cloud.snic.se/index.php/user-security-guidelines/
 
-## Task-3: Cowsay as a Service
+## Task-3:
 
-Here you will deploy cowsay as an online service. You will need to create a python script and deploy it on your VM.
+**Jupyter Notebooks** are a popular way of accessing the compute power of a remote server but can be a bit difficult to install and maintain. In this example we will run Jupyter server in a docker container so all we need to install on the server is docker, and then run the Jupyter Server container in docker.
 
-```bash
-from flask import Flask, jsonify
-import subprocess
-import sys
+Here is the detailed instructions for installing Docker on the server and running Jupyter as a container. OBS if you prefer to install and test docker and jupyter on your laptop instead you are more than welcome! You can use the same instructions: [Docker_and_Jupyter.md](Docker_and_Jupyter.md)
 
-app = Flask(__name__)
-
-
-@app.route('/cowsay/api/v1.0/saysomething', methods=['GET'])
-def cow_say():
-    data=subprocess.check_output(["cowsay","Hello student"])
-    return data
-
-if __name__ == '__main__':
-    
-    app.run(host='0.0.0.0',debug=True)
-
-```
-You could do this by using the `echo "<code>" > cowsay-app.py` or pasting it directly through a terminal text editor such as VIM.
-
-Run:
-
-```bash
-# python cowsay-app.py
-```
-It will start a webserver on your instance.
-
-If you get any messages about missing packages, just go ahead and install them using “pip” (a Python package management system).
-
-Test that things are working by executing (from your client)
-
-Run: 
-```bash
-# curl -i http://<floating_ip>:5000/cowsay/api/v1.0/saysomething
-```
-If you are using Windows, use a Linux instance or install a cURL client for Windows.
 
 ## Task 4 (Optional)
 
