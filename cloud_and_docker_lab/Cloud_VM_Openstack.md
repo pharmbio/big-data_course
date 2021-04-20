@@ -1,4 +1,4 @@
-# Procedure for allocation of Virtual Machines at SNIC Science Cloud - Redux 
+# Procedure for starting a Virtual Machine at SNIC Science Cloud
 
 In this lab you will learn the basics of how to work with the OpenStack based Infrastructure-as-a-Service (IaaS). The lab can be done using Linux, Windows, or MacOS. The guide assumes you're using Ubuntu20.04-LTS if you're on Linux or Windows-10 if you're on Windows. It should be completely doable on other linux distributions as well, and on any windows-version that is SSH-capable (i. e. has OpenSSH installed).  
 
