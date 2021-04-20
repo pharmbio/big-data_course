@@ -3,7 +3,7 @@
 ## Docker
 Install Docker (if you see different versions of docker to install, choose the CE version Community Edition, which is the totally free one):
 
-Official install page (you can of course also install on your own computer if you want to try docker there as well)
+Official install page:
 https://docs.docker.com/engine/install/
 
 On the cloud VM you will install for ubuntu and there is an official convenience install script (You can just paste this in the terminal on the Cloud Instance you have created):
