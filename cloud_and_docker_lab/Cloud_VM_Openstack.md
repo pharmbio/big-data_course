@@ -4,14 +4,13 @@ In this lab you will learn the basics of how to work with the OpenStack based In
 
 ## Tasks
 
-The aim of this computer assignment is to give you hands-on experience with the cloud computing infrastructure. The SNIC Science Cloud (SSC) is an SNIC (Swedish National Infrastructure for Computing) national resource that provide Infrastructure-as-a-Service (IaaS). It is based on the OpenStack cloud software (Newton release) and Ceph storage and offers the following services:
+The aim of this lab is to give you hands-on experience with the cloud computing infrastructure. The SNIC Science Cloud (SSC) is an SNIC (Swedish National Infrastructure for Computing) national resource that provide Infrastructure-as-a-Service (IaaS). It is based on the OpenStack cloud software (Newton release).
 
-
-In this lab you will perform the following five tasks: 
+In this lab you will perform the following tasks: 
 
 * Task 1: Creating a Key-pair
 * Task 2: Allocating  Virtual Machine
-* Task 3: Deploy a simple REST-endopoint enable service: "Cowsay as a Service" 
+* Task 3: Install docker on the server and running Jupyter as a container 
 * task 4: Optional. Restore a session from a snapshop.
 
 Please follow the instructions, execute the tasks and answer the related questions. 
