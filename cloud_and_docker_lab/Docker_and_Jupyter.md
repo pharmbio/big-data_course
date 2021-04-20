@@ -17,7 +17,15 @@ If you would like to use Docker as a non-root user, you should now consider addi
 
 Now when you have docker installed you can try running a docker command that downloads and run the "Hello world" conatiner:
 
-sudo docker run hello-world
+    sudo docker run hello-world
+    
+Another example is to run a docker container with latest ubuntu and print hello to the screen from inside container
+
+    sudo docker run ubuntu:latest /bin/bash -c "echo Hello World"
+    
+Another example is to run a docker container with latest ubuntu and print hello to a file from inside container
+
+    sudo docker run -v $PWD:/data ubuntu:latest /bin/bash -c "echo Hello World > /data/hello-fom.container.txt"
 
 
 
