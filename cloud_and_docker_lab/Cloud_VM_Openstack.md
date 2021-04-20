@@ -99,7 +99,7 @@ Run:
 ```
 If you are using Windows, use a Linux instance or install a cURL client for Windows.
 
-####Disclaimer
+#### Disclaimer
 
 This guide was adapted from the technical manual found on 
 https://github.com/SNICScienceCloud/technical-training/tree/master/introduction-to-ssc#readme
