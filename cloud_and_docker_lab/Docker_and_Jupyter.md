@@ -19,14 +19,18 @@ Now when you have docker installed you can try running a docker command that dow
 
     sudo docker run hello-world
     
+    
 Another example is to run a docker container with latest ubuntu and print hello to the screen from inside container
 
     sudo docker run ubuntu:latest /bin/bash -c "echo Hello World"
     
-Another example is to run a docker container with latest ubuntu and print hello to a file from inside container
+Another example is to run a docker container with latest ubuntu and print hello to a file from inside container, the `-v` switch is mounting your "Present Working Directory" to directory `/data/` in the container. Inside the container bash is executing command `echo Hello World` and directing output into file `/data/hello-from.container.txt`
 
-    sudo docker run -v $PWD:/data ubuntu:latest /bin/bash -c "echo Hello World > /data/hello-fom.container.txt"
+    sudo docker run -v $PWD:/data ubuntu:latest /bin/bash -c "echo Hello World > /data/hello-from.container.txt"
 
+Now you can check that the file is there by listing files in directory with `ls` command.
+
+And write contents of the newly file onto screen with `cat hello-from.container.txt`
 
 
 ## Jupyter
