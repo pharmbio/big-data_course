@@ -16,5 +16,27 @@ If you would like to use Docker as a non-root user, you should now consider addi
 sudo usermod -aG docker <your-user>
 ```
 ## Jupyter
+When you have docker installed you can run Jupyter server as a container without need for installation.
+
+Here is a list of official jupyter containers: [https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html)
+
+Here are official instructions for running jupyter with docker: [https://jupyter-docker-stacks.readthedocs.io/en/latest/using/running.html
+
+
+ [https://jupyter-docker-stacks.readthedocs.io/en/latest/using/running.html](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/running.html)
+
+When running on the server we need to edit the commands from the official documentation a little bit:
+
+You can use following parameters:
+--name notebook (Name your running container - makes it easier to stop it)
+--network host (makes container part of jour host computer network - easier without port-mapping)
+
+
+docker run --name notebook --network host -p 8888:8888 -e \
+      -it ghcr.io/pharmbio/pharmbio-notebook:bigdata-spark bash -c "jupyter notebook --ip 0.0.0.0 --port=8888 \
+      --allow-root --no-browser  --NotebookApp.password='' --NotebookApp.token=''"
+
+
+
 
 
