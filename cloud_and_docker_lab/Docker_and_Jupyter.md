@@ -30,7 +30,7 @@ You can use following parameters:
 
 `--name notebook` (Name your running container - makes it easier to stop it)
 
-'-p 8888:8888` Allow container to use port 8888 of computer
+`-p 8888:8888` Allow container to use port 8888 of computer
 
 `--network host` (makes container part of jour host computer network - easier without port-mapping)
 
