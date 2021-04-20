@@ -27,7 +27,7 @@ Good Luck!
 SSH-key-pairs are the only way to access the generated instances at SSC. Username/Password logins have been disabled as per standard secure operating procedure for any safe cloud computing. Because of this, you will need to generate a SSH-keypair either through the Horizon GUI presented on the project page at SNIC (https://east-1.cloud.snic.se/project/), or by using the termnial to generate a local keypair on your computer. The procedure will be slightly different depening on your chosen platform.
 
 ### For Linux:
-#### GUI Method:
+#### OpenStack GUI Method:
 1. 	go to compute -> Key Pairs
 2. 	Click on "+ Create new keypair" on th eupper right corner
 3. 	Name you keypair something unique, and select "SSH key" in the drop-down menu in the second field.
