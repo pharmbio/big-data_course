@@ -89,7 +89,7 @@ With a basic understanding of instance provisioning, please review the SSC user 
 
 ## Task-3:
 
-**Jupyter Notebooks** are a popular way of accessing the compute power of a remote server but can be a bit difficult to install and maintain. In this example we will run Jupyter server in a docker container so all we need to install on the server is docker, and then run the Jupyter Server container in docker.
+**Jupyter Notebooks** are a popular way of accessing the compute power of a remote server but can be a bit difficult to install and maintain. In this task we will run Jupyter server in a docker container so all we need to install on the server is docker, and then run the Jupyter Server container in docker.
 
 Here is the detailed instructions for installing Docker on the server and running Jupyter as a container. OBS if you prefer to install and test docker and jupyter on your laptop instead you are more than welcome! You can use the same instructions: [Docker_and_Jupyter.md](Docker_and_Jupyter.md)
 
@@ -100,8 +100,7 @@ Here is the detailed instructions for installing Docker on the server and runnin
 2.  Delete your instance
 3.  now redo task-2. Can you still find your file using `ls` in the terminal? what about your `.py` file? Now delete this instance.
 4.  redo task-2 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What about your cowsay web-application?
-
-#### Disclaimer
+5.  
 
 This guide was adapted from the technical manual found on 
 https://github.com/SNICScienceCloud/technical-training/tree/master/introduction-to-ssc#readme
