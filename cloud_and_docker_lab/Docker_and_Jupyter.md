@@ -64,7 +64,7 @@ Now check the output of your command and if you are running on server change url
 ### Stop your docker container
 
 First list running containers:<br>
-`sudo docker ps`
+`sudo docker ps --all`
 
 Stop a running container:<br>
 `sudo docker stop <container id or name>`
