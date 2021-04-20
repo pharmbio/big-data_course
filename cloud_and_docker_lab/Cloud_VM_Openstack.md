@@ -1,7 +1,6 @@
 # Procedure for allocation of Virtual Machines at SNIC Science Cloud - Redux 
 
 In this lab you will learn the basics of how to work with the OpenStack based Infrastructure-as-a-Service (IaaS).  
-Estimated time needed to complete the entire lab: 3-5 hours.
 
 ## Tasks
 
