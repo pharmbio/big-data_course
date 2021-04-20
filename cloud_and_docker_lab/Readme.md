@@ -1,6 +1,6 @@
 This subfolder contains lab instructions for the Cloud, VM and containers session in the course Big data i Biovetenskap 
 
-Things you can do to get some experience with Cloud servers, virtual machines and Docker
+Exercises you can do to get some experience with Cloud servers, virtual machines and Docker
 
 - Create a virtual machine on SSC Uppmax (Swedish Science Cloud): [Cloud_VM_Openstack.md](Cloud_VM_Openstack.md)
 - Install docker (either on the virtual machine above, or on your own computer): [Docker_and_Jupyter.md](Docker_and_Jupyter.md)
