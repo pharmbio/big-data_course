@@ -22,20 +22,27 @@ Here is a list of official jupyter containers: [https://jupyter-docker-stacks.re
 
 Here are official instructions for running jupyter with docker: [https://jupyter-docker-stacks.readthedocs.io/en/latest/using/running.html
 
-
  [https://jupyter-docker-stacks.readthedocs.io/en/latest/using/running.html](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/running.html)
 
 When running on the server we need to edit the commands from the official documentation a little bit:
 
 You can use following parameters:
---name notebook (Name your running container - makes it easier to stop it)
---network host (makes container part of jour host computer network - easier without port-mapping)
 
+`--name notebook` (Name your running container - makes it easier to stop it)
 
-docker run --name notebook --network host -p 8888:8888 -e \
-      -it ghcr.io/pharmbio/pharmbio-notebook:bigdata-spark bash -c "jupyter notebook --ip 0.0.0.0 --port=8888 \
-      --allow-root --no-browser  --NotebookApp.password='' --NotebookApp.token=''"
+'-p 8888:8888` Allow container to use port 8888 of computer
 
+`--network host` (makes container part of jour host computer network - easier without port-mapping)
+
+```
+# Example command if you want to run on the server 
+sudo docker run --name notebook --network host jupyter/scipy-notebook bash -c "jupyter notebook --ip 0.0.0.0 --port=8888 --no-browser --NotebookApp.default_url='/lab' "
+
+# Example command if you want to run on your local computer:
+docker run --name notebook -p 8888:8888 jupyter/scipy-notebook
+```
+Now check the output of your command and if you are running on server change url to 
+       
 
 
 
