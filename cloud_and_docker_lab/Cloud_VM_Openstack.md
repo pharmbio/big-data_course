@@ -98,3 +98,9 @@ Run:
 # curl -i http://<floating_ip>:5000/cowsay/api/v1.0/saysomething
 ```
 If you are using Windows, use a Linux instance or install a cURL client for Windows.
+
+####Disclaimer
+
+This guide was adapted from the technical manual found on 
+https://github.com/SNICScienceCloud/technical-training/tree/master/introduction-to-ssc#readme
+last updated by sztoor.
