@@ -7,15 +7,17 @@ Official install page:
 https://docs.docker.com/engine/install/
 
 On the cloud VM you will install for ubuntu and there is an official convenience install script (You can just paste this in the terminal on the Cloud Instance you have created):
-```
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-```
+
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+
 If you would like to use Docker as a non-root user, you should now consider adding your user to the “docker” group with something like:
-```
-sudo usermod -aG docker <your-user>
-```
-Now when you have docker installed you can try running a program 
+    
+    sudo usermod -aG docker <your-user>
+
+Now when you have docker installed you can try running a docker command that downloads and run the "Hello world" conatiner:
+
+sudo docker run hello-world
 
 
 
@@ -38,12 +40,12 @@ You can use following parameters:
 
 `--network host` (makes container part of jour host computer network - easier without port-mapping)
 
-```
-# Example command if you want to run on the server 
-sudo docker run --name notebook --network host jupyter/scipy-notebook bash -c "jupyter notebook --ip 0.0.0.0 --port=8888 --no-browser --NotebookApp.default_url='/lab' "
 
-# Example command if you want to run on your local computer:
-docker run --name notebook -p 8888:8888 jupyter/scipy-notebook
+Example command if you want to run on the server 
+    sudo docker run --name notebook --network host jupyter/scipy-notebook bash -c "jupyter notebook --ip 0.0.0.0 --port=8888 --no-browser --NotebookApp.default_url='/lab' 
+
+Example command if you want to run on your local computer:
+    docker run --name notebook -p 8888:8888 jupyter/scipy-notebook
 ```
 Now check the output of your command and if you are running on server change url ip from 127.0.0.1 to the Public Floating IP of your server, e.g. http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6 to http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6
 
