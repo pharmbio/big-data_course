@@ -9,7 +9,7 @@ The aim of this lab is to give you hands-on experience with the cloud computing 
 In this lab you will perform the following tasks: 
 
 * Task 1: Creating a Key-pair
-* Task 2: Allocating  Virtual Machine
+* Task 2: Creating a Virtual Machine
 * Task 3: Install docker on the server and running Jupyter as a container 
 * task 4: Optional. Restore a session from a snapshop.
 
