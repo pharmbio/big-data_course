@@ -48,7 +48,7 @@ You can use following parameters:
 
 `-p 8888:8888` Allow container to use port 8888 of computer
 
-`--network host` (makes container part of jour host computer network - easier without port-mapping)
+`--network host` (makes container part of your host computer network - easier without port-mapping)
 
 
 Example command if you want to run on the server: 
