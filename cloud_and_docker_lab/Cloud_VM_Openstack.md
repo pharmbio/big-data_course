@@ -33,7 +33,7 @@ SSH-key-pairs are the only way to access the generated instances at SSC. Usernam
 2. 	Click on "+ Create new keypair" on th eupper right corner
 3. 	Name you keypair something unique, and select "SSH key" in the drop-down menu in the second field.
 4. 	Download the key and move it to the .SSH folder in your ~/ (home/) directory. If there is no such folder, make it.
-5. 	Make sure file access rights on your private key is limited to you only and remove any "other users" permissions on the key. if this is not done, the cloud instance will not accept it.
+5. 	Make sure file access rights on your private key is limited to you only and remove any "other users" permissions on the key. if this is not done, you will not be able to log on to the cloud instance.
 
 #### Terminal Method
 before trying this, verify that you have the OpenSSH tools installed. It should come as standard on any Debian or Red-hat distribution.
