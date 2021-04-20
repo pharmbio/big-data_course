@@ -68,7 +68,10 @@ The OpenStack software helps you create/import keys, and will make sure that you
 ## Task 2: Provisioning a Virtual Machine
 
 1. 	Create a new security group under networks --> security groups. Name it something unique.
-2. 	Click on "manage rules". Click on "Add rule", and open port 22 for ingress. 
+2. 	Click on "manage rules".
+ 	- Click on "Add rule", and open port 22 for ingress.
+ 	- Click on "Add rule", and open port 8888 for ingress. (This is for the Jupyter notebook that you might want to run on server in later example)
+
 3. 	Generate an instance by clicking on "Launch Instance" under compute -> instance.
 4. 	in the launch configuration menu you'll be presented with a number of option; under details name your instance something unique. leave the rest as default.
 5. 	Under source you should select the OS-image you wish to run; for this excercise we will use Ubuntu18.04-LTS. Keep "create new colume" on "YES" and "delete volume on instance delete" on "NO"
