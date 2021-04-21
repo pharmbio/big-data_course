@@ -49,7 +49,9 @@ You can use following parameters:
 
 `-p 8888:8888` Allow container to use port 8888 of computer
 
-`--network host` (makes container part of your host computer network - easier without port-mapping)
+`--network host` (makes container part of your host computer network - easier without port-mapping, but less isolated)
+
+`-v <local dir>:<container dir>` Mounts a directory or file on the host file system into the running container file system.
 
 
 Example command if you want to run on the server: 
@@ -59,6 +61,8 @@ Example command if you want to run on your local computer:
     `docker run --name notebook -p 8888:8888 -v $PWD:/home/jovyan --rm jupyter/scipy-notebook`
 
 Now check the output of your command and if you are running on server change url ip from `127.0.0.1` to the Public Floating IP of your server, e.g. `http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6` to `http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6`
+
+Use the url to access your Jupyter notebook!
 
 
 ### Stop your docker container
