@@ -27,36 +27,34 @@ SSH-key-pairs are the only way to access the generated instances at SSC. Usernam
 
 ### For Linux:
 #### OpenStack GUI Method:
-1. 	go to compute -> Key Pairs
-2. 	Click on "+ Create new keypair" on th eupper right corner
+1. 	Go to compute -> Key Pairs
+2. 	Click on "+ Create new keypair" on the upper right corner
 3. 	Name you keypair something unique, and select "SSH key" in the drop-down menu in the second field.
 4. 	Download the key and move it to the .SSH folder in your ~/ (home/) directory. If there is no such folder, make it.
-5. 	Make sure file access rights on your private key is limited to you only and remove any "other users" permissions on the key. if this is not done, you will not be able to log on to the cloud instance.
+5. 	Make sure file access rights on your private key is limited to you only and remove any "other users" permissions on the key. If this is not done, you will not be able to log on to the cloud instance.
 
 #### Terminal Method
-before trying this, verify that you have the OpenSSH tools installed. It should come as standard on any Debian or Red-hat distribution.
+Before trying this, verify that you have the OpenSSH tools installed. It should come as standard on any Debian or Red-hat distribution.
 
-1.  type `ssh-keygen` in the terminal
-2.  the terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `home/<user>/.ssh/` NOTE: if you already have a key with a given name DO NOT OVERWRITE IT!. This will cause you to loose access whatever your previous key was used for.
+1.  Type `ssh-keygen` in the terminal
+2.  The terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `home/<user>/.ssh/` NOTE: if you already have a key with a given name DO NOT OVERWRITE IT! This will cause you to loose access to whatever your previous key was used for.
 3.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
-4.  You now have a keypair. upload the .PUB key to the instance in task-1 when it asks you for keys
+4.  You now have a keypair. Upload the .PUB key to the instance in task-1 when it asks you for keys
 
 ### for Windows
-
 Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and features -> optional features. It should come as standard on windows-10 if you have the latest build.
 
 1.  Run cmd.exe as administrator
-2.  type `ssh-keygen` in the terminal
-3.  the terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `C:/Users/<username>/.ssh/` NOTE: if you already have a key with a given name DO NOT OVERWRITE IT!. This will cause you to loose access whatever your previous key was used for.
+2.  Type `ssh-keygen` in the terminal
+3.  The terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `C:/Users/<username>/.ssh/` NOTE: if you already have a key with a given name DO NOT OVERWRITE IT!. This will cause you to loose access to whatever your previous key was used for.
 4.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
-5.  You now have a keypair. upload the .PUB key to the instance in task-1 when it asks you for keys
+5.  You now have a keypair. Upload the .PUB key to the instance in task-1 when it asks you for keys
 
 ### for MacOS
-
-1.  type `ssh-keygen` in the terminal
-2.  the terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `Users/<user>/.ssh/` NOTE: if you already have a key with a given DO NOT OVERWRITE IT! This will cause you to loose access whatever whatever your previous key was used for.
+1.  Type `ssh-keygen` in the terminal
+2.  The terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `Users/<user>/.ssh/` NOTE: if you already have a key with a given DO NOT OVERWRITE IT! This will cause you to loose access to whatever whatever your previous key was used for.
 3.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
-4.  You now have a keypair. upload the .PUB key to the instance in task-1 when it asks you for keys
+4.  You now have a keypair. Upload the .PUB key to the instance in task-1 when it asks you for keys
 
 A simple explaination of how it works: http://blakesmith.me/2010/02/08/understanding-public-key-private-key-concepts.html. 
 
@@ -71,17 +69,17 @@ The OpenStack software helps you create/import keys, and will make sure that you
  	- Click on "Add rule", and open port 8888 for ingress. (This is for the Jupyter notebook that you might want to run on server in later example)
 
 3. 	Generate an instance by clicking on "Launch Instance" under compute -> instance.
-4. 	in the launch configuration menu you'll be presented with a number of option; under details name your instance something unique. leave the rest as default.
+4. 	In the launch configuration menu you'll be presented with a number of option; under details name your instance something unique. Leave the rest as default.
 5. 	Under source you should select the OS-image you wish to run; for this excercise we will use Ubuntu18.04-LTS. Keep "create new colume" on "YES" and "delete volume on instance delete" on "NO"
-6. 	Under flavor you select a flavor with up to 2 cpu and 2 GB memory. this allocates the size of your VM.
+6. 	Under flavor you select a flavor with up to 2 cpu and 2 GB memory. This allocates the size of your VM.
 7. 	Under Security Groups you add your own custom group.
 8. 	Under "Key-pairs" you select the key you generated in task-0.
     NOTE: if you used the terminal version you need to upload your key from your .SSH folder.
-9. 	go to Network -> floating IPs. Assign a floating IP to your VM.
+9. 	Go to Network -> floating IPs. Assign a floating IP to your VM.
 10. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh -i yourkey ubuntu@<float-IP>`. `yourkey` can be either you id_rsa or keyname.pem.
-11. install cowsay (`sudo apt install cowsay`)
-12. test the installation by using cowsay. I.e. `cowsay -f tux "Hello World!"`
-13. create a file
+11. Install cowsay (`sudo apt install cowsay`)
+12. Test the installation by using cowsay. I.e. `cowsay -f tux "Hello World!"`
+13. Create a file
 
 With a basic understanding of instance provisioning, please review the SSC user security guidelines: https://cloud.snic.se/index.php/user-security-guidelines/
 
@@ -94,10 +92,10 @@ Here is the detailed instructions for installing Docker on the server and runnin
 
 ## Task 4 (Optional)
 
-1.  go to compute -> instances. Click "create a snapshot" in the dropdown menu for your instance. Name it something unique
+1.  Go to compute -> instances. Click "create a snapshot" in the dropdown menu for your instance. Name it something unique
 2.  Delete your instance
-3.  now redo task-2. Can you still find your file using `ls` in the terminal? what about docker? can you still run `sudo docker run hello-world`? Now delete this instance.
-4.  redo task-2 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What about docker? 
+3.  Now redo task-2. Can you still find your file using `ls` in the terminal? what about docker? can you still run `sudo docker run hello-world`? Now delete this instance.
+4.  Redo task-2 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What about docker? 
 
 This guide was adapted from the technical manual found on 
 https://github.com/SNICScienceCloud/technical-training/tree/master/introduction-to-ssc#readme
