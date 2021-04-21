@@ -26,22 +26,22 @@ Good Luck!
 SSH-key-pairs are the only way to access the generated instances at SSC. Username/Password logins have been disabled as per standard secure operating procedure for any safe cloud computing. Because of this, you will need to generate a SSH-keypair either through the Horizon GUI presented on the project page at SNIC (https://east-1.cloud.snic.se/project/), or by using the terminal to generate a local keypair on your computer. The procedure will be slightly different depending on your chosen platform.
 
 
-#### OpenStack GUI Method:
+### OpenStack GUI Method:
 1. 	Go to compute -> Key Pairs
 2. 	Click on "+ Create new keypair" on the upper right corner
 3. 	Name you keypair something unique, and select "SSH key" in the drop-down menu in the second field.
 4. 	Download the key and move it to the .SSH folder in your ~/ (home/) directory. If there is no such folder, make it.
 5. 	Make sure file access rights on your private key is limited to you only and remove any "other users" permissions on the key. If this is not done, you will not be able to log on to the cloud instance. If you get error "Permission is to open" then you need to open a terminal and execute `chmod 600 <path to your private key>` chmod 600 will make the file read/write for the owner only and no other users or groups. 
 
-#### Terminal Method
-### for Linux:
+### Terminal Method
+#### for Linux:
 
 1.  Type `ssh-keygen` in the terminal
 2.  The terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `home/<user>/.ssh/` NOTE: if you already have a key with a given name DO NOT OVERWRITE IT! This will cause you to loose access to whatever your previous key was used for.
 3.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
 4.  You now have a keypair. Upload the .PUB key to the instance in task-1 when it asks you for keys
 
-### for Windows
+#### for Windows
 Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and features -> optional features. It should come as standard on windows-10 if you have the latest build.
 
 1.  Run cmd.exe as administrator
@@ -50,7 +50,7 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 4.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
 5.  You now have a keypair. Upload the .PUB key to the instance in task-1 when it asks you for keys
 
-### for MacOS
+#### for MacOS
 1.  Type `ssh-keygen` in the terminal
 2.  The terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `Users/<user>/.ssh/` NOTE: if you already have a key with a given DO NOT OVERWRITE IT! This will cause you to loose access to whatever whatever your previous key was used for.
 3.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
