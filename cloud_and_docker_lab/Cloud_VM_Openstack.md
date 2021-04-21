@@ -79,7 +79,6 @@ The OpenStack software helps you create/import keys, and will make sure that you
 10. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh -i yourkey ubuntu@<float-IP>`. `yourkey` can be either you id_rsa or keyname.pem.
 11. Install cowsay (first run `sudo apt update` then `sudo apt install cowsay`)
 12. Test the installation by using cowsay. I.e. `cowsay -f tux "Hello World!"`
-13. Create a file
 
 With a basic understanding of instance provisioning, please review the SSC user security guidelines: https://cloud.snic.se/index.php/user-security-guidelines/
 
