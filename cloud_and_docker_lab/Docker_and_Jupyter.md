@@ -30,6 +30,8 @@ Another example is to run a docker container with latest ubuntu and print "Hello
 
 Now you can check that the file is there by listing files in directory with `ls` command. And write contents of the newly file onto screen with `cat hello-from.container.txt`
 
+You can create your own Docker image, but most of the time you will use images that are created by someone else, often the author of the program you want to use. Ready to go images are then stored in Docker Repositories, where [https://hub.docker.com/](Dockerhub) is the biggest one, you can browse all there images at: [https://hub.docker.com/](https://hub.docker.com/)
+
 
 ## Jupyter
 When you have docker installed you can run Jupyter server as a container without need for installation.
