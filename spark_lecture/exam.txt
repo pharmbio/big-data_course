@@ -1,0 +1,36 @@
+[T] Map is a higher order function for applying a function on each element in a
+    list. Another fitting name for it would be apply-to-all.
+[F] Parallel mapreduce was invented by Lisp programmers in 1955 but it didn't
+    become popular until the Python programming language came along and got rid
+    of all the trailing parentheses.
+[T] Most calculations can be converted into a series of map and reduce
+    operations and since there are many different languages supporting map and
+    reduce, learning how to think in map and reduce operations is a general
+    skill that can be reapplied in different programming languages.
+[F] Map reduce is a relatively new idea which appeared in 2014 when Spark was
+    released as a response to the fact that Moore's law no longer seemed to be
+    true and thus increase in computation speed no longer could come from
+    faster processors but now instead would have to be done by the new map
+    reduce invention that made previously impossible parallel computations a
+    possibility.
+[T] One big motivation for using map reduce is in a world were the process of
+    writing good parallel code is a hard problem that many struggle with, once
+    an algorithm has been written as a series of map reduce operations it is
+    already parallelizable and thus solved. So if programmers get used to
+    thinking in map and reduce the parallelisation comes for free.
+
+[T] The Hadoop file system is a distributed and scalable storage system
+    designed for extremely large data which can be used as storage solution for
+    Spark.
+[F] Hadoop is a slower approach to high performance computing that Spark
+    because it is not using the map reduce paradigm and thus can not properly
+    take advantage of modern RAM memory of today's compute cores.
+[T] A Spark RDD - Resilient Distributed Dataset is an unchangeable
+    datastructure divided over multiple computers with built in backup parts
+    that can take over if something goes wrong.
+[T] Although Spark is written in Scala there exists Spark APIs with support for
+    both Scala and Python and to some degree also R. 
+[F] When working with Spark RDDs and action is considered to be something that
+    writes data to disk hence the printing the content of an RDD to screen is
+    considered a transformation and not an action.
+
