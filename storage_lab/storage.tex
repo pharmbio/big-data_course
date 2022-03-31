@@ -129,15 +129,14 @@ this as appropiate. Let's transfer the file \texttt{1\_p0.0.sdf.gz} that we
 downloaded from the Zink webserver:
 \sidepar{\vspace{14pt}\textbf{\texttt{scp}}}%
 \begin{lstlisting}[language=bash,escapechar={|}]
-$ scp 1_p0.0.sdf.gz jonathan@rackham.uppmax.uu.se:|$\sim$|
+$ scp 1_p0.0.sdf.gz jonathan@rackham.uppmax.uu.se:
 \end{lstlisting}
 \texttt{scp} is the name of the command, next follows the file that we want to
 copy, after that we need to specify whereto we want to copy the file. The way
 we do this is to write our username followed by the @ symbol and then the
 address for the remote computer we want to copy the file to. We then write a :
-symbol and then where on this computer the file should be placed. The symbol
-$\sim$ in this case means put it in the home directory of the user, in this
-case the home directory of the user \texttt{jonathan}.
+symbol and then where on this computer the file should be placed. Leaving this
+empty should default to the home directory of the user \texttt{jonathan}.
 
 \section{Transfer file using SFTP}
 \texttt{sftp} is in fact slower than \texttt{scp} when it comes to copying
@@ -239,7 +238,11 @@ code because on paper the horizontal space is limited.}}
            postbreak=\mbox{\textcolor{red}{$\nicearrow$}\space}]
 $ wget https://pubs.acs.org/doi/suppl/10.1021/ci500361u/suppl_file/ci500361u_si_002.zip
 \end{lstlisting}
-So, the downloaded file is about 13\,MB and we can use the \texttt{unzip} command to list the content of it:
+So, the downloaded file is about 13\,MB. Go ahead and check that with
+\texttt{ls -l}, if it is not then something is wrong. We have a copy of it on
+our servers so try to download it from
+\texttt{https://courses.pharmb.io/big-data/ci500361u\_si\_002.zip} instead then.
+Now we can use the \texttt{unzip} command to list the content of it:
 \sidepar{\vspace{14pt}\textbf{\texttt{unzip}}}%
 \begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
 $ unzip -l ci500361u_si_002.zip
