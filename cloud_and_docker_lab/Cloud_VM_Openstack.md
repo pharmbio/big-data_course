@@ -99,3 +99,4 @@ Here is the detailed instructions for installing Docker on the server and runnin
 This guide was adapted from the technical manual found on 
 https://github.com/SNICScienceCloud/technical-training/tree/master/introduction-to-ssc#readme
 last updated by sztoor.
+
