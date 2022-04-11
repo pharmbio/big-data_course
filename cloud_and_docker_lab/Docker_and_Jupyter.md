@@ -68,6 +68,7 @@ Now check the output of your command and if you are running on server change url
 Use the url to access your Jupyter notebook!
 
 
+
 ### Stop your docker container
 
 First list running containers:<br>
