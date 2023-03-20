@@ -393,7 +393,7 @@ reduce(sum,a)
         \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt}]
               (startbrace2) -- (stopbrace2) node [black,midway,xshift=1.17cm] {Reduce};
       }
-      \only<3>{
+      \only<3->{
         \node (aa)  [below of = a, node distance = 32 pt, draw,circle, minimum size=8pt]{};
         \node (ab)  [right of = aa, node distance = 16 pt, draw,circle, minimum size=8pt]{};
         \node (ac)  [right of = ab, node distance = 16 pt, draw,circle, minimum size=8pt]{};
@@ -405,7 +405,7 @@ reduce(sum,a)
         \node (ai)  [right of = ah, node distance = 16 pt, draw,circle, minimum size=8pt]{};
         \node (aj)  [right of = ai, node distance = 16 pt, draw,circle, minimum size=8pt]{};
       }
-      \only<3>{
+      \only<3->{
         \node (ba)  [below of = aa, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
         \node (bb)  [below of = ac, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
         \node (bc)  [below of = ae, node distance = 24 pt, xshift=8pt, draw, circle, minimum size=8pt]{};
@@ -444,10 +444,17 @@ reduce(sum,a)
         \node (startbrace2) [node distance = 10 pt, below right of = aj, yshift=10pt] {};
         \node (stopbrace2) [node distance = 3.4 cm, below of = startbrace2] {};
       }
-      \uncover<3>{
+      \uncover<3->{
         \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt}]
-              (startbrace1) -- (stopbrace2) node [black,midway,xshift=2.7cm] {Map followed by reduce};
+              (startbrace1) -- (stopbrace2) node (mapreduce) [black,midway,xshift=2.7cm] {Map followed by reduce};
 
+      }
+      \uncover<4>{
+            \node [node distance = 36 pt, below of = mapreduce] {
+                \begin{minipage}{0.3\textwidth}
+                    \textcolor{darkpastelgreen}{(Of course you don't \textit{have to} finish with reduce)}
+                \end{minipage}
+                };
       }
     \end{tikzpicture}
         
