@@ -4,26 +4,25 @@ To get an idea of the popularity of running Jupyter Notebook via Docker, try sea
 ## Docker
 Install Docker (if you see different versions of docker to install, choose the CE version Community Edition, which is the totally free one):
 
-Official install page:
+Official install page for reference:
 https://docs.docker.com/engine/install/
 
-On the cloud VM you will install for ubuntu and there is an official convenience install script (You can just paste this in the terminal on the Cloud Instance you have created):
+    # install from ubuntu repositories
+    sudo apt install docker.io
 
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh get-docker.sh
 
 If you would like to use Docker as a non-root user, you should now consider adding your user to the “docker” group with something like:
-    
-    sudo usermod -aG docker <your-user>
+
+    sudo usermod -aG docker <your-user> # your-user would probably be ubuntu
 
 Now when you have docker installed you can try running a docker command that downloads and run the "Hello world" container:
 
     sudo docker run hello-world
-    
+
 Another example is to run a docker container with latest ubuntu and print "Hello World" from inside the container. Inside the container `bash` is executing command `echo Hello World` and directing output into file `/data/hello-from.container.txt`
 
     sudo docker run ubuntu:latest /bin/bash -c "echo Hello World"
-    
+
 Another example is to run a docker container with latest ubuntu and print "Hello World" to a file from inside container, the `-v` switch is mounting your "Present Working Directory" to directory `/data/` in the container. Inside the container `bash` is executing command `echo Hello World` and directing output into file `/data/hello-from.container.txt`
 
     sudo docker run -v $PWD:/data ubuntu:latest /bin/bash -c "echo Hello World > /data/hello-from.container.txt"
@@ -55,15 +54,15 @@ You can use following parameters:
 `-v <local dir>:<container dir>` Mounts a directory or file on the host file system into the running container file system.
 
 
-Example command if you want to run on the server: 
+Example command if you want to run on the server:
 
-    sudo docker run --name notebook --network host -v $PWD:/home/jovyan --rm jupyter/scipy-notebook bash -c "jupyter notebook --ip 0.0.0.0 --port=8888 --no-browser --NotebookApp.default_url='/lab'"
+    sudo docker run --name notebook --network host -v $PWD:/home/jovyan --rm jupyter/scipy-notebook
 
 Example command if you want to run on your local computer:
 
     docker run --name notebook -p 8888:8888 -v $PWD:/home/jovyan --rm jupyter/scipy-notebook
 
-Now check the output of your command and if you are running on server change url ip from `127.0.0.1` to the Public Floating IP of your server, e.g. `http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6` to `http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6`
+Now check the output of your command and if you are running on server change url ip from `127.0.0.1` to the Public Floating IP of your server, e.g. `http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6` should be changed to `http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6`
 
 Use the url to access your Jupyter notebook!
 

@@ -1,37 +1,29 @@
 # Procedure for starting a Virtual Machine at SNIC Science Cloud
 
-In this lab you will learn the basics of how to work with the OpenStack based Infrastructure-as-a-Service (IaaS). The lab can be done using Linux, Windows, or MacOS. The guide assumes you're using Ubuntu 20.04-LTS if you're on Linux or Windows-10 if you're on Windows. It should be completely doable on other linux distributions as well, and on any windows-version that is SSH-capable (i. e. has OpenSSH installed).  
+In this lab you will learn the basics of how to work with the OpenStack based Infrastructure-as-a-Service (IaaS). The lab can be done using Linux, Windows, or MacOS. The guide assumes you're using Ubuntu 20.04-LTS if you're on Linux or Windows-10 if you're on Windows. It should be completely doable on other linux distributions as well, and on any windows-version that is SSH-capable (i. e. has OpenSSH installed).
 
 ## Tasks
 
 The aim of this lab is to give you hands-on experience with the cloud computing infrastructure. The SNIC Science Cloud (SSC) is an SNIC (Swedish National Infrastructure for Computing) national resource that provide Infrastructure-as-a-Service (IaaS). It is based on the OpenStack cloud software (Newton release).
 
-In this lab you will perform the following tasks: 
+In this lab you will perform the following tasks:
 
 * Task 1: Creating a Key-pair
 * Task 2: Creating a Virtual Machine
-* Task 3: Install docker on the server and running Jupyter as a container 
+* Task 3: Install docker on the server and running Jupyter as a container
 * Task 4: Optional. Restore a session from a snapshot.
 
 
-### Important links:  
+### Important links:
 
 1.	Information page: https://cloud.snic.se
 
-The SSC information page contains links to the dashboard, to the OpenStack end-user guide (which you need to consult to complete the tasks below), as well as answers to many of the questions. 
+The SSC information page contains links to the dashboard, to the OpenStack end-user guide (which you need to consult to complete the tasks below), as well as answers to many of the questions.
 
 Good Luck!
 
 ## Task 1: Create a new SSH-keypair
 SSH-key-pairs are the only way to access the generated instances at SSC. Username/Password logins have been disabled as per standard secure operating procedure for any safe cloud computing. Because of this, you will need to generate a SSH-keypair either through the Horizon GUI presented on the project page at SNIC (https://east-1.cloud.snic.se/project/), or by using the terminal to generate a local keypair on your computer. The procedure will be slightly different depending on your chosen platform.
-
-
-### OpenStack GUI Method:
-1. 	Go to compute -> Key Pairs
-2. 	Click on "+ Create new keypair" on the upper right corner
-3. 	Name you keypair something unique, and select "SSH key" in the drop-down menu in the second field.
-4. 	Download the key and move it to the .SSH folder in your ~/ (home/) directory. If there is no such folder, make it.
-5. 	Make sure file access rights on your private key is limited to you only and remove any "other users" permissions on the key. If this is not done, you will not be able to log on to the cloud instance. If you get error "Permission is to open" then you need to open a terminal and execute `chmod 600 <path to your private key>` chmod 600 will make the file read/write for the owner only and no other users or groups. 
 
 ### Terminal Method
 #### for Linux:
@@ -56,9 +48,16 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 3.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
 4.  You now have a keypair. Upload the .PUB key to the instance in task-1 when it asks you for keys
 
-A simple explaination of how it works: http://blakesmith.me/2010/02/08/understanding-public-key-private-key-concepts.html. 
+### OpenStack GUI Method:
+1. 	Go to compute -> Key Pairs
+2. 	Click on "+ Create new keypair" on the upper right corner
+3. 	Name you keypair something unique, and select "SSH key" in the drop-down menu in the second field.
+4. 	Download the key and move it to the .SSH folder in your ~/ (home/) directory. If there is no such folder, make it.
+5. 	Make sure file access rights on your private key is limited to you only and remove any "other users" permissions on the key. If this is not done, you will not be able to log on to the cloud instance. If you get error "Permission is to open" then you need to open a terminal and execute `chmod 600 <path to your private key>` chmod 600 will make the file read/write for the owner only and no other users or groups.
 
-The OpenStack software helps you create/import keys, and will make sure that your public keys are injected in the instaces you create. The private key should be private and is for you to safekeep on your clients. 
+A simple explaination of how it works: http://blakesmith.me/2010/02/08/understanding-public-key-private-key-concepts.html.
+
+The OpenStack software helps you create/import keys, and will make sure that your public keys are injected in the instaces you create. The private key should be private and is for you to safekeep on your clients.
 
 
 ## Task 2: Provisioning a Virtual Machine
@@ -94,9 +93,9 @@ Here is the detailed instructions for installing Docker on the server and runnin
 1.  Go to compute -> instances. Click "create a snapshot" in the dropdown menu for your instance. Name it something unique
 2.  Delete your instance
 3.  Now redo task-2. Can you still find your file using `ls` in the terminal? what about docker? can you still run `sudo docker run hello-world`? Now delete this instance.
-4.  Redo task-2 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What about docker? 
+4.  Redo task-2 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What about docker?
 
-This guide was adapted from the technical manual found on 
+This guide was adapted from the technical manual found on
 https://github.com/SNICScienceCloud/technical-training/tree/master/introduction-to-ssc#readme
 last updated by sztoor.
 
