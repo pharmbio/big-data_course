@@ -74,7 +74,7 @@ The OpenStack software helps you create/import keys, and will make sure that you
 7. 	Under Security Groups you add your own custom group.
 8. 	Under "Key-pairs" you select the key you generated in task-1.
     NOTE: if you used the terminal version you need to upload your key from your .SSH folder.
-9   Now the instance settings should be OK and it is time to press "Launch instance" to start it.
+9.  Now the instance settings should be OK and it is time to press "Launch instance" to start it.
 10. Go to Network -> floating IPs. Assign a floating IP to your VM.
 11. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh ubuntu@<float-IP>`. If you created a key in the OpenStack GUI then you need to specify it with the `-i` option, e.g. `ssh -i <your private key file> ubuntu@<float-IP>`.
 12. Install cowsay (first run `sudo apt update` then `sudo apt install cowsay`)
