@@ -69,7 +69,7 @@ The OpenStack software helps you create/import keys, and will make sure that you
 
 3. 	Start the "Instance Wizard" to generate an instance by clicking on "Launch Instance" under compute -> instance.
 4. 	In the launch configuration menu you'll be presented with a number of option; under details name your instance something unique. Leave the rest as default.
-5. 	Under source you should select the OS-image you wish to run; for this excercise we will use Ubuntu18.04-LTS. **OBS! Set "create new colume" on "No" and "delete volume on instance delete" on "Yes"**
+5. 	Under source you should select the OS-image you wish to run; for this excercise we will use Ubuntu18.04-LTS. **OBS! Set "create new colume" to "No"**
 6. 	Under flavor you select a flavor with up to 2 cpu and 2 GB memory. This allocates the size of your VM.
 7. 	Under Security Groups you add your own custom group.
 8. 	Under "Key-pairs" you select the key you generated in task-1.
