@@ -101,11 +101,15 @@ file. With \texttt{gzip} we can compress it again:
 \begin{lstlisting}[language=bash]
 $ gzip 1_p0.smi
 \end{lstlisting}
-Now, if we want to unpack it and still keep the packaged version we can do this like:
+Now, if we want to unpack it and still keep the packaged version we might be
+able to do it like this: (not all versions of gunzip supports the \texttt{-k}
+flag. If yours don't you can make a copy of the file first and unpack that one
+if you want to keep the original file)
 \begin{lstlisting}[language=bash]
 $ gunzip -k 1_p0.smi.gz
 \end{lstlisting}
-the \texttt{-k} flag (as in ``keep'') works for \texttt{gzip} as well. 
+the \texttt{-k} flag (as in ``keep'') works for \texttt{gzip} as well (if your
+version of \texttt{gzip} supports it that is). 
 
 \vspace{1\baselineskip}
 Now, let's take this opportunity to see how big the files was compressed and
@@ -125,11 +129,11 @@ readily fixed'', it can be good to have seen it in action in case you stumble
 upon it being used somewhere.}} We will use \texttt{scp} to copy from the terminal
 in Jupyter Lab to our account on Uppmax. I will be using my username
 \texttt{jonathan} and \texttt{rackham} in the examples. You need to replace
-this as appropiate. Let's transfer the file \texttt{1\_p0.0.sdf.gz} that we
+this as appropiate. Let's transfer the file \texttt{1\_p0.0.smi.gz} that we
 downloaded from the Zink webserver:
 \sidepar{\vspace{14pt}\textbf{\texttt{scp}}}%
 \begin{lstlisting}[language=bash,escapechar={|}]
-$ scp 1_p0.0.sdf.gz jonathan@rackham.uppmax.uu.se:
+$ scp 1_p0.0.smi.gz jonathan@rackham.uppmax.uu.se:
 \end{lstlisting}
 \texttt{scp} is the name of the command, next follows the file that we want to
 copy, after that we need to specify whereto we want to copy the file. The way
@@ -167,7 +171,7 @@ sftp> cd test_folder
 \end{lstlisting}
 and upload (put) our file there:
 \begin{lstlisting}[language=bash,escapechar={|}]
-sftp> put 1_p0.0.sdf
+sftp> put 1_p0.0.smi
 \end{lstlisting}
 If you happened to have forgotten the name of the file you want to upload you
 can list your local files with:
@@ -200,7 +204,7 @@ Let's start out by copying our unpacked file \texttt{1\_p0.smi} to Uppmax using
 \texttt{rsync}:
 \sidepar{\vspace{14pt}\textbf{\texttt{rsync}}}%
 \begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
-$ rsync -z -P 1_p0.smi jonathan@rackham.uppmax.uu.se:|$\sim$|/1_p0.smi
+$ rsync -z -P 1_p0.smi jonathan@rackham.uppmax.uu.se:1_p0.smi
 \end{lstlisting}
 By now you probably recognize the general form of these commands. We want to
 copy \texttt{1\_p0.smi} to \texttt{jonathan@rackham.uppmax.uu.se:$\sim$/1\_p0.smi}
@@ -224,7 +228,7 @@ If we now rerun the \texttt{rsync} command the transfer should be almost
 instantaneous:
 \sidepar{\vspace{14pt}\textbf{\texttt{rsync}}}%
 \begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
-$ rsync -z -P 1_p0.smi jonathan@rackham.uppmax.uu.se:|$\sim$|/1_p0.smi
+$ rsync -z -P 1_p0.smi jonathan@rackham.uppmax.uu.se:1_p0.smi
 \end{lstlisting}
 
 \section{More about \texttt{zip}}
@@ -236,12 +240,10 @@ download a zip file that we can try things on:
 code because on paper the horizontal space is limited.}}
 \begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize,breaklines=true,
            postbreak=\mbox{\textcolor{red}{$\nicearrow$}\space}]
-$ wget https://pubs.acs.org/doi/suppl/10.1021/ci500361u/suppl_file/ci500361u_si_002.zip
+$ wget https://courses.pharmb.io/big-data/ci500361u\_si\_002.zip
 \end{lstlisting}
 So, the downloaded file is about 13\,MB. Go ahead and check that with
-\texttt{ls -l}, if it is not then something is wrong. We have a copy of it on
-our servers so try to download it from
-\texttt{https://courses.pharmb.io/big-data/ci500361u\_si\_002.zip} instead then.
+\texttt{ls -l}, if it is not then something is wrong. 
 Now we can use the \texttt{unzip} command to list the content of it:
 \sidepar{\vspace{14pt}\textbf{\texttt{unzip}}}%
 \begin{lstlisting}[language=bash,escapechar={|},basicstyle=\ttfamily\footnotesize]
