@@ -63,8 +63,7 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 ## Task 2: Provisioning a Virtual Machine
 
 1. 	Create a new security group under networks --> security groups. Name it something unique. (Security groups are for managing access to the virtual machine, e.g. a firewall)
-
-Security groups in OpenStack are virtual firewalls that provide a flexible way to manage network traffic to and from virtual machines (VMs). Each security group contains a set of rules that define both inbound and outbound network traffic policies. These rules specify which traffic is allowed to enter or leave the VMs that are associated with the security group.
+- Security groups in OpenStack are virtual firewalls that provide a flexible way to manage network traffic to and from virtual machines (VMs). Each security group contains a set of rules that define both inbound and outbound network traffic policies. These rules specify which traffic is allowed to enter or leave the VMs that are associated with the security group.
 
 4. 	Click on "manage rules".
  	- Click on "Add rule", and open port 22 for ingress. (This is for ssh-access)
