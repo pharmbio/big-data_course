@@ -63,22 +63,25 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 ## Task 2: Provisioning a Virtual Machine
 
 1. 	Create a new security group under networks --> security groups. Name it something unique. (Security groups are for managing access to the virtual machine, e.g. a firewall)
-2. 	Click on "manage rules".
+
+Security groups in OpenStack are virtual firewalls that provide a flexible way to manage network traffic to and from virtual machines (VMs). Each security group contains a set of rules that define both inbound and outbound network traffic policies. These rules specify which traffic is allowed to enter or leave the VMs that are associated with the security group.
+
+4. 	Click on "manage rules".
  	- Click on "Add rule", and open port 22 for ingress. (This is for ssh-access)
  	- Click on "Add rule", and open port 8888 for ingress. (This is for the Jupyter notebook that you might want to run on server in later example)
 
-3. 	Start the "Instance Wizard" to generate an instance by clicking on "Launch Instance" under compute -> instance.
-4. 	In the launch configuration menu you'll be presented with a number of option; under details name your instance something unique. Leave the rest as default.
-5. 	Under source you should select the OS-image you wish to run; for this excercise we will use Ubuntu18.04-LTS. **OBS! Set "create new colume" to "No"**
-6. 	Under flavor you select a flavor with up to 2 cpu and 2 GB memory. This allocates the size of your VM.
-7. 	Under Security Groups you add your own custom group.
-8. 	Under "Key-pairs" you select the key you generated in task-1.
+5. 	Start the "Instance Wizard" to generate an instance by clicking on "Launch Instance" under compute -> instance.
+6. 	In the launch configuration menu you'll be presented with a number of option; under details name your instance something unique. Leave the rest as default.
+7. 	Under source you should select the OS-image you wish to run; for this excercise we will use Ubuntu18.04-LTS. **OBS! Set "create new colume" to "No"**
+8. 	Under flavor you select a flavor with up to 2 cpu and 2 GB memory. This allocates the size of your VM.
+9. 	Under Security Groups you add your own custom group.
+10. 	Under "Key-pairs" you select the key you generated in task-1.
     NOTE: if you used the terminal version you need to upload your key from your .SSH folder.
-9.  Now the instance settings should be OK and it is time to press "Launch instance" to start it.
-10. Go to Network -> floating IPs. Assign a floating IP to your VM.
-11. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh ubuntu@<float-IP>`. If you created a key in the OpenStack GUI then you need to specify it with the `-i` option, e.g. `ssh -i <your private key file> ubuntu@<float-IP>`.
-12. Install cowsay (first run `sudo apt update` then `sudo apt install cowsay`)
-13. Test the installation by using cowsay. I.e. `cowsay -f tux "Hello World!"`
+11.  Now the instance settings should be OK and it is time to press "Launch instance" to start it.
+12. Go to Network -> floating IPs. Assign a floating IP to your VM.
+13. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh ubuntu@<float-IP>`. If you created a key in the OpenStack GUI then you need to specify it with the `-i` option, e.g. `ssh -i <your private key file> ubuntu@<float-IP>`.
+14. Install cowsay (first run `sudo apt update` then `sudo apt install cowsay`)
+15. Test the installation by using cowsay. I.e. `cowsay -f tux "Hello World!"`
 
 With a basic understanding of instance provisioning, please review the SSC user security guidelines: https://cloud.snic.se/index.php/user-security-guidelines/
 
