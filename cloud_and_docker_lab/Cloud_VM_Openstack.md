@@ -81,9 +81,10 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 - A Floating IP in a cloud environment like OpenStack is a public IP address that is assigned to your virtual machine (VM) so it gets an address on the internet and you can access it.
 13. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh ubuntu@<float-IP>`. If you created a key in the OpenStack GUI then you need to specify it with the `-i` option, e.g. `ssh -i <your private key file> ubuntu@<float-IP>`.
 14. Install cowsay (first run `sudo apt update` then `sudo apt install cowsay`)
-15. Test the installation by using cowsay. I.e. `cowsay -f tux "Hello World!"`
+- The installation of cowsay is just a simple, lightweight method to confirm that the instance's setup is successful, particularly to see that you have the ability to install any software on your new virtual server. Cowsay is a program that generates ASCII pictures of a cow with a speech bubble containing specified text.
+15. Test the installation by using cowsay. I.e. in the terminal of your virtual server type `cowsay -f tux "Hello World!"`
 
-With a basic understanding of instance provisioning, please review the SSC user security guidelines: https://cloud.snic.se/index.php/user-security-guidelines/
+Now when you have a basic understanding of instance provisioning, please review the SSC user security guidelines: https://cloud.snic.se/index.php/user-security-guidelines/
 
 ## Task-3:
 
