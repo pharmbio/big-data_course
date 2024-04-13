@@ -1,4 +1,4 @@
-This subfolder contains lab instructions for the Cloud, VM and containers session in the course Big data i Biovetenskap 
+This directory contains lab instructions for the Cloud, VM and containers session in the course Big data i Biovetenskap 
 
 Exercises you can do to get some experience with Cloud servers, Virtual Machines and Docker
 
