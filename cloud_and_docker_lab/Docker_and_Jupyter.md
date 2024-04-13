@@ -33,7 +33,7 @@ You can create your own Docker image, but most of the time you will use images t
 
 
 ## Jupyter
-When you have docker installed you can run Jupyter server as a container without need for installation.
+When you have docker installed you can run a Jupyter notebook server as a container without need for installation.
 
 Here is a list of official jupyter containers: [https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html)
 
