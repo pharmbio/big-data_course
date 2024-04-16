@@ -52,7 +52,7 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 3.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
 4.  You now have a keypair. Upload the .PUB key to the instance in task-2 when it asks you for keys
 
-### OpenStack GUI Method:
+### OpenStack GUI Method (only do this step if above Terminal methods does not work):
 1. 	Go to compute -> Key Pairs
 2. 	Click on "+ Create new keypair" on the upper right corner
 3. 	Name you keypair something unique, and select "SSH key" in the drop-down menu in the second field.
