@@ -36,6 +36,8 @@
 \usepackage{mol2chemfig}
 \usepackage{nicematrix}
 \usepackage{pdfpages}
+\usepackage{tabularx}
+
 \usepackage[absolute,overlay]{textpos}
 \usepackage[euler-digits,euler-hat-accent]{eulervm}
 %\logo{\pgfputat{\pgfxy(.45,.5)}{\pgfbox[center]{\includegraphics[width=1.7cm]{Figures/Bioclipse.png}}}}
@@ -87,6 +89,8 @@
 \renewcommand{\footnotemark}[1][\thefootnote]{%
   \textcolor{red}{\textsuperscript{*}}%
 }
+
+\setchemfig{atom sep=20pt}
 
 
 \begin{document}
@@ -463,6 +467,29 @@ LISP is a powerful, but in my opinion, somewhat special language. Here is an exa
         \begin{center}
             \only<4->{\only<4>{\color{black}}but first, let's talk about \texttt{map} and \texttt{reduce}\ldots}
         \end{center}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Map and Reduce}
+        \framesubtitle{Lambda}
+
+            \begin{block}{Lambda ($\lambda$)}
+                \texttt{lambda} is a small anonymous function. It takes any number of arguments but have only one expression
+            \end{block}
+            \begin{uncoverenv}<2->
+            \begin{block}{Example: \hfill \small(Python)}
+            \begin{center}
+            \begin{minipage}{0.8\linewidth}
+            \begin{lstlisting}
+x = lambda a : a + 10
+print(x(5))
+            \end{lstlisting}
+            {\small 15 \\}
+            \end{minipage}
+            \end{center}
+            \end{block}
+            \end{uncoverenv}
+        
     \end{frame}
 
     \begin{frame}[fragile]
@@ -1290,6 +1317,96 @@ df = spark&.read.format("csv")\textbackslash \\
         \end{block}
 
     \end{frame}
+{
+    \setbeamercolor{background canvas}{bg=black}
+    \setbeamercolor{normal text}{fg=white}\usebeamercolor*{normal text}
+    \setbeamercolor{item}{fg=white, bg=black}
+
+    \begin{frame}[plain]
+        \begin{center}
+        Have you heard of \\
+        \Huge SMILES?
+        \end{center}
+    \end{frame}
+}
+    \begin{frame}
+        \frametitle{QSAR}
+        \framesubtitle{Quantitative structure–activity relationship}
+        \vspace{-30pt}
+        \begin{block}{Simplified Molecular Input Line Entry System (SMILES)}
+        \begin{itemize}
+            \item SMILES is a text based notation for describing molecular structures using ASCII characters
+            \item Atoms represented by element symbols:
+            {\small
+            \begin{itemize}
+                \item C for carbon
+                \item O for oxygen
+                \item \ldots
+            \end{itemize}
+            }
+            \item Bonds:
+            {\small
+            \begin{itemize}
+                \item Single: - \textit{(default if omitted)}
+                \item Double: =
+                \item Triple: \#
+                \item Aromatic: Lowercase atoms, \textit{e.g.}, benzene is c1ccccc1
+            \end{itemize}
+            }
+        \end{itemize}
+        \end{block}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{QSAR}
+        \framesubtitle{Quantitative structure–activity relationship}
+        \vspace{-30pt}
+        \begin{block}{Canonical SMILES}
+            \begin{itemize}
+                \item A normalized version of a SMILES string (unique molecular representation) which
+                \item ensures that the same molecule always produces the same SMILES string
+            \end{itemize}
+        \end{block}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{QSAR}
+        \framesubtitle{Quantitative structure–activity relationship}
+        \vspace{-30pt}
+        \begin{block}{Simplified Molecular Input Line Entry System (SMILES)}
+        \begin{itemize}
+            \item Branches: Enclosed in parentheses, \textit{e.g.}, CC(O)C
+            \item Rings: Denoted by numbers, \textit{e.g.}, C1CCCCC1
+        \end{itemize}
+        \end{block}
+
+        \begin{block}{Three problems with SMILES}
+        \begin{itemize}
+            \item Different SMILES strings can represent the same molecule.
+            \item Poor Representation of 3D Structure (stereochemistry/conformations)
+            \item Syntax sensitivity -- small change can makes big difference
+        \end{itemize}
+        \end{block}
+    \end{frame}
+
+    \begin{frame}[plain]{SMILES Examples}
+    \vspace{-24pt}
+
+\renewcommand{\arraystretch}{2} % More vertical space between rows
+\setlength{\tabcolsep}{8pt}     % Adjust horizontal padding
+
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X l c}
+\toprule
+\textbf{Molecule} & \textbf{SMILES} & \textbf{Structure} \\
+\midrule
+Ethanol & \texttt{CCO} & \chemfig{C-C-OH} \\
+Acetic Acid & \texttt{CC(=O)O} & \chemfig{C-C(=[::+60]O)-[::-60]OH} \\
+Cyclohexane & \texttt{C1CCCCC1} & \chemfig{*6(------)} \\[12pt]
+Benzene & \texttt{c1ccccc1} & \chemfig{*6(=-=-=-=)} \\
+\bottomrule
+\end{tabularx}
+
+    \end{frame}
 
     \begin{frame}
         \frametitle{QSAR}
@@ -1399,6 +1516,17 @@ representation} of a molecule into \alert{numbers}
         \end{tikzpicture}
         \vspace{-1\baselineskip}
             \end{block}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Molecular descriptors}
+        \framesubtitle{Examples}
+        \begin{block}{logD}
+            \begin{itemize}
+                \item The logarithm of the distribution coefficient of a compound between a lipophilic phase (usually octanol) and water, at a specific pH.
+                \item Unlike logP (which assumes the molecule is neutral), logD accounts for ionization of the molecule at the given pH.
+            \end{itemize}
+        \end{block}
     \end{frame}
 
     \begin{frame}
@@ -1717,11 +1845,66 @@ representation} of a molecule into \alert{numbers}
                 \end{block}
         \end{frame}
 
+{
+    \setbeamercolor{background canvas}{bg=black}
+    \setbeamercolor{normal text}{fg=white}\usebeamercolor*{normal text}
+    \setbeamercolor{item}{fg=white, bg=black}
+
+    \begin{frame}[plain]
+        \begin{center}
+            One more thing\ldots
+        \end{center}
+    \end{frame}
+    
+    \begin{frame}[plain]
+        \begin{center}
+            Are you familiar with Git and GitHub?
+        \end{center}
+    \end{frame}
+}
 
 
+\appendix
+\section{Git and GitHub}
+\subsection{Git}
+\begin{frame}
+    \frametitle{Git}
+    \framesubtitle{Distributed Version Control}
+    \begin{block}{Git}
+        \begin{itemize}
+            \item Git is a distributed version control system for tracking changes in source code
+            \item Makes it easier to:
+            \begin{itemize}
+                \item revert to older versions of code
+                \item collaborate on code
+                \item work with multiple versions of code in parallel
+                \item \ldots
+            \end{itemize}
+        \end{itemize}
+    \end{block}
+\end{frame}
 
+\subsection{GitHub}
+\begin{frame}
+    \frametitle{Github}
+    \framesubtitle{Distributed Version Control}
+        \begin{block}{GitHub}
+        \begin{itemize}
+            \item A web-based platform for hosting Git repositories
+            \item Adds tools for:
+            \begin{itemize}
+                \item Issue tracking
+                \item Code review
+                \item Automatic builds and running of tests
+                \item \ldots
+            \end{itemize}
+        \end{itemize}
+        \end{block}
 
-
+        \begin{center}
+            You will find some computer labs on GitHub in this course
+        \end{center}
+\end{frame}
 
 
     \setbeamertemplate{background}{%
