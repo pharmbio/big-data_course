@@ -41,6 +41,12 @@
   \end{tikzpicture}%
 }
 
+\lstset{basicstyle=\ttfamily,
+  breakatwhitespace=true,  % helps avoid mid-word breaks
+  columns=fullflexible      % fixes copy-paste gapsi
+}
+\usepackage{inconsolata}
+\renewcommand{\ttdefault}{zi4}
 
 \begin{document}
 \title{Storing and transferring files}
@@ -129,12 +135,12 @@ readily fixed'', it can be good to have seen it in action in case you stumble
 upon it being used somewhere.}} We will use \texttt{scp} to copy from the terminal
 in Jupyter Lab to our account on Uppmax. I will be using my username
 \texttt{jonathan} and \texttt{rackham} in the examples. You need to replace
-this as appropiate. Let's transfer the file \texttt{1\_p0.0.smi.gz} that we
+this as appropiate. Let's transfer the file \texttt{1\_p0.smi.gz} that we
 downloaded from the Zink webserver:
 \needspace{3\baselineskip}
 \sidepar{\vspace{14pt}\textbf{\texttt{scp}}}%
 \begin{lstlisting}[language=bash,escapechar={|}]
-$ scp 1_p0.0.smi.gz jonathan@rackham.uppmax.uu.se:
+$ scp 1_p0.smi.gz jonathan@rackham.uppmax.uu.se:
 \end{lstlisting}
 \texttt{scp} is the name of the command, next follows the file that we want to
 copy, after that we need to specify whereto we want to copy the file. The way
@@ -172,7 +178,7 @@ sftp> cd test_folder
 \end{lstlisting}
 and upload (put) our file there:
 \begin{lstlisting}[language=bash,escapechar={|}]
-sftp> put 1_p0.0.smi
+sftp> put 1_p0.smi
 \end{lstlisting}
 If you happened to have forgotten the name of the file you want to upload you
 can list your local files with:
