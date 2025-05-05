@@ -27,7 +27,7 @@ SSH-key-pairs are the only way to access the generated instances at SSC. Usernam
 
 A simple explaination of how ssh-keys works: http://blakesmith.me/2010/02/08/understanding-public-key-private-key-concepts.html.
 
-The OpenStack software helps you create/import keys, and will make sure that your public keys are injected in the instaces you create. The private key should be private and is for you to safekeep on your clients.
+The OpenStack software helps you create/import keys, and will make sure that your public keys are injected in the instaces you create. The private key should be private and is for you to safekeep on your client computer.
 
 ### Terminal Method
 #### for Linux:
