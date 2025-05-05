@@ -62,7 +62,7 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 
 ## Task 2: Provisioning a Virtual Machine
 
-The User interface is at https://east-1.cloud.snic.se/project/
+The User interface is at <a href="https://east-1.cloud.snic.se/project/" target="_blank" rel="noopener noreferrer">https://east-1.cloud.snic.se/project/</a>
 
 1. 	Create a new security group under networks --> security groups. Name it something unique.
 - Security groups in OpenStack are **virtual firewalls** so you can manage network traffic to and from virtual machines (VMs). Each security group contains a set of rules that define both inbound and outbound network traffic policies. These rules specify which traffic is allowed to enter or leave the VMs that are associated with the security group.
