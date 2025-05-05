@@ -43,16 +43,16 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 1.  Run cmd.exe as administrator
 2.  Type `ssh-keygen` in the terminal
 3.  The terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `C:/Users/<username>/.ssh/` **OBS! NOTE:** if you already have a key with a given name **DO NOT OVERWRITE IT!**. This will cause you to loose access to whatever your previous key was used for.
-4.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
+4.  The terminal will ask you for a password. Either keep the key file secure in your computer, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
 5.  You now have a keypair. Upload the .PUB key to the instance in task-2 when it asks you for keys
 
 #### for MacOS
 1.  Type `ssh-keygen` in the terminal
 2.  The terminal will prompt you to select a key-install location. Just press ENTER to install it in the default location; this will allow your client to automatically find the key. The default location is `Users/<user>/.ssh/` **OBS! NOTE:** if you already have a key with a given DO NOT OVERWRITE IT! This will cause you to loose access to whatever whatever your previous key was used for.
-3.  The terminal will ask you for a password. Either keep it secure in your system, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
+3.  The terminal will ask you for a password. Either keep the key file secure in your computer, or add a password to it. This is up to you. If you wish to bypass the password, just press ENTER.
 4.  You now have a keypair. Upload the .PUB key to the instance in task-2 when it asks you for keys
 
-### OpenStack GUI Method (only do this step if above Terminal methods does not work):
+### OpenStack GUI Method (**only do this step if above Terminal methods does not work**):
 1. 	Go to compute -> Key Pairs
 2. 	Click on "+ Create new keypair" on the upper right corner
 3. 	Name you keypair something unique, and select "SSH key" in the drop-down menu in the second field.
