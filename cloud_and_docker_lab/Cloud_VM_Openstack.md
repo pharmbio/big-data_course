@@ -64,15 +64,15 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 
 The User interface is at <a href="https://east-1.cloud.snic.se/project/" target="_blank" rel="noopener noreferrer">https://east-1.cloud.snic.se/project/</a> (You need to click several times to prove your identity)
 
-1. 	First you need to create a new security group under networks --> security groups. Name it something unique, preferably with your name in it.
+1. 	First you need to create a new security group under menu Network --> Security Groups. Name it something unique, preferably with your name in it.
 - Security groups in OpenStack are **virtual firewalls** so you can manage network traffic to and from virtual machines (VMs). Each security group contains a set of rules that define both inbound and outbound network traffic policies. These rules specify which traffic is allowed to enter or leave the VMs that are associated with the security group.
 2. 	Click on "manage rules".
  	- Click on "Add rule", and open port 22 for ingress. (This is for ssh-access)
  	- Click on "Add rule", and open port 8888 for ingress. (This is for the Jupyter notebook that you might want to run on server in later example)
-3. 	Now Is time to start the "Instance Wizard" to generate an instance by clicking on "Launch Instance" under compute -> instance.
+3. 	Now Is time to start the "Instance Wizard" to generate an instance by clicking on "Launch Instance" under menu Compute -> Instances.
 - An "instance" refers to a virtual server created within a cloud environment like OpenStack, AWS, or Google Cloud. It acts much like a traditional physical server but is hosted on a shared physical hardware infrastructure
-4. 	In the launch configuration menu you'll be presented with a number of option; under details name your instance something unique. Leave the rest as default.
-5. 	Under source you should select the OS (Operating System) Image you wish to run; for this excercise we will use Ubuntu 22.04-LTS. **OBS! Set "create new volume" to "No"**
+4. 	In the launch configuration menu you'll be presented with a number of option; under first menu "Details", name your instance something unique. Leave the rest on "Details" as default.
+5. 	Under menu "Source" you should select the OS (Operating System) Image you wish to run; for this excercise we will use "Ubuntu 22.04-LTS". **OBS! Set "create new volume" to "No"**
 6. 	Under flavor you select a flavor with up to 2 cpu and 2 GB memory.
 - This allocates the size of your VM considering RAM memory and number of CPUs.
 7. 	Under Security Groups you add your own custom group.
