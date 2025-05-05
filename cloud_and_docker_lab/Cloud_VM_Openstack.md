@@ -79,7 +79,7 @@ The User interface is at <a href="https://east-1.cloud.snic.se/project/" target=
 8. 	Under menu "Key-pairs" you select the key you generated in task-1.
     **NOTE: if you used the terminal version you need to upload your key from your .SSH folder.**
 9.  Now the instance settings should be OK and it is time to press "Launch instance" to start it.
-- Instance is now launching, you need to give it a public ip to access it
+- The Virtual Machine instance is now starting. To connect to it from your own computer (for example, using SSH or a browser), you need to assign a public IP address. Without a public IP, the instance remains private and cannot be accessed outside Uppmax.
 10. Go to Network -> floating IPs. Assign a floating IP to your VM.
 - A Floating IP in a cloud environment like OpenStack is a public IP address that is assigned to your virtual machine (VM) so it gets an address on the internet and you can access it.
 13. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh ubuntu@<float-IP>`. If you created a key in the OpenStack GUI then you need to specify it with the `-i` option, e.g. `ssh -i <your private key file> ubuntu@<float-IP>`.
