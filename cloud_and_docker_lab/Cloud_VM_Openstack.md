@@ -83,13 +83,14 @@ The User interface is at <a href="https://east-1.cloud.snic.se/project/" target=
 10. Go to Network -> Floating IPs. and then button "Allocate IP To Project" (give your ip a unique description). Now find your new IP in the list of IP:s and then click button "Associate", this will connect this IP to your Virtual Machine ("Select port" and then find your Instance in the list). 
 - A Floating IP in a cloud environment like OpenStack is a public IP address that is assigned to your virtual machine (VM) so it gets an address on the internet and you can access it.
 13. Now you can access the instance by connecting to it through an SSH-client (Terminal if on Linux, OpenSSH if on Windows) using `ssh ubuntu@<float-IP>`. If you created a key in the OpenStack GUI then you need to specify it with the `-i` option, e.g. `ssh -i <your private key file> ubuntu@<float-IP>`.
+- Once you've connected to your instance using SSH, the virtual machine is up and running, and you're now working directly in its terminal — just like sitting in front of any Linux/Ubuntu computer. You can now begin installing software on it. On Ubuntu (a popular Linux distribution), installing software is done using the apt package manager. Most installations begin by updating the list of available packages using sudo apt update, followed by sudo apt install <package-name> to install specific software. For example, in the next step, you’ll try this out by installing a simple program called cowsay, which displays messages in a cartoon-style speech bubble."
 14. Install cowsay (first run `sudo apt update` then `sudo apt install cowsay`)
 - The installation of cowsay is just a simple, lightweight method to confirm that the instance's setup is successful, particularly to see that you have the ability to install any software on your new virtual server. Cowsay is a program that generates ASCII pictures of a cow with a speech bubble containing specified text.
-15. Test the installation by using cowsay. I.e. in the terminal of your virtual server type `cowsay -f tux "Hello World!"`
+15. Test the installation by using cowsay. I.e. in the terminal of your virtual server type `cowsay -f dragon "Hello World!"`
 
 Now when you have a basic understanding of instance provisioning, please review the SSC user security guidelines: https://cloud.snic.se/index.php/user-security-guidelines/
 
-## Task-3:
+## Task 3 (Optional):
 
 **Jupyter Notebooks** are a popular way of accessing the compute power of a remote server but can be a bit difficult to install and maintain. In this task we will run Jupyter server in a docker container so all we need to install on the server is docker, and then run the Jupyter Server container in docker.
 
