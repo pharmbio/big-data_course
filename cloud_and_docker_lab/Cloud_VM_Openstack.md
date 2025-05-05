@@ -64,7 +64,7 @@ Verify that OpenSSH is installed or Instal OpenSSH under settings -> apps and fe
 
 The User interface is at <a href="https://east-1.cloud.snic.se/project/" target="_blank" rel="noopener noreferrer">https://east-1.cloud.snic.se/project/</a> (You need to click several times to prove your identity)
 
-1. 	Create a new security group under networks --> security groups. Name it something unique.
+1. 	Create a new security group under networks --> security groups. Name it something unique, preferably with your name in it.
 - Security groups in OpenStack are **virtual firewalls** so you can manage network traffic to and from virtual machines (VMs). Each security group contains a set of rules that define both inbound and outbound network traffic policies. These rules specify which traffic is allowed to enter or leave the VMs that are associated with the security group.
 2. 	Click on "manage rules".
  	- Click on "Add rule", and open port 22 for ingress. (This is for ssh-access)
