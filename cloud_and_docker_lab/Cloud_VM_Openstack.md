@@ -2,7 +2,7 @@
 
 In this lab you will learn the basics of how to work with the OpenStack based Infrastructure-as-a-Service (IaaS). The lab can be done using Linux, Windows, or MacOS. The guide assumes you're using Ubuntu 22.04-LTS if you're on Linux. Windows-11 if you're on Windows. It should be completely doable on other linux distributions as well, and on any windows-version that is SSH-capable (i. e. has OpenSSH installed).
 
-## Tasks
+## Lab Tasks
 
 The aim of this lab is to give you hands-on experience with the cloud computing infrastructure. The SNIC Science Cloud (SSC) is an SNIC (Swedish National Infrastructure for Computing) national resource that provide Infrastructure-as-a-Service (IaaS). It is based on the OpenStack cloud software (Newton release).
 
