@@ -94,6 +94,9 @@ http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f
 **Now open the updated URL in your browser — you should see the Jupyter Notebook interface!**
 
 
+<br>
+<br>
+
 ### Stop and remove your docker container
 
 First list running containers:<br>
