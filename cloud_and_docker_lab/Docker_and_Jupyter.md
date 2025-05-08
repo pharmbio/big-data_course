@@ -69,10 +69,29 @@ We have changed the following parameters from the official documentation:
 `--network host` (makes container part of your host computer network - easier without port-mapping, but less isolated)
 `-v <local dir>:<container dir>` Mounts a directory or file on the host file system into the running container file system.
 
+### Accessing Your Jupyter Notebook
 
-Now if you got it running, you can check the output of your command and if you are running on server **change url ip from `127.0.0.1` to the Public Floating IP of your server**, e.g. `http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6` <br> **should be changed to** `http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6`
+Once your container is running, Docker will output a URL similar to:
 
-**Now you should be able to use the url to access your Jupyter notebook!** 
+```
+http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6
+```
+
+If you're running Jupyter on a **remote cloud server**, replace `127.0.0.1` with your server’s **Floating IP address**.
+
+For example, change:
+
+```
+http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6
+```
+
+to:
+
+```
+http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6
+```
+
+**Now open the updated URL in your browser — you should see the Jupyter Notebook interface!**
 
 
 ### Stop and remove your docker container
