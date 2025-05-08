@@ -102,7 +102,7 @@ They are especially beneficial for performing analyses directly on cloud resourc
 - **Computational Power**: You can leverage the high-performance computing resources (CPU, RAM, GPUs) available on cloud servers, enabling you to handle large datasets and computationally intensive analyses effortlessly.
 - **Interactive Development**: You can run code snippets step-by-step, facilitating immediate feedback and iterative exploration.
 
-### Why Use Docker to Run Jupyter Server?
+#### Why Use Docker to Run Jupyter Server?
 
 Docker is a containerization technology that simplifies software installation and configuration by encapsulating applications in a container—a lightweight, portable, and consistent runtime environment. Using Docker to run Jupyter Server offers significant advantages:
 
