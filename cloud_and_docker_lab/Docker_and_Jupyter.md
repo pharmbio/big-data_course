@@ -41,16 +41,6 @@ Now when you have docker installed you can try running a docker command that dow
 
     sudo docker run hello-world
 
-Another example is to run a docker container with latest ubuntu and print "Hello World" from inside the container. Inside the container `bash` is executing command `echo Hello World` and directing output into file `/data/hello-from.container.txt`
-
-    sudo docker run ubuntu:latest /bin/bash -c "echo Hello World"
-
-Another example is to run a docker container with latest ubuntu and print "Hello World" to a file from inside container, the `-v` switch is mounting your "Present Working Directory" to directory `/data/` in the container. Inside the container `bash` is executing command `echo Hello World` and directing output into file `/data/hello-from.container.txt`
-
-    sudo docker run -v $PWD:/data ubuntu:latest /bin/bash -c "echo Hello World > /data/hello-from.container.txt"
-
-Now you can check that the file is there by listing files in directory with `ls` command. And write contents of the newly file onto screen with `cat hello-from.container.txt`
-
 You can create your own Docker image, but most of the time you will use images that are created by someone else, often the author of the program you want to use. Ready to go images are then stored in Docker Repositories, where [https://hub.docker.com/](Dockerhub) is the biggest one, you can browse all there images at: [https://hub.docker.com/](https://hub.docker.com/)
 
 
