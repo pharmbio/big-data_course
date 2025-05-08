@@ -11,7 +11,6 @@ In this lab you will perform the following tasks:
 * Task 1: Creating a Key-pair
 * Task 2: Creating a Virtual Machine
 * Task 3: **Optional:** Install docker on the server and running Jupyter as a container
-* Task 4: **Optional:** Restore a session from a snapshot.
 
 
 ### Important links:
@@ -114,14 +113,4 @@ In this task we will run Jupyter server in a docker container so all we need to 
 
 Here is the detailed instructions for installing Docker on the server and running Jupyter as a container. OBS if you prefer to install and test docker and jupyter on your laptop instead you are more than welcome! You can use the same instructions: [Docker_and_Jupyter.md](Docker_and_Jupyter.md)
 
-## Task 4 (Optional)
-
-1.  Go to compute -> instances. Click "create a snapshot" in the dropdown menu for your instance. Name it something unique
-2.  Delete your instance
-3.  Now redo task-3. Can you still find your file using `ls` in the terminal? what about docker? can you still run `sudo docker run hello-world`? Now delete this instance.
-4.  Redo task-3 with one difference; under SOURCE you should select Image in the SELECT BOOT SOURCE menu. Now you should be able to see the snap-shot you made available for selection. Load it into the instance. Then finish creating the instance. Can you find your file now? What about docker?
-
-This guide was adapted from the technical manual found on
-https://github.com/SNICScienceCloud/technical-training/tree/master/introduction-to-ssc#readme
-last updated by sztoor.
 
