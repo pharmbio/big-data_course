@@ -29,9 +29,7 @@ https://docs.docker.com/engine/install/
     sudo apt install docker.io
 
 
-If you would like to use Docker as a non-root user, you should now consider adding your user to the “docker” group with something like:
-
-    sudo usermod -aG docker <your-user> # your-user would probably be ubuntu
+### Test your Docker installation
 
 Now when you have docker installed you can try running a docker command that downloads and run the "Hello world" container:
 
@@ -80,7 +78,7 @@ Example command if you want to run on your local computer:
 
     docker run --name notebook -p 8888:8888 -v $PWD:/home/jovyan --rm jupyter/scipy-notebook
 
-Now check the output of your command and if you are running on server **change url ip from `127.0.0.1` to the Public Floating IP of your server**, e.g. `http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6` **should be changed to** `http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6`
+Now check the output of your command and if you are running on server **change url ip from `127.0.0.1` to the Public Floating IP of your server**, e.g. `http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6` <br> **should be changed to** `http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6`
 
 Use the url to access your Jupyter notebook!
 
