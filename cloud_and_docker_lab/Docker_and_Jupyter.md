@@ -1,4 +1,22 @@
-**Jupyter Notebooks** are a popular way of accessing the compute power of a remote server but can be a bit difficult to install and maintain. In this example we will run Jupyter server in a docker container so all we need to install on the server is docker, and then run the Jupyter Server container in docker.<br>
+**Jupyter Notebooks** are a popular way of accessing the compute power of a remote server but can be a bit difficult to install and maintain.
+
+
+They are especially beneficial for performing analyses directly on cloud resources because:
+
+- **Remote Accessibility**: Jupyter Notebooks running on a cloud server can be accessed from anywhere using a standard web browser.
+- **Computational Power**: You can leverage the high-performance computing resources (CPU, RAM, GPUs) available on cloud servers, enabling you to handle large datasets and computationally intensive analyses effortlessly.
+- **Interactive Development**: You can run code snippets step-by-step, facilitating immediate feedback and iterative exploration.
+
+#### Why Use Docker to Run Jupyter Server?
+
+Docker is a containerization technology that simplifies software installation and configuration by encapsulating applications in a container—a lightweight, portable, and consistent runtime environment. Using Docker to run Jupyter Server offers significant advantages:
+
+- **Easy Setup**: No complex installation processes or configuration issues. A single Docker command can set up your Jupyter environment.
+- **Portability**: Containers can be easily deployed on any cloud instance, ensuring your analysis environment is consistent and reproducible across different systems.
+- **Isolation**: Docker containers run independently, ensuring your host system remains unaffected by dependencies and conflicts, providing a secure and isolated environment.
+
+In this task we will run Jupyter server in a docker container so all we need to install on the server is docker, and then run the Jupyter Server container in docker.
+<br>
 To get an idea of the popularity of running Jupyter Notebook via Docker, try searching on Internet for "Docker Jupyter" [https://www.google.com/search?q=docker+jupyter](https://www.google.com/search?q=docker+jupyter)
 
 ## Docker
