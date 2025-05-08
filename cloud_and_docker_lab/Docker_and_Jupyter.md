@@ -19,7 +19,7 @@ In this task we will run Jupyter server in a docker container so all we need to 
 <br>
 To get an idea of the popularity of running Jupyter Notebook via Docker, try searching on Internet for "Docker Jupyter" [https://www.google.com/search?q=docker+jupyter](https://www.google.com/search?q=docker+jupyter)
 
-## Docker
+## 1. Install Docker on your cloud server
 Install Docker (if you see different versions of docker to install, choose the CE version Community Edition, which is the totally free one):
 
 Official install page for reference:
@@ -50,7 +50,7 @@ Now you can check that the file is there by listing files in directory with `ls`
 You can create your own Docker image, but most of the time you will use images that are created by someone else, often the author of the program you want to use. Ready to go images are then stored in Docker Repositories, where [https://hub.docker.com/](Dockerhub) is the biggest one, you can browse all there images at: [https://hub.docker.com/](https://hub.docker.com/)
 
 
-## Jupyter
+## Run Jupyter
 When you have docker installed you can run a Jupyter notebook server as a container without need for installation.
 
 Here is a list of official jupyter containers: [https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html)
