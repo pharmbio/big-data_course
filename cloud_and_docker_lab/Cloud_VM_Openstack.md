@@ -72,7 +72,7 @@ The User interface is at <a href="https://east-1.cloud.snic.se/project/" target=
 3. 	Now Is time to start the "Instance Wizard" to generate an instance by clicking on "Launch Instance" under menu Compute -> Instances.
 - An "instance" refers to a virtual server created within a cloud environment like OpenStack, AWS, or Google Cloud. It acts much like a traditional physical server but is hosted on a shared physical hardware infrastructure
 4. 	In the launch configuration menu you'll be presented with a number of option; under first menu "Details", name your instance something unique. Leave the rest on "Details" as default.
-5. 	Under menu "Source" you should select the OS (Operating System) Image you wish to run; for this excercise we will use "Ubuntu 22.04-LTS". **OBS! Set "create new volume" to "No"**
+5. 	Under menu "Source" you should select the OS (Operating System) Image you wish to run; for this excercise we will use "Ubuntu 22.04-LTS" (chose the latest version available). **OBS! Set "create new volume" to "No"**
 6. 	Under menu "Flavor" you select a flavor (size of VM) with up to 2 cpu and 2 GB memory.
 - This allocates the size of your VM considering RAM memory and number of CPUs.
 7. 	Under menu Security Groups you add your own custom group.
