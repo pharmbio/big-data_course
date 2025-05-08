@@ -57,34 +57,29 @@ Here are official instructions for running jupyter with docker: [https://jupyter
 
  [https://jupyter-docker-stacks.readthedocs.io/en/latest/using/running.html](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/running.html)
 
-When running on the server we need to edit the commands from the official documentation a little bit:
-
-You can use following parameters:
-
-`--name notebook` (Name your running container - makes it easier to stop it)
-
-`-p 8888:8888` Allow container to use port 8888 of computer
-
-`--network host` (makes container part of your host computer network - easier without port-mapping, but less isolated)
-
-`-v <local dir>:<container dir>` Mounts a directory or file on the host file system into the running container file system.
-
-
-Example command if you want to run on the server:
+When running on the server we need to edit the commands from the official documentation a little bit, here is a example command if you want to run on the cloud server:
 
     sudo docker run --name notebook --network host -v $PWD:/home/jovyan --rm jupyter/scipy-notebook
+
 
 Example command if you want to run on your local computer:
 
     docker run --name notebook -p 8888:8888 -v $PWD:/home/jovyan --rm jupyter/scipy-notebook
 
-Now check the output of your command and if you are running on server **change url ip from `127.0.0.1` to the Public Floating IP of your server**, e.g. `http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6` <br> **should be changed to** `http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6`
+We have changed the following parameters from the official documentation:
 
-Use the url to access your Jupyter notebook!
+`--name notebook` (Name your running container - makes it easier to stop it)
+`-p 8888:8888` Allow container to use port 8888 of computer
+`--network host` (makes container part of your host computer network - easier without port-mapping, but less isolated)
+`-v <local dir>:<container dir>` Mounts a directory or file on the host file system into the running container file system.
 
 
+Now if you got it running, you can check the output of your command and if you are running on server **change url ip from `127.0.0.1` to the Public Floating IP of your server**, e.g. `http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6` <br> **should be changed to** `http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6`
 
-### Stop your docker container
+**Now you should be able to use the url to access your Jupyter notebook!** 
+
+
+### Stop and remove your docker container
 
 First list running containers:<br>
 `sudo docker ps --all`
