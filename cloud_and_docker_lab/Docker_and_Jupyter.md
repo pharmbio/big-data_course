@@ -97,16 +97,34 @@ http://130.238.xx.xx:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f
 <br>
 <br>
 
-### Stop and remove your docker container
+### Stop and Remove Your Docker Container
 
-First list running containers:<br>
-`sudo docker ps --all`
+#### If your container is running in the foreground (you see logs in the terminal):
 
-Stop a running container:<br>
-`sudo docker stop <container id or name>`
+- Press `Ctrl + C` to stop the container.
 
-Remove a running container:<br>
-`sudo docker rm <container id or name>`
+#### If your container is running in the background (started with `-d` or after pressing `Ctrl + C`):
+
+1. **List all containers (running or stopped):**
+
+   ```bash
+   sudo docker ps --all
+   ```
+
+2. **Stop a running container (if it's still active):**
+
+   ```bash
+   sudo docker stop <container id or name>
+   ```
+
+3. **Remove the container (whether it's running or stopped):**
+
+   ```bash
+   sudo docker rm <container id or name>
+   ```
+
+> 💡 If you used the `--rm` flag when starting the container, it will be automatically deleted when stopped.
+
 
 
 
