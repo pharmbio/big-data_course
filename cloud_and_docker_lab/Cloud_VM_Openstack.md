@@ -88,7 +88,7 @@ The User interface is at <a href="https://east-1.cloud.snic.se/project/" target=
 - The installation of cowsay is just a simple, lightweight method to confirm that the instance's setup is successful, particularly to see that you have the ability to install any software on your new virtual server. Cowsay is a program that generates ASCII pictures of a cow with a speech bubble containing specified text.
 15. Test the installation by using cowsay. I.e. in the terminal of your virtual server type `cowsay -f dragon "Hello World!"`
 
-Now when you have a basic understanding of instance provisioning, please review the SSC user security guidelines: https://cloud.snic.se/index.php/user-security-guidelines/
+Now when you have a basic understanding of instance provisioning, please review the SSC user security guidelines: https://cloud.snic.se/index.html%3Fp=569.html
 
 
 ## Task 3 (Optional): Install Docker and Run Jupyter Server in a Container
