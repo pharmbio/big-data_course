@@ -53,21 +53,20 @@ Here are official instructions for running jupyter with docker: [https://jupyter
 
  [https://jupyter-docker-stacks.readthedocs.io/en/latest/using/running.html](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/running.html)
 
-When running on the server we need to edit the commands from the official documentation a little bit, here is a example command if you want to run on the cloud server:
+####When running on the server we need to edit the commands from the official documentation a little bit, here is a example command if you want to run on the cloud server.####
+
+If you run jupyter on **Cloud server** use this command
 
     sudo docker run --name notebook --network host -v $PWD:/home/jovyan --rm jupyter/scipy-notebook
 
 
-Example command if you want to run on your local computer:
+If you run Jupyter on your **laptop** use this command:
 
     docker run --name notebook -p 8888:8888 -v $PWD:/home/jovyan --rm jupyter/scipy-notebook
 
-We have changed the following parameters from the official documentation:
 
-`--name notebook` (Name your running container - makes it easier to stop it)
-`-p 8888:8888` Allow container to use port 8888 of computer
-`--network host` (makes container part of your host computer network - easier without port-mapping, but less isolated)
-`-v <local dir>:<container dir>` Mounts a directory or file on the host file system into the running container file system.
+**Now jupyter server should be up and running**
+
 
 ### Accessing Your Jupyter Notebook
 
