@@ -1,3 +1,4 @@
+% !TEX program = xelatex
 \documentclass[aspectratio=169,dvipsnames]{beamer}
 
 \usepackage{pgf}  
@@ -1866,28 +1867,212 @@ representation} of a molecule into \alert{numbers}
 
 \appendix
 \section{Git and GitHub}
-\subsection{Git}
+\subsection{Distributed Version Control}
 \begin{frame}
-    \frametitle{Git}
+    \frametitle{The problem}
     \framesubtitle{Distributed Version Control}
-    \begin{block}{Git}
-        \begin{itemize}
-            \item Git is a distributed version control system for tracking changes in source code
-            \item Makes it easier to:
+
+    \begin{minipage}{0.5\textwidth}
+        \begin{block}{Is this familiar to you?}
             \begin{itemize}
-                \item revert to older versions of code
-                \item collaborate on code
-                \item work with multiple versions of code in parallel
-                \item \ldots
+                \small
+                \item ourDocument.docx \pause
+                \item ourDocument\_Sara.docx \pause
+                \item ourDocument\_v2.docx \pause
+                \item ourDocument\_Sara\_v2.docx \pause
+                \item ourDocument\_final.docx \pause
+                \item ourDocument\_final\_final.docx \pause
             \end{itemize}
+        \end{block}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \begin{block}{Problems with this approach}
+            \begin{itemize}
+                \small
+                \item Overwritten files?
+                \item No record of what changed when 
+                \item Difficult to collaborate on the same file
+            \end{itemize}
+        \end{block}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{A Short History of Version Control}
+
+\begin{itemize}
+    \item \textbf{Local versioning}
+    \begin{itemize}
+        \item Manual copies: \texttt{project\_v1}, \texttt{project\_final\_final}
+    \end{itemize}
+
+
+    \item \textbf{Centralized systems (CVS 1986, Subversion 2000 (stable version 2004))}
+    \begin{itemize}
+        \item One central server
+        \item Requires connection
+        \item Branching is slow and cumbersome
+    \end{itemize}
+
+
+    \item \textbf{Distributed systems (Git, 2005)}
+    \begin{itemize}
+        \item Full history on every machine
+        \item Fast, lightweight branching
+        \item Designed for collaboration at scale
+    \end{itemize}
+\end{itemize}
+
+\centering
+\textit{Key idea: Centralized vs Distributed version control}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Git vs GitHub}
+    \framesubtitle{Distributed Version Control}
+    \centering
+    \includegraphics[width=0.25\textwidth]{Figures/gitlogo.png}
+    \includegraphics[width=0.25\textwidth]{Figures/GitHub-logo.png}
+    \begin{block}{Git vs GitHub}
+    \begin{itemize}
+        \item Git is the version control system
+        \item GitHub is a platform for hosting Git repositories and facilitating collaboration
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+\subsection{Core ideas of Git}
+\begin{frame}
+    \frametitle{Core ideas of Git}
+    \framesubtitle{Core ideas of Git}
+    \begin{block}{Core ideas of Git}
+        \begin{itemize}
+            \item \textbf{Repository}: Project and its history
+            \item \textbf{Commit}: Snapshot of your code at a point in time with a message
+            \item \textbf{Branch}: Independent line of development
+            \item The history let's you go back to previous versions, see what changed, and who changed it
         \end{itemize}
     \end{block}
 \end{frame}
 
-\subsection{GitHub}
+\begin{frame}
+    \frametitle{Branches and Merging}
+    \framesubtitle{Core ideas of Git}
+
+    \centering
+    \begin{tikzpicture}[
+        x=1.65cm, y=1.25cm,
+        commit/.style={circle, draw, thick, minimum size=5.2mm, inner sep=0pt},
+        branchlabel/.style={font=\scriptsize}
+    ]
+
+    % Main branch (initial)
+    \node[commit] (A) at (0,0) {A};
+    \node[commit] (B) at (1,0) {B};
+
+    \draw[thick] (A) -- (B);
+
+    % Step 1
+    \only<1-2>{
+        \node[branchlabel, below=3mm of B] {\texttt{main}};
+    }
+
+    % Step 2+: feature branch
+    \uncover<2->{
+        \node[commit] (D) at (2,1.2) {D};
+        \draw[thick] (B) -- (D);
+    }
+    \uncover<2>{
+        \node[branchlabel, above=3mm of D] {\texttt{feature}};
+    }
+
+    % Step 3+: main continues
+    \uncover<3->{
+        \node[commit] (C) at (2,0) {C};
+        \node[commit] (E) at (3,1.2) {E};
+        \node[commit] (F) at (3,0) {F};
+        \draw[thick] (D) -- (E);
+        \draw[thick] (B) -- (C) -- (F);
+        \node[branchlabel, above=3mm of E] {\texttt{feature}};
+    }
+    
+    \uncover<3>{
+        \node[branchlabel, below=3mm of F] {\texttt{main}};
+    }
+
+    % Step 4+: merge (visual connection)
+    \uncover<4->{
+        \node[commit] (G) at (4,0) {G};
+        \draw[thick] (E) -- (G);
+        \draw[thick] (F) -- (G);
+        \node[branchlabel, below=3mm of G] {\texttt{main}};
+    }
+
+    \end{tikzpicture}
+
+    \only<1>{
+    \begin{itemize}
+        \item We have a branch \texttt{main}
+        \item It has two commits: A and B
+    \end{itemize}
+    }
+
+    \only<2>{
+    \begin{itemize}
+        \item \texttt{feature} is a new branch created from \texttt{main} at commit B
+        \item A branch is a new line of development
+    \end{itemize}
+    }
+
+    \only<3>{
+    \begin{itemize}
+        \item Both branches evolve independently
+        \item \textbf{Branches are cheap} — use them freely!
+    \end{itemize}
+    }
+
+    \only<4>{
+    \begin{itemize}
+        \item Merge brings changes from the feature branch into \texttt{main}
+        \item Development can continue on a single line from G
+    \end{itemize}
+    }
+
+\end{frame}
+
+\begin{frame}
+        \frametitle{Local work and remote collaboration}
+        \framesubtitle{Core ideas of Git}
+        \begin{block}{Local work and remote collaboration}
+            \begin{itemize}
+                \item Git allows you to work locally on your machine, \textbf{commit} saves changes as you go
+                \item \textbf{push} is used to transfer your commits to a remote repository (e.g., on GitHub) to share with others
+                \item \textbf{pull} is used to get changes from a remote repository to your local branch
+                \item \textbf{clone} is used to create a new repository from a remote resource
+            \end{itemize}
+        \end{block}
+\end{frame}
+
+\subsection{Practical workflow}
+
+\begin{frame}
+    \frametitle{Commands for minimal git workflow}
+    \framesubtitle{Practical workflow}
+    \begin{block}{Commands for minimal git workflow}
+        \begin{enumerate}
+            \item \texttt{git clone} to download or \texttt{git init} to create a repository
+            \item \textit{Edit the files you want to change}
+            \item \texttt{git add} to define what you want to save
+            \item \texttt{git commit} to save your changes locally
+            \item \texttt{git push} to share your changes
+            \item \texttt{git pull} to get changes from others
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
 \begin{frame}
     \frametitle{Github}
-    \framesubtitle{Distributed Version Control}
+    \framesubtitle{Practical workflow}
         \begin{block}{GitHub}
         \begin{itemize}
             \item A web-based platform for hosting Git repositories
@@ -1902,8 +2087,22 @@ representation} of a molecule into \alert{numbers}
         \end{block}
 
         \begin{center}
-            You will find some computer labs on GitHub in this course
+            You might find some computer labs on GitHub in this course \\ (or maybe we just give them to you as files \smiley)
         \end{center}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Good habits and common mistakes}
+        \framesubtitle{Practical workflow}
+        \begin{block}{Good habits and common mistakes}
+            \begin{itemize}
+                \item Commit often with clear messages
+                \item Use branches for new features or experiments
+                \item Avoid committing large files or sensitive information. Git is not designed for large binary files and they can bloat the repository.
+                \item Pull before starting to work
+                \item Do no panic if you get a merge conflict. They are normal and can be resolved!
+            \end{itemize}
+        \end{block}
 \end{frame}
 
 
