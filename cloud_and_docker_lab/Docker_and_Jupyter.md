@@ -73,7 +73,7 @@ If you run Jupyter on your **laptop** use this command:
 Once your container is running, Docker will output a URL similar to:
 
 ```
-http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf282f6
+http://127.0.0.1:8888/?token=922e19c80d0a0b2183f6346c5a429b1c2fa616ae9cf28
 ```
 
 If you're running Jupyter on a **remote cloud server**, replace `127.0.0.1` with your server’s **Floating IP address**.
